@@ -1,4 +1,4 @@
-package com.tmjee.linearisation.core;
+package sample;
 
 import com.tmjee.linearisation.processor.Consequence;
 import com.tmjee.linearisation.processor.Invariant;

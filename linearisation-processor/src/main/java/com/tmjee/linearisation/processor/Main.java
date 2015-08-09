@@ -5,7 +5,9 @@ package com.tmjee.linearisation.processor;
  */
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] arguments) throws Exception {
+
+        Arguments args = Arguments.parse(arguments);
 
 
     }
