@@ -24,7 +24,7 @@ public class SampleRunner extends Runner {
 
 
     protected void internalRun() {
-        LinearisabilityTest test = new LinearisabilityTest();
+        LinearisabilityTest.TestUnit1 test = new LinearisabilityTest.TestUnit1();
 
         int strides = args.minStrides();
         Pair[] p = new Pair[strides];
@@ -64,11 +64,11 @@ public class SampleRunner extends Runner {
 
         protected final Control control;
         protected final Arguments args;
-        protected final LinearisabilityTest test;
+        protected final LinearisabilityTest.TestUnit1 test;
         protected final AtomicReference<Holder> holderRef;
         protected final AtomicInteger epoch;
 
-        public BaseRunner(Control control, Arguments args, LinearisabilityTest test, AtomicReference<Holder> holderRef, AtomicInteger epoch) {
+        public BaseRunner(Control control, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef, AtomicInteger epoch) {
             this.control = control;
             this.args = args;
             this.test = test;
@@ -137,7 +137,7 @@ public class SampleRunner extends Runner {
 
 
     private static class Runner2 extends BaseRunner {
-        public Runner2(Control control, Arguments args, LinearisabilityTest test, AtomicReference<Holder> holderRef,
+        public Runner2(Control control, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
                        AtomicInteger epoch) {
             super(control, args, test, holderRef, epoch);
         }
@@ -151,7 +151,7 @@ public class SampleRunner extends Runner {
 
     private static class Runner1 extends BaseRunner {
 
-        public Runner1(Control control, Arguments args, LinearisabilityTest test, AtomicReference<Holder> holderRef,
+        public Runner1(Control control, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
                        AtomicInteger epoch) {
             super(control, args, test, holderRef, epoch);
         }

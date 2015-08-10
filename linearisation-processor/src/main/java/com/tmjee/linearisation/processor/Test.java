@@ -35,6 +35,11 @@ public class Test {
     public String description() { return description; }
     public String runner() { return runner; }
     public String invariant() { return invariant; }
+    public Set<Consequence> consequences() { return consequences; }
+    public List<String> references() { return references; }
+    public List<String> players() { return players; }
+    public String test() { return test; }
+    public int playerCount() { return players.size(); }
 
 
     public static class Consequence {
@@ -53,7 +58,7 @@ public class Test {
     /**
      * @author tmjee
      */
-    public static class TestBuilder {
+    public static class Builder {
         private String name;
         private String description;
         private String runner;
@@ -64,47 +69,47 @@ public class Test {
         private Set<Consequence> consequences = new LinkedHashSet<>();
         private List<String> references = new ArrayList<>();
 
-        public TestBuilder withName(String name) {
+        public Builder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public TestBuilder withDescription(String description) {
+        public Builder withDescription(String description) {
             this.description = description;
             return this;
         }
 
-        public TestBuilder withRunner(String runner) {
+        public Builder withRunner(String runner) {
             this.runner = runner;
             return this;
         }
 
-        public TestBuilder withInvariant(String invariant) {
+        public Builder withInvariant(String invariant) {
             this.invariant = invariant;
             return this;
         }
 
-        public TestBuilder withTest(String test) {
+        public Builder withTest(String test) {
             this.test = test;
             return this;
         }
 
-        public TestBuilder addPlayer(String player) {
+        public Builder addPlayer(String player) {
            this.players.add(player);
             return this;
         }
 
-        public TestBuilder addConsequence(String id, Expectation expectation, String description) {
+        public Builder addConsequence(String id, Expectation expectation, String description) {
             this.consequences.add(new Consequence(id, expectation, description));
             return this;
         }
 
-        public TestBuilder withRecord(String record) {
+        public Builder withRecord(String record) {
             this.record = record;
             return this;
         }
 
-        public TestBuilder addReference(String reference) {
+        public Builder addReference(String reference) {
             this.references.add(reference);
             return this;
         }

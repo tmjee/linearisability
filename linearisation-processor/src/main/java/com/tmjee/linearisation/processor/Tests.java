@@ -28,7 +28,7 @@ public class Tests {
                     String runner = segments[2];
                     int playerCount = Integer.parseInt(segments[3]);
 
-                    tests.put(n, new Test(n, description, runner, playerCount));
+                    //tests.put(n, new Test(n, description, runner, playerCount));
                 }
             } catch (IOException e) {
                 e.printStackTrace();

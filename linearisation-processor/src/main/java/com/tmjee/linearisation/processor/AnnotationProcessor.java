@@ -2,12 +2,9 @@ package com.tmjee.linearisation.processor;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.*;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
-import javax.tools.StandardLocation;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -66,14 +63,25 @@ public class AnnotationProcessor extends AbstractProcessor {
         System.out.println("Consequences annotation="+consequencesAnnotation);
         System.out.println("References annotation="+referencesAnnotation);
 
+        Test.Builder builder = new Test.Builder();
+
         List<? extends Element> list = e.getEnclosedElements();
         for (Element e1 : list) {
-            if (e1.getKind() == ElementKind.CLASS) {
-                System.out.println("inner class="+e1);
-            }
-            if (e1.getKind() == ElementKind.METHOD) {
-                System.out.println("method enclosing element="+e1.getEnclosingElement());
-                System.out.println("method ="+e1);
+            if (e1.getKind() == ElementKind.CLASS && e1.getAnnotation(TestUnit.class) != null) {
+                System.out.println("test class="+e1);
+                for (Element e2 : e1.getEnclosedElements()) {
+                    if (e2.getKind() == ElementKind.METHOD && e2.getAnnotation(Player.class) != null) {
+                        System.out.println("player method="+e2);
+                        List<? extends VariableElement> e3s = ((ExecutableElement)e2).getParameters();
+                        for (Element e3 : e3s) {
+                            System.out.println("parameter=" + e3 +"\t"+e3.getKind());
+                            Element paramElement = types.asElement(e3.asType());
+                            System.out.println(paramElement);
+                            System.out.println(paramElement.getAnnotation(Invariant.class));
+                            System.out.println(paramElement.getAnnotation(Record.class));
+                        }
+                    }
+                }
             }
         }
 
