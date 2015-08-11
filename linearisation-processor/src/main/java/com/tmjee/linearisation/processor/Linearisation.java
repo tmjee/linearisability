@@ -28,7 +28,7 @@ public class Linearisation {
 
         for (Test test : Tests.getAll().values()) {
             try {
-                Runner runner = (Runner) Class.forName(test.runner()).newInstance();
+                Runner runner = (Runner) Class.forName(test.runner().className).newInstance();
                 scheduler.schedule(new Scheduler.Task(){
                     @Override
                     public void run() {
@@ -37,7 +37,7 @@ public class Linearisation {
 
                     @Override
                     int permits() {
-                        return test.playerCount();
+                        return test.testsCount();
                     }
                 });
             } catch (InstantiationException e) {

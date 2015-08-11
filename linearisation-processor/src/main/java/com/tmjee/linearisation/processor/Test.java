@@ -9,39 +9,39 @@ public class Test {
 
     private final String name;
     private final String description;
-    private final String runner;
-    private final String invariant;
-    private final String record;
+    private final ClassInfo runner;
+    private final ClassInfo invariant;
+    private final ClassInfo record;
+    private final List<MethodInfo> tests;
     private final Set<Consequence> consequences;
     private final List<String> references;
-    private final List<String> players;
-    private final String test;
 
-    private Test(String name, String description, String runner, String invariant, String record,
-                 Set<Consequence> conseqeunces, List<String> references, String test, List<String> players) {
+    private Test(String name, String description, ClassInfo runner, ClassInfo invariant, ClassInfo record,
+                 List<MethodInfo> tests, Set<Consequence> conseqeunces, List<String> references) {
         this.name = name;
         this.description = description;
         this.runner = runner;
         this.invariant = invariant;
         this.record = record;
+        this.tests = tests;
         this.consequences = Collections.unmodifiableSet(conseqeunces);
         this.references = Collections.unmodifiableList(references);
-        this.test = test;
-        this.players = Collections.unmodifiableList(players);
     }
-
 
     public String name() { return name; }
     public String description() { return description; }
-    public String runner() { return runner; }
-    public String invariant() { return invariant; }
+    public ClassInfo runner() { return runner; }
+    public ClassInfo invariant() { return invariant; }
+    public ClassInfo record() { return record; }
     public Set<Consequence> consequences() { return consequences; }
     public List<String> references() { return references; }
-    public List<String> players() { return players; }
-    public String test() { return test; }
-    public int playerCount() { return players.size(); }
+    public List<MethodInfo> tests() { return tests; }
+    public int testsCount() { return tests.size(); }
 
 
+    /**
+     * @author tmjee
+     */
     public static class Consequence {
         private final String id;
         private final Expectation expectation;
@@ -55,17 +55,93 @@ public class Test {
     }
 
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[Test:");
+        sb.append("\n\tname="+name);
+        sb.append("\n\tdescription="+description);
+        sb.append("\n\trunner="+runner);
+        sb.append("\n\tinvariant="+invariant);
+        sb.append("\n\trecord="+record);
+        sb.append("\n\tconsequence="+consequences);
+        sb.append("\n\treferences="+references);
+        sb.append("\n\ttests="+tests);
+        sb.append("]");
+        return sb.toString();
+
+    }
+
+    /**
+     * @author tmjee
+     */
+    public static class ClassInfo {
+        protected final String packageName;
+        protected final String className;
+
+        private ClassInfo(String packageName, String className) {
+            this.packageName = packageName;
+            this.className = className;
+        }
+
+        @Override
+        public String toString() {
+            StringBuffer sb = new StringBuffer();
+            sb.append("[ClassInfo:");
+            sb.append("\n\tpackageName="+packageName);
+            sb.append("\n\tclassName="+className);
+            return sb.toString();
+        }
+
+        public String packageName() {
+            return packageName;
+        }
+
+        public String className() {
+            return className;
+        }
+    }
+
+
+    /**
+     * @author tmjee
+     */
+    public static class MethodInfo extends ClassInfo {
+        private final String methodName;
+        private final String arg0;
+        private final String arg1;
+
+        private MethodInfo(String packageName, String className, String methodName, String arg0, String arg1) {
+            super(packageName, className);
+            this.methodName = methodName;
+            this.arg0 = arg0;
+            this.arg1 = arg1;
+        }
+
+        @Override
+        public String toString() {
+            StringBuffer sb = new StringBuffer();
+            sb.append("[ClassInfo:");
+            sb.append("\n\tpackageName="+packageName);
+            sb.append("\n\tclassName="+className);
+            sb.append("\n\tmethodName="+methodName);
+            sb.append("\n\targ0="+arg0);
+            sb.append("\n\targ1="+arg1);
+            return sb.toString();
+        }
+    }
+
+
     /**
      * @author tmjee
      */
     public static class Builder {
         private String name;
         private String description;
-        private String runner;
-        private String invariant;
-        private String record;
-        private String test;
-        private List<String> players = new ArrayList<String>();
+        private ClassInfo runner;
+        private ClassInfo invariant;
+        private ClassInfo record;
+        private List<MethodInfo> tests = new ArrayList<MethodInfo>();
         private Set<Consequence> consequences = new LinkedHashSet<>();
         private List<String> references = new ArrayList<>();
 
@@ -79,23 +155,20 @@ public class Test {
             return this;
         }
 
-        public Builder withRunner(String runner) {
-            this.runner = runner;
+        public Builder withRunner(String runnerPackageName, String runnerClassName) {
+            this.runner = new ClassInfo(runnerPackageName, runnerClassName);
             return this;
         }
 
-        public Builder withInvariant(String invariant) {
-            this.invariant = invariant;
+        public Builder withInvariant(String invariantPackageName, String invariantClassName) {
+            this.invariant = new ClassInfo(invariantPackageName, invariantClassName);
             return this;
         }
 
-        public Builder withTest(String test) {
-            this.test = test;
-            return this;
-        }
-
-        public Builder addPlayer(String player) {
-           this.players.add(player);
+        public Builder addTest(String testPackageName, String testClassName, String testMethodName, String[] args) {
+            this.tests.add(new MethodInfo(testPackageName, testClassName, testMethodName,
+                    args != null && args.length >= 1 ? args[0] : null,
+                    args != null && args.length >= 2 ? args[1] : null));
             return this;
         }
 
@@ -104,8 +177,8 @@ public class Test {
             return this;
         }
 
-        public Builder withRecord(String record) {
-            this.record = record;
+        public Builder withRecord(String recordPackageName, String recordClassName) {
+            this.record = new ClassInfo(recordPackageName, recordClassName);
             return this;
         }
 
@@ -115,7 +188,7 @@ public class Test {
         }
 
         public Test build() {
-            return new Test(name, description, runner, invariant, record, consequences, references, test, players);
+            return new Test(name, description, runner, invariant, record, tests, consequences, references);
         }
     }
 }

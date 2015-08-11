@@ -5,7 +5,7 @@ import com.tmjee.linearisation.processor.*;
 /**
  * @author tmjee
  */
-@Linearisable(name="")
+@Linearisable
 @Consequence(id="[1]", expectation = Expectation.ACCEPTABLE, description = "result 1")
 @Consequence(id="[2]", expectation = Expectation.ACCEPTABLE, description = "result 2")
 @Consequence(id="[3]", expectation = Expectation.ACCEPTABLE, description = "result 3")
@@ -28,12 +28,10 @@ public class LinearisabilityTest {
     public static class TestUnit1 {
         @Player
         public void player1Action(State state, Result result) {
-
         }
 
         @Player
         public void player2Action(State state, Result result) {
-
         }
     }
 }
