@@ -9,6 +9,8 @@ public class Main {
 
         Arguments args = Arguments.parse(arguments);
 
-
+        if (args != null) {
+            new Linearisation().run(args);
+        }
     }
 }

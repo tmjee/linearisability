@@ -11,6 +11,7 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
+import javax.tools.StandardLocation;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -26,6 +27,9 @@ public class AnnotationProcessor extends AbstractProcessor {
     private Types types;
     private Filer filer;
     private Messager messager;
+    private Configuration configuration;
+
+    private List<Test> tests;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -35,13 +39,13 @@ public class AnnotationProcessor extends AbstractProcessor {
         types = processingEnv.getTypeUtils();
         filer = processingEnv.getFiler();
         messager = processingEnv.getMessager();
+
+        tests = new ArrayList<>();
     }
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        List<Test> tests = new ArrayList<>();
         if (!roundEnv.processingOver()) {
-            System.out.println("**** start processing");
 
             Set<? extends Element> set = roundEnv.getElementsAnnotatedWith(Linearisable.class);
             for (Element e : set) {
@@ -52,7 +56,6 @@ public class AnnotationProcessor extends AbstractProcessor {
             }
 
         } else {
-            System.out.println("**** processing over");
             generateMetaFile(tests);
         }
         return true;
@@ -64,30 +67,35 @@ public class AnnotationProcessor extends AbstractProcessor {
     }
 
 
+    private void initConfiguration() {
+        if (configuration == null) {
+            configuration = new Configuration(Configuration.VERSION_2_3_23);
+            configuration.setTemplateLoader(new ClassTemplateLoader(AnnotationProcessor.class, "/template"));
+            configuration.setDefaultEncoding("UTF-8");
+            configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        }
+    }
+
     private void validate(List<Test> tests) {
         // todo:
     }
 
     private void generateSource(List<Test> tests) {
-
-        Configuration configuration = new Configuration(Configuration.VERSION_2_3_23);
-        configuration.setTemplateLoader(new ClassTemplateLoader(AnnotationProcessor.class, "/"));
-        configuration.setDefaultEncoding("UTF-8");
-        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-
         try {
+            initConfiguration();
             Template template = configuration.getTemplate("runner_java.ftl");
 
             for (Test test : tests) {
-                Test.ClassInfo runner = test.runner();
-                Map<String, Object> model = new HashMap<String, Object>();
+
+                // create model for templating
+                Map<String, Object> model = new HashMap<>();
                 model.put("test", test);
-                System.out.println("***** "+runner.packageName+"."+runner.className);
+
+                Test.ClassInfo runner = test.runner();
                 try (Writer writer = filer.createSourceFile(runner.packageName + "." + runner.className).openWriter()) {
                     template.process(model, new OutputStreamWriter(System.out));
                     template.process(model, writer);
                     writer.flush();
-                    return;
                 }
             }
         } catch (IOException e) {
@@ -99,11 +107,27 @@ public class AnnotationProcessor extends AbstractProcessor {
 
 
     private void generateMetaFile(List<Test> tests) {
+        try {
+            initConfiguration();
+            Template template = configuration.getTemplate("linearisation_tests_xml.ftl");
 
+            Map<String, Object> model = new HashMap<>();
+            model.put("tests", tests);
+
+            try (Writer writer = filer.createResource(StandardLocation.CLASS_OUTPUT, "", Tests.TESTS_LOCATION.substring(1)).openWriter()) {
+                template.process(model, new OutputStreamWriter(System.out));
+                template.process(model, writer);
+                writer.flush();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (TemplateException e) {
+            e.printStackTrace();
+        }
     }
 
     private List<Test> parse(Element e) {
-        System.out.println("=== "+e);
 
         Consequences consequencesAnnotation = e.getAnnotation(Consequences.class);
         References referencesAnnotation = e.getAnnotation(References.class);
@@ -134,33 +158,29 @@ public class AnnotationProcessor extends AbstractProcessor {
 
                 builder.withName(testUnitName)
                         .withDescription(testUnitDescription)
-                        .withRunner(runnerPackageName, runnerClassName);
+                        .withRunner(runnerPackageName, runnerClassName)
+                        .withTestClass(testPackageName, testClassName);
 
 
                 for (Element e2 : e1.getEnclosedElements()) {
                     if (e2.getKind() == ElementKind.METHOD && e2.getAnnotation(Player.class) != null) {
-                        System.out.println("\tplayer method="+e2.getSimpleName());
                         List<String> args = new ArrayList<>(2);
                         List<? extends VariableElement> e3s = ((ExecutableElement)e2).getParameters();
                         if (e3s.size() <= 2) {
                             for (Element e3 : e3s) {
                                 TypeElement paramElement = (TypeElement)types.asElement(e3.asType());
                                 if (paramElement.getAnnotation(Invariant.class) != null) {
-                                    System.out.println("param invariant");
-                                    builder.withInvariant(getClassName(paramElement), getPackageName(paramElement));
+                                    builder.withInvariant(getPackageName(paramElement), getClassName(paramElement));
                                     args.add("invariant");
                                 }
                                 if (paramElement.getAnnotation(Record.class) != null) {
-                                    System.out.println("param record");
                                     builder.withRecord(getPackageName(paramElement), getClassName(paramElement));
                                     args.add("record");
                                 }
                             }
                         }
 
-                        builder.addTest(
-                                testPackageName,
-                                testClassName,
+                        builder.addTestMethod(
                                 getMethodName((ExecutableElement) e2), args.toArray(new String[0]));
                     }
                 }

@@ -2,6 +2,8 @@ package com.tmjee.linearisation.processor;
 
 import sample.SampleRunner;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -28,7 +30,10 @@ public class Linearisation {
 
         for (Test test : Tests.getAll().values()) {
             try {
-                Runner runner = (Runner) Class.forName(test.runner().className).newInstance();
+                Class<?> runnerClass =  Class.forName(test.runner().packageName+"."+test.runner().className);
+                Constructor<?> c = runnerClass.getConstructor(Arguments.class, ExecutorService.class);
+                Runner runner = (Runner) c.newInstance(args, pool);
+
                 scheduler.schedule(new Scheduler.Task(){
                     @Override
                     public void run() {
@@ -46,10 +51,14 @@ public class Linearisation {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
             }
         }
 
-
+/*
         scheduler.schedule(new Scheduler.Task() {
             @Override
             int permits() {
@@ -62,5 +71,9 @@ public class Linearisation {
                 runner.run();
             }
         });
+ */
+        System.out.println("waiting");
+        scheduler.waitToEnd();
+        System.out.println("end");
     }
 }

@@ -28,12 +28,12 @@ public class LinearisabilityTest {
     public static class TestUnit1 {
         @Player
         public void player1Action(State state, Result result) {
-
+            System.out.println("-->player #1");
         }
 
         @Player
         public void player2Action(State state, Result result) {
-
+            System.out.println("-->player #2");
         }
     }
 }

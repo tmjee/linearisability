@@ -12,18 +12,21 @@ public class Test {
     private final ClassInfo runner;
     private final ClassInfo invariant;
     private final ClassInfo record;
-    private final List<MethodInfo> tests;
+    private final ClassInfo testClass;
+    private final List<MethodInfo> testMethods;
     private final Set<Consequence> consequences;
     private final List<String> references;
 
     private Test(String name, String description, ClassInfo runner, ClassInfo invariant, ClassInfo record,
-                 List<MethodInfo> tests, Set<Consequence> conseqeunces, List<String> references) {
+                 ClassInfo testClass, List<MethodInfo> testMethods, Set<Consequence> conseqeunces,
+                 List<String> references) {
         this.name = name;
         this.description = description;
         this.runner = runner;
         this.invariant = invariant;
         this.record = record;
-        this.tests = tests;
+        this.testMethods = testMethods;
+        this.testClass = testClass;
         this.consequences = Collections.unmodifiableSet(conseqeunces);
         this.references = Collections.unmodifiableList(references);
     }
@@ -35,8 +38,9 @@ public class Test {
     public ClassInfo record() { return record; }
     public Set<Consequence> consequences() { return consequences; }
     public List<String> references() { return references; }
-    public List<MethodInfo> tests() { return tests; }
-    public int testsCount() { return tests.size(); }
+    public List<MethodInfo> testMethods() { return testMethods; }
+    public ClassInfo testClass() { return testClass; }
+    public int testsCount() { return testMethods.size(); }
 
 
     /**
@@ -47,11 +51,15 @@ public class Test {
         private final Expectation expectation;
         private final String description;
 
-        private Consequence(String id, Expectation expectation, String description) {
+        public Consequence(String id, Expectation expectation, String description) {
             this.id = id;
             this.expectation = expectation;
             this.description = description;
         }
+
+        public String id() { return id; }
+        public Expectation expectation() { return expectation; }
+        public String description() { return description; }
     }
 
 
@@ -66,7 +74,8 @@ public class Test {
         sb.append("\n\trecord="+record);
         sb.append("\n\tconsequence="+consequences);
         sb.append("\n\treferences="+references);
-        sb.append("\n\ttests="+tests);
+        sb.append("\n\ttestMethods="+testMethods);
+        sb.append("\n\ttestClass="+testClass);
         sb.append("]");
         return sb.toString();
 
@@ -79,7 +88,7 @@ public class Test {
         protected final String packageName;
         protected final String className;
 
-        private ClassInfo(String packageName, String className) {
+        public ClassInfo(String packageName, String className) {
             this.packageName = packageName;
             this.className = className;
         }
@@ -96,7 +105,6 @@ public class Test {
         public String packageName() {
             return packageName;
         }
-
         public String className() {
             return className;
         }
@@ -106,24 +114,25 @@ public class Test {
     /**
      * @author tmjee
      */
-    public static class MethodInfo extends ClassInfo {
+    public static class MethodInfo {
         private final String methodName;
         private final String arg0;
         private final String arg1;
 
-        private MethodInfo(String packageName, String className, String methodName, String arg0, String arg1) {
-            super(packageName, className);
+        public MethodInfo(String methodName, String arg0, String arg1) {
             this.methodName = methodName;
             this.arg0 = arg0;
             this.arg1 = arg1;
         }
 
+        public String methodName() { return methodName; }
+        public String arg0() { return arg0; }
+        public String arg1() { return arg1; }
+
         @Override
         public String toString() {
             StringBuffer sb = new StringBuffer();
             sb.append("[ClassInfo:");
-            sb.append("\n\tpackageName="+packageName);
-            sb.append("\n\tclassName="+className);
             sb.append("\n\tmethodName="+methodName);
             sb.append("\n\targ0="+arg0);
             sb.append("\n\targ1="+arg1);
@@ -141,7 +150,8 @@ public class Test {
         private ClassInfo runner;
         private ClassInfo invariant;
         private ClassInfo record;
-        private List<MethodInfo> tests = new ArrayList<MethodInfo>();
+        private ClassInfo testClass;
+        private List<MethodInfo> testMethods = new ArrayList<MethodInfo>();
         private Set<Consequence> consequences = new LinkedHashSet<>();
         private List<String> references = new ArrayList<>();
 
@@ -165,8 +175,13 @@ public class Test {
             return this;
         }
 
-        public Builder addTest(String testPackageName, String testClassName, String testMethodName, String[] args) {
-            this.tests.add(new MethodInfo(testPackageName, testClassName, testMethodName,
+        public Builder withTestClass(String testPackageName, String testClassName) {
+            this.testClass = new ClassInfo(testPackageName, testClassName);
+            return this;
+        }
+
+        public Builder addTestMethod(String testMethodName, String[] args) {
+            this.testMethods.add(new MethodInfo(testMethodName,
                     args != null && args.length >= 1 ? args[0] : null,
                     args != null && args.length >= 2 ? args[1] : null));
             return this;
@@ -188,7 +203,7 @@ public class Test {
         }
 
         public Test build() {
-            return new Test(name, description, runner, invariant, record, tests, consequences, references);
+            return new Test(name, description, runner, invariant, record, testClass, testMethods, consequences, references);
         }
     }
 }

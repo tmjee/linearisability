@@ -75,7 +75,7 @@ public class Arguments {
 
         OptionSet optionSet = optionParser.parse(args);
 
-        if (!optionSet.hasOptions() || optionSet.has("h")) {
+        if (optionSet.has("h")) {
             optionParser.printHelpOn(System.out);
             return null;
         }
