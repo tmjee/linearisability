@@ -40,6 +40,7 @@
                 <configuration>
                     <executable>java</executable>
                     <arguments>
+                        <argument>-Xmx4096M</argument>
                         <argument>-classpath</argument>
                         <classpath/>
                         <argument>com.tmjee.linearisation.processor.Main</argument>

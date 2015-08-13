@@ -4,8 +4,7 @@ import sample.SampleRunner;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -19,20 +18,38 @@ public class Linearisation {
 
     public void run(Arguments args) throws InterruptedException {
         AtomicInteger id = new AtomicInteger();
-        ExecutorService pool = Executors.newCachedThreadPool((r)->{
+        ThreadFactory threadFactory = (r)->{
             Thread t = new Thread(r);
             t.setDaemon(true);
             t.setName(PREFIX+id.incrementAndGet());
             return t;
-        });
+        };
+
+        ExecutorService pool = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                60L, TimeUnit.SECONDS,
+                new SynchronousQueue<Runnable>(),
+                threadFactory){
+            @Override
+            protected void afterExecute(Runnable r, Throwable t) {
+                super.afterExecute(r, t);
+                if (t != null) {
+                    t.printStackTrace();
+                }
+            }
+        };
+
+
+
+
+        TestResultWriter writer = new TestResultWriter(args.output());
 
         Scheduler scheduler = new Scheduler(args.userCpu());
 
         for (Test test : Tests.getAll().values()) {
             try {
                 Class<?> runnerClass =  Class.forName(test.runner().packageName+"."+test.runner().className);
-                Constructor<?> c = runnerClass.getConstructor(Arguments.class, ExecutorService.class);
-                Runner runner = (Runner) c.newInstance(args, pool);
+                Constructor<?> c = runnerClass.getConstructor(Arguments.class, ExecutorService.class, TestResultWriter.class);
+                Runner runner = (Runner) c.newInstance(args, pool, writer);
 
                 scheduler.schedule(new Scheduler.Task(){
                     @Override

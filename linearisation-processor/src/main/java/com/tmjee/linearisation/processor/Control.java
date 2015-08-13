@@ -1,5 +1,6 @@
 package com.tmjee.linearisation.processor;
 
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**
@@ -7,44 +8,35 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class Control {
 
-    private volatile boolean running;
-
+    private final int parties;
     private final CyclicBarrier waitForStartBarrier;
     private final CyclicBarrier waitForDoneBarrier;
     private final CyclicBarrier waitForRestrideBarrier;
 
 
+    public Control(Control control) {
+        this.parties = control.parties;
+        this.waitForDoneBarrier = new CyclicBarrier(control.parties);
+        this.waitForStartBarrier = new CyclicBarrier(control.parties);
+        this.waitForRestrideBarrier = new CyclicBarrier(control.parties);
+    }
+
     public Control(int parties) {
-       this.running = false;
-        waitForStartBarrier = new CyclicBarrier(parties);
-        waitForDoneBarrier = new CyclicBarrier(parties);
-        waitForRestrideBarrier = new CyclicBarrier(parties);
+       this.parties = parties;
+       waitForStartBarrier = new CyclicBarrier(parties);
+       waitForDoneBarrier = new CyclicBarrier(parties);
+       waitForRestrideBarrier = new CyclicBarrier(parties);
     }
 
-    public boolean isRunning() {
-        return running;
-    }
-    public void setRunning(boolean running) {
-        this.running = running;
+    public void waitForStart() throws BrokenBarrierException, InterruptedException {
+        waitForStartBarrier.await();
     }
 
-
-    public CyclicBarrier getWaitForStartBarrier() {
-        return waitForStartBarrier;
+    public void waitForDone() throws BrokenBarrierException, InterruptedException {
+        waitForDoneBarrier.await();
     }
 
-    public CyclicBarrier getWaitForDoneBarrier() {
-        return waitForDoneBarrier;
+    public void waitForRestride() throws BrokenBarrierException, InterruptedException {
+        waitForRestrideBarrier.await();
     }
-
-    public CyclicBarrier getWaitForRestrideBarrier() {
-        return waitForRestrideBarrier;
-    }
-
-    public void resetBarriers() {
-        waitForStartBarrier.reset();
-        waitForDoneBarrier.reset();
-        waitForRestrideBarrier.reset();
-    }
-
 }

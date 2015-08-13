@@ -1,11 +1,8 @@
 package sample;
 
-import com.tmjee.linearisation.processor.Arguments;
-import com.tmjee.linearisation.processor.Control;
-import com.tmjee.linearisation.processor.Runner;
+import com.tmjee.linearisation.processor.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -19,8 +16,8 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
  */
 public class SampleRunner extends Runner {
 
-    public SampleRunner(Arguments args, ExecutorService pool) {
-        super(args, pool);
+    public SampleRunner(Arguments args, ExecutorService pool, TestResultWriter writer) {
+        super(args, pool, writer);
     }
 
 
@@ -35,19 +32,18 @@ public class SampleRunner extends Runner {
                     new LinearisabilityTest.Result());
         }
 
-        Holder holder = new Holder(new AtomicReferenceArray<>(p));
-
-        Control control = new Control(2);
-        control.setRunning(true);
+        AtomicReference<Holder> holder = new AtomicReference<>(new Holder(new AtomicReferenceArray<>(p)));
+        AtomicReference<Control> control = new AtomicReference<>(new Control(2));
+        State state = new State();
 
         AtomicInteger epoch = new AtomicInteger();
-        List<Future> tasks = new ArrayList<>();
+        List<Future<?>> tasks = new ArrayList<>();
         tasks.add(pool.submit(() -> {
-            new Runner1(control, args, test, new AtomicReference<Holder>(holder), epoch).run();
+            new Worker1(state, control, args, test, holder, epoch, writer).run();
             return null;
         }));
         tasks.add(pool.submit(()->{
-            new Runner2(control, args, test, new AtomicReference<Holder>(holder), epoch).run();
+            new Worker2(state, control, args, test, holder, epoch, writer).run();
             return null;
         }));
         try {
@@ -55,30 +51,39 @@ public class SampleRunner extends Runner {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        control.setRunning(false);
+        state.running = false;
         waitFor(tasks);
     }
 
 
 
-    private static abstract class BaseRunner {
+    private static abstract class BaseWorker {
 
-        protected final Control control;
+        protected final AtomicReference<Control> controlRef;
         protected final Arguments args;
         protected final LinearisabilityTest.TestUnit1 test;
         protected final AtomicReference<Holder> holderRef;
         protected final AtomicInteger epoch;
+        protected final TestResultWriter writer;
+        protected final State state;
 
-        public BaseRunner(Control control, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef, AtomicInteger epoch) {
-            this.control = control;
+        public BaseWorker(State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test,
+                          AtomicReference<Holder> holderRef, AtomicInteger epoch, TestResultWriter writer) {
+            this.controlRef = controlRef;
             this.args = args;
             this.test = test;
             this.holderRef = holderRef;
             this.epoch = epoch;
+            this.writer = writer;
+            this.state = state;
+        }
+
+
+        protected void resetControl() {
+            controlRef.set(new Control(controlRef.get()));
         }
 
         protected void restride() {
-            // TODO: record stats
 
             Holder holder = holderRef.get();
             AtomicReferenceArray<Pair> pRef = holder.getPair();
@@ -101,15 +106,18 @@ public class SampleRunner extends Runner {
             AtomicInteger ep = epoch;
             int currentEpoch = 0;
             while(true) {
+
                 Holder holder = holderRef.get();
-                if (!control.isRunning()) {
+                Control control = controlRef.get();
+
+                if (!state.running) {
                     return;
                 }
 
                 AtomicReferenceArray<Pair> pRef = holder.getPair();
                 int pSize = pRef.length();
 
-                control.getWaitForStartBarrier().await();
+                control.waitForStart();
 
                 for (int a = 0; a < pSize; a++) {
                     Pair p = pRef.get(a);
@@ -117,19 +125,24 @@ public class SampleRunner extends Runner {
                     runPlayerAction(p);
                 }
 
-                control.getWaitForDoneBarrier().await();
+                control.waitForDone();
 
                 firstToIncrementEpoch = ep.compareAndSet(currentEpoch, currentEpoch + 1);
                 if (firstToIncrementEpoch) {
                     restride();
+                    resetControl();
                 }
                 currentEpoch++;
 
-                control.getWaitForRestrideBarrier().await();
-
-                if (firstToIncrementEpoch) {
-                    control.resetBarriers();
+                Accumulator acc = new Accumulator();
+                for (int a=0; a< pSize; a++) {
+                    Pair p = pRef.get(a);
+                    acc.record(p.r.toString());
                 }
+                writer.writeTestResult(acc);
+
+
+                control.waitForRestride();
             }
         }
 
@@ -137,10 +150,10 @@ public class SampleRunner extends Runner {
     }
 
 
-    private static class Runner2 extends BaseRunner {
-        public Runner2(Control control, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
-                       AtomicInteger epoch) {
-            super(control, args, test, holderRef, epoch);
+    private static class Worker2 extends BaseWorker {
+        public Worker2(State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
+                       AtomicInteger epoch, TestResultWriter writer) {
+            super(state, controlRef, args, test, holderRef, epoch, writer);
         }
 
         @Override
@@ -150,11 +163,11 @@ public class SampleRunner extends Runner {
     }
 
 
-    private static class Runner1 extends BaseRunner {
+    private static class Worker1 extends BaseWorker {
 
-        public Runner1(Control control, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
-                       AtomicInteger epoch) {
-            super(control, args, test, holderRef, epoch);
+        public Worker1(State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
+                       AtomicInteger epoch, TestResultWriter writer) {
+            super(state, controlRef, args, test, holderRef, epoch, writer);
         }
 
         @Override
