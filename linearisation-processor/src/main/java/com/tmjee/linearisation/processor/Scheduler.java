@@ -1,9 +1,6 @@
 package com.tmjee.linearisation.processor;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -11,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Scheduler {
 
-    private final String PREFIX = "SchedulerThread_";
+    private final String PREFIX = "Scheduler_Thread_";
     private final AtomicInteger id;
 
     private final int totalPermits;
@@ -23,13 +20,27 @@ public class Scheduler {
         this.totalPermits = totalPermits;
         id = new AtomicInteger();
         semaphore = new Semaphore(totalPermits);
-        executorService = Executors.newCachedThreadPool((r)->{
+        ThreadFactory threadFactory = (r) -> {
             Thread t = new Thread(r);
             t.setDaemon(true);
             t.setPriority(Thread.MAX_PRIORITY);
-            t.setName(PREFIX+id.incrementAndGet());
+            t.setName(PREFIX + id.incrementAndGet());
             return t;
-        });
+        };
+
+
+        executorService = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                60L, TimeUnit.SECONDS,
+                new SynchronousQueue<>(),
+                threadFactory){
+            @Override
+            protected void afterExecute(Runnable r, Throwable t) {
+                super.afterExecute(r, t);
+                if (t != null) {
+                    t.printStackTrace();
+                }
+            }
+        };
     }
 
     public void schedule(Task task) throws InterruptedException {

@@ -1,7 +1,5 @@
 package com.tmjee.linearisation.processor;
 
-import sample.SampleRunner;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.*;
@@ -13,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Linearisation {
 
 
-    private static final String PREFIX = "PoolThread_";
+    private static final String PREFIX = "Pool_Thread_";
 
 
     public void run(Arguments args) throws InterruptedException {
@@ -27,7 +25,7 @@ public class Linearisation {
 
         ExecutorService pool = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
                 60L, TimeUnit.SECONDS,
-                new SynchronousQueue<Runnable>(),
+                new SynchronousQueue<>(),
                 threadFactory){
             @Override
             protected void afterExecute(Runnable r, Throwable t) {
@@ -39,8 +37,6 @@ public class Linearisation {
         };
 
 
-
-
         TestResultWriter writer = new TestResultWriter(args.output());
 
         Scheduler scheduler = new Scheduler(args.userCpu());
@@ -48,8 +44,8 @@ public class Linearisation {
         for (Test test : Tests.getAll().values()) {
             try {
                 Class<?> runnerClass =  Class.forName(test.runner().packageName+"."+test.runner().className);
-                Constructor<?> c = runnerClass.getConstructor(Arguments.class, ExecutorService.class, TestResultWriter.class);
-                Runner runner = (Runner) c.newInstance(args, pool, writer);
+                Constructor<?> c = runnerClass.getConstructor(Test.class, Arguments.class, ExecutorService.class, TestResultWriter.class);
+                Runner runner = (Runner) c.newInstance(test, args, pool, writer);
 
                 scheduler.schedule(new Scheduler.Task(){
                     @Override
@@ -75,22 +71,10 @@ public class Linearisation {
             }
         }
 
-/*
-        scheduler.schedule(new Scheduler.Task() {
-            @Override
-            int permits() {
-                return 2;
-            }
-
-            @Override
-            public void run() {
-                SampleRunner runner = new SampleRunner(args, pool);
-                runner.run();
-            }
-        });
- */
-        System.out.println("waiting");
+        Logger.log("Scheduler waiting for tests to finish ...");
         scheduler.waitToEnd();
-        System.out.println("end");
+        Logger.log("Scheduler end.");
+        writer.writeSummary();
+        Logger.log("Bye !");
     }
 }

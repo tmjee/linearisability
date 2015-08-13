@@ -10,14 +10,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 
+import static java.lang.String.format;
+
 
 /**
  * @author tmjee
  */
 public class SampleRunner extends Runner {
 
-    public SampleRunner(Arguments args, ExecutorService pool, TestResultWriter writer) {
-        super(args, pool, writer);
+    public SampleRunner(Test test, Arguments args, ExecutorService pool,
+                        TestResultWriter writer) {
+        super(test, args, pool, writer);
     }
 
 
@@ -109,8 +112,9 @@ public class SampleRunner extends Runner {
 
                 Holder holder = holderRef.get();
                 Control control = controlRef.get();
+                final boolean running = state.running;
 
-                if (!state.running) {
+                if (!running) {
                     return;
                 }
 

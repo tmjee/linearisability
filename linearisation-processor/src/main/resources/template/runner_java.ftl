@@ -15,12 +15,9 @@
  */
 package ${runnerPackageName};
 
-import com.tmjee.linearisation.processor.Arguments;
-import com.tmjee.linearisation.processor.Control;
-import com.tmjee.linearisation.processor.Runner;
-import com.tmjee.linearisation.processor.TestResultWriter;
-import com.tmjee.linearisation.processor.Accumulator;
-import com.tmjee.linearisation.processor.State;
+import com.tmjee.linearisation.processor.*;
+
+import static java.lang.String.format;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +41,9 @@ import ${runnerPackageName}.*;
 
 public class ${runnerClassName} extends Runner {
 
-    public ${runnerClassName}(Arguments args, ExecutorService pool, TestResultWriter writer) {
-        super(args, pool, writer);
+    public ${runnerClassName}(Test test, Arguments args, ExecutorService pool,
+                              TestResultWriter writer) {
+        super(test, args, pool, writer);
     }
 
     protected void internalRun() {
@@ -68,11 +66,11 @@ public class ${runnerClassName} extends Runner {
         List<Future<?>> tasks = new ArrayList<>();
 
         <#list testMethods as testMethod>
-            <#assign counter=testMethod?counter>
-            tasks.add(pool.submit(() -> {
-                new Worker${counter}(state, control, args, test, holder, epoch, writer).run();
-                return null;
-            }));
+        <#assign counter=testMethod?counter>
+        tasks.add(pool.submit(() -> {
+            new Worker${counter}(state, control, args, test, holder, epoch, writer).run();
+            return null;
+        }));
         </#list>
 
         try {
@@ -133,17 +131,20 @@ public class ${runnerClassName} extends Runner {
             boolean firstToIncrementEpoch = false;
             AtomicInteger ep = epoch;
             int currentEpoch = 0;
+            long totalStrides = 0;
+
             while(true) {
                 Holder holder = holderRef.get();
                 Control control = controlRef.get();
+                final boolean running = state.running;
 
                 AtomicReferenceArray<Pair> pRef = holder.getPair();
                 int pSize = pRef.length();
 
                 control.waitForStart();
 
-                if ((!state.running) || Thread.currentThread().isInterrupted() ) {
-                    System.out.println(Thread.currentThread()+" exit stride");
+                if ((!running)) {
+                    Logger.log(format("worker exit stride %s", totalStrides));
                     return;
                 }
 
@@ -152,15 +153,11 @@ public class ${runnerClassName} extends Runner {
 
                     runPlayerAction(p);
                 }
+                totalStrides = totalStrides + pSize;
+
 
                 control.waitForDone();
 
-                firstToIncrementEpoch = ep.compareAndSet(currentEpoch, currentEpoch + 1);
-                if (firstToIncrementEpoch) {
-                    restride();
-                    resetControl();
-                }
-                currentEpoch++;
 
                 Accumulator acc = new Accumulator();
                 for (int a=0; a< pSize; a++) {
@@ -168,6 +165,14 @@ public class ${runnerClassName} extends Runner {
                     acc.record(p.r.toString());
                 }
                 writer.writeTestResult(acc);
+
+
+                firstToIncrementEpoch = ep.compareAndSet(currentEpoch, currentEpoch + 1);
+                if (firstToIncrementEpoch) {
+                    restride();
+                    resetControl();
+                }
+                currentEpoch++;
 
 
                 control.waitForRestride();
