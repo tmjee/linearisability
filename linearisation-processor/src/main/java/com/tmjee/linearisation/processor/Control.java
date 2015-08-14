@@ -88,7 +88,7 @@ public class Control {
             _restride = true;
         }
         while(!_restride) {
-            Thread.yield();;
+            Thread.yield();
         }
     }
 }

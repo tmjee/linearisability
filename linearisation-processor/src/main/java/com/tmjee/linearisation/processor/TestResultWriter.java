@@ -20,9 +20,8 @@ public class TestResultWriter {
     }
 
     public void writeTestResult(Accumulator acc) {
-        System.out.println(acc.get().keySet().size());
         acc.get().forEach((k,v)->{
-            m.merge(k, 1L, (o,n)->o+n);
+            m.merge(k, v, (o,n)->o+n);
         });
     }
 

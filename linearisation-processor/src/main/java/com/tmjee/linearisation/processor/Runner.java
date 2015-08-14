@@ -25,22 +25,33 @@ public abstract class Runner {
     public void run() {
         Logger.log(format("Running test %s - %s", test.name(), test.description()));
         for (int a=0; a< args.iterations(); a++) {
-            Logger.log("iteration #" + a);
-            internalRun();
+            try {
+                Logger.log("iteration #" + a);
+                internalRun();
+            }catch(Throwable t) {
+                Logger.log(t);
+            }
         }
     }
 
 
     protected void waitFor(List<Future<?>> tasks) {
-        for (Future<?> future : tasks) {
-            try {
-                future.get(1, TimeUnit.DAYS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (TimeoutException e) {
-                e.printStackTrace();
+        boolean ended = false;
+        while(!ended) {
+            ended = true;
+            for (Future<?> future : tasks) {
+                try {
+                    future.get(1, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    Logger.log(e);
+                } catch (ExecutionException e) {
+                    Logger.log(e);
+                } catch (TimeoutException e) {
+                    ended = false;
+                    boolean cancelled = future.cancel(false);
+                    Logger.log(format("future %s cancel=%s", future, cancelled));
+                    Logger.log(e);
+                }
             }
         }
     }

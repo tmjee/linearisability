@@ -88,7 +88,7 @@ public class Arguments {
         }
 
 
-        int iterations = orDefault(optionSet.valueOf(iterationsOptionSpec), 10);
+        int iterations = orDefault(optionSet.valueOf(iterationsOptionSpec), 20);
         int minStrides = orDefault(optionSet.valueOf(minStridesPerIterationOptionSpec), 5);
         int maxStrides = orDefault(optionSet.valueOf(maxStridesPerIterationOptionSpec), 10);
         long time = orDefault(optionSet.valueOf(timeOptionSpec), 5000L);

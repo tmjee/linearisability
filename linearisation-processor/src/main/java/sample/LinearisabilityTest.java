@@ -2,6 +2,8 @@ package sample;
 
 import com.tmjee.linearisation.processor.*;
 
+import static java.lang.String.format;
+
 /**
  * @author tmjee
  */
@@ -20,18 +22,27 @@ public class LinearisabilityTest {
 
     @Record
     public static class Result {
+        volatile int x = 0;
+        volatile int y = 0;
 
+        @Override
+        public String toString() {
+            return format("[%s,%s]", x, y);
+        }
     }
 
 
-    @TestUnit(name="")
+    @TestUnit(name="TestUnit1", description = "Test Unit 1")
     public static class TestUnit1 {
         @Player
         public void player1Action(State state, Result result) {
+            result.x=1;
         }
 
         @Player
         public void player2Action(State state, Result result) {
+            result.y=1;
         }
     }
 }
+

@@ -1,5 +1,7 @@
 package com.tmjee.linearisation.processor;
 
+import sample.SampleRunner;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.*;
@@ -41,6 +43,7 @@ public class Linearisation {
 
         Scheduler scheduler = new Scheduler(args.userCpu());
 
+
         for (Test test : Tests.getAll().values()) {
             try {
                 Class<?> runnerClass =  Class.forName(test.runner().packageName+"."+test.runner().className);
@@ -68,8 +71,25 @@ public class Linearisation {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
+
+
             }
         }
+
+/*
+        Test test = Tests.getAll().values().iterator().next();
+            scheduler.schedule(new Scheduler.Task() {
+                @Override
+                public void run() {
+                    new SampleRunner(test, args, pool, writer).run();
+                }
+
+                @Override
+                int permits() {
+                    return test.testsCount();
+                }
+            });
+*/
 
         Logger.log("Scheduler waiting for tests to finish ...");
         scheduler.waitToEnd();

@@ -131,7 +131,7 @@ public class ${runnerClassName} extends Runner {
             boolean firstToIncrementEpoch = false;
             AtomicInteger ep = epoch;
             int currentEpoch = 0;
-            long totalStrides = 0;
+            long total = 0;
 
             while(true) {
                 Holder holder = holderRef.get();
@@ -144,7 +144,7 @@ public class ${runnerClassName} extends Runner {
                 control.waitForStart();
 
                 if ((!running)) {
-                    Logger.log(format("worker exit stride %s", totalStrides));
+                    Logger.log(format("worker exit stride %s", total));
                     return;
                 }
 
@@ -153,7 +153,6 @@ public class ${runnerClassName} extends Runner {
 
                     runPlayerAction(p);
                 }
-                totalStrides = totalStrides + pSize;
 
 
                 control.waitForDone();
@@ -173,6 +172,20 @@ public class ${runnerClassName} extends Runner {
                     resetControl();
                 }
                 currentEpoch++;
+
+
+                long subtotal = 0;
+                for (Long l : acc.get().values()) {
+                    subtotal = subtotal + l;
+                }
+                if (subtotal != pSize) {
+                    Logger.log("stides size do not match\tpSize="+pSize+"\tsubtotal="+subtotal);
+                }
+                total = total + subtotal;
+
+                while (currentEpoch != ep.get()) {
+                   Thread.yield();
+                }
 
 
                 control.waitForRestride();

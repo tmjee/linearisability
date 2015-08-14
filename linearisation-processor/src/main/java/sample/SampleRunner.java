@@ -9,6 +9,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceArray;
+import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 
@@ -108,6 +109,7 @@ public class SampleRunner extends Runner {
             boolean firstToIncrementEpoch = false;
             AtomicInteger ep = epoch;
             int currentEpoch = 0;
+            long total = 0;
             while(true) {
 
                 Holder holder = holderRef.get();
@@ -115,6 +117,7 @@ public class SampleRunner extends Runner {
                 final boolean running = state.running;
 
                 if (!running) {
+                    Logger.log("exited "+total);
                     return;
                 }
 
@@ -131,6 +134,12 @@ public class SampleRunner extends Runner {
 
                 control.waitForDone();
 
+                Accumulator acc = new Accumulator();
+                for (int a=0; a< pSize; a++) {
+                    Pair p = pRef.get(a);
+                    acc.record(p.r.toString());
+                }
+
                 firstToIncrementEpoch = ep.compareAndSet(currentEpoch, currentEpoch + 1);
                 if (firstToIncrementEpoch) {
                     restride();
@@ -138,13 +147,20 @@ public class SampleRunner extends Runner {
                 }
                 currentEpoch++;
 
-                Accumulator acc = new Accumulator();
-                for (int a=0; a< pSize; a++) {
-                    Pair p = pRef.get(a);
-                    acc.record(p.r.toString());
+
+                long subtotal = 0;
+                for (Long l : acc.get().values()) {
+                    subtotal = subtotal + l;
                 }
+                if (subtotal != pSize) {
+                   System.out.println("\tpSize="+pSize+"\tsubtotal="+subtotal);
+                }
+                total = total + subtotal;
                 writer.writeTestResult(acc);
 
+                while (currentEpoch != ep.get()) {
+                    Thread.yield();
+                }
 
                 control.waitForRestride();
             }
