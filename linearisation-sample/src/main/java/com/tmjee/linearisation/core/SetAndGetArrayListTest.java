@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author tmjee
  */
-//@Linearisable
+@Linearisable
 @Consequence(id="[1,1]", expectation = Expectation.ACCEPTABLE, description = "result 1")
 @Consequence(id="[2]", expectation = Expectation.ACCEPTABLE, description = "result 2")
 @Consequence(id="[3]", expectation = Expectation.ACCEPTABLE, description = "result 3")

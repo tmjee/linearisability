@@ -9,9 +9,11 @@ import java.util.Map;
  * @author tmjee
  */
 @Linearisable
-@Consequence(id="[1]", expectation = Expectation.ACCEPTABLE, description = "result 1")
-@Consequence(id="[2]", expectation = Expectation.ACCEPTABLE, description = "result 2")
-@Consequence(id="[3]", expectation = Expectation.ACCEPTABLE, description = "result 3")
+@Consequence(id="[1,2]", expectation = Expectation.ACCEPTABLE, description = "result 1")
+@Consequence(id="[2,1]", expectation = Expectation.ACCEPTABLE, description = "result 2")
+@Consequence(id="[1,1]", expectation = Expectation.ACCEPTABLE, description = "result 2")
+@Consequence(id="[2,2]", expectation = Expectation.ACCEPTABLE, description = "result 2")
+@Consequence(id="[-1,1]", expectation = Expectation.ACCEPTABLE_INTERESTING, description = "result 3")
 public class PutAndGetHashMapTest {
 
     @Invariant
