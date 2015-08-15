@@ -41,12 +41,13 @@ import ${runnerPackageName}.*;
 
 public class ${runnerClassName} extends Runner {
 
-    public ${runnerClassName}(Test test, Arguments args, ExecutorService pool,
-                              TestResultWriter writer) {
-        super(test, args, pool, writer);
+    public ${runnerClassName}(Test test, Arguments args, ExecutorService pool) {
+        super(test, args, pool);
     }
 
-    protected void internalRun() {
+    protected Accumulator internalRun() {
+        Accumulator accumulator = new Accumulator();
+
         ${testClassClassName} test = new ${testClassClassName}();
 
         int strides = args.minStrides();
@@ -68,7 +69,7 @@ public class ${runnerClassName} extends Runner {
         <#list testMethods as testMethod>
         <#assign counter=testMethod?counter>
         tasks.add(pool.submit(() -> {
-            new Worker${counter}(state, control, args, test, holder, epoch, writer).run();
+            new Worker${counter}(accumulator, state, control, args, test, holder, epoch).run();
             return null;
         }));
         </#list>
@@ -81,27 +82,29 @@ public class ${runnerClassName} extends Runner {
 
         state.running=false;
         waitFor(tasks);
+        return accumulator;
     }
 
 
     private static abstract class BaseWorker {
 
+        protected final Accumulator accumulator;
         protected final AtomicReference<Control> controlRef;
         protected final Arguments args;
         protected final ${testClassClassName} test;
         protected final AtomicReference<Holder> holderRef;
         protected final AtomicInteger epoch;
-        protected final TestResultWriter writer;
         protected final State state;
 
-        public BaseWorker(State state, AtomicReference<Control> controlRef, Arguments args, ${testClassClassName} test, AtomicReference<Holder> holderRef,
-                AtomicInteger epoch, TestResultWriter writer) {
+        public BaseWorker(Accumulator accumulator, State state, AtomicReference<Control> controlRef,
+                        Arguments args, ${testClassClassName} test, AtomicReference<Holder> holderRef,
+                        AtomicInteger epoch) {
+             this.accumulator = accumulator;
              this.controlRef = controlRef;
              this.args = args;
              this.test = test;
              this.holderRef = holderRef;
              this.epoch = epoch;
-             this.writer = writer;
              this.state = state;
         }
 
@@ -131,7 +134,6 @@ public class ${runnerClassName} extends Runner {
             boolean firstToIncrementEpoch = false;
             AtomicInteger ep = epoch;
             int currentEpoch = 0;
-            long total = 0;
 
             while(true) {
                 Holder holder = holderRef.get();
@@ -144,7 +146,7 @@ public class ${runnerClassName} extends Runner {
                 control.waitForStart();
 
                 if ((!running)) {
-                    Logger.log(format("worker exit stride %s", total));
+                    Logger.log(format("worker exit "));
                     return;
                 }
 
@@ -158,12 +160,10 @@ public class ${runnerClassName} extends Runner {
                 control.waitForDone();
 
 
-                Accumulator acc = new Accumulator();
                 for (int a=0; a< pSize; a++) {
                     Pair p = pRef.get(a);
-                    acc.record(p.r.toString());
+                    accumulator.record(p.r.toString());
                 }
-                writer.writeTestResult(acc);
 
 
                 firstToIncrementEpoch = ep.compareAndSet(currentEpoch, currentEpoch + 1);
@@ -173,15 +173,6 @@ public class ${runnerClassName} extends Runner {
                 }
                 currentEpoch++;
 
-
-                long subtotal = 0;
-                for (Long l : acc.get().values()) {
-                    subtotal = subtotal + l;
-                }
-                if (subtotal != pSize) {
-                    Logger.log("stides size do not match\tpSize="+pSize+"\tsubtotal="+subtotal);
-                }
-                total = total + subtotal;
 
                 while (currentEpoch != ep.get()) {
                    Thread.yield();
@@ -199,9 +190,10 @@ public class ${runnerClassName} extends Runner {
     <#list testMethods as testMethod>
     <#assign counter=testMethod?counter>
     private static class Worker${counter} extends BaseWorker {
-        public Worker${counter}(State state, AtomicReference<Control> control, Arguments args, ${testClassClassName} test, AtomicReference<Holder> holderRef,
-                                AtomicInteger epoch, TestResultWriter writer) {
-            super(state, control, args, test, holderRef, epoch, writer);
+        public Worker${counter}(Accumulator accumulator, State state, AtomicReference<Control> control,
+                                Arguments args, ${testClassClassName} test, AtomicReference<Holder> holderRef,
+                                AtomicInteger epoch) {
+            super(accumulator, state, control, args, test, holderRef, epoch);
         }
 
         @Override
@@ -227,7 +219,7 @@ public class ${runnerClassName} extends Runner {
         private final ${invariantClassName} s;
         private final ${recordClassName} r;
 
-        public Pair(LinearisabilityTest.State s, LinearisabilityTest.Result r) {
+        public Pair(${invariantClassName} s, ${recordClassName} r) {
             this.s = s;
             this.r = r;
         }

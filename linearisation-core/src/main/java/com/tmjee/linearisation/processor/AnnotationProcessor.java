@@ -148,12 +148,16 @@ public class AnnotationProcessor extends AbstractProcessor {
                 String runnerPackageName = "linearisation.generated";
                 String runnerClassName = buildRunnerClassName((TypeElement)e1);
 
-                for (Consequence consequence : consequencesAnnotation.value()) {
-                    builder.addConsequence(consequence.id(), consequence.expectation(), consequence.description());
+                if (consequencesAnnotation != null) {
+                    for (Consequence consequence : consequencesAnnotation.value()) {
+                        builder.addConsequence(consequence.id(), consequence.expectation(), consequence.description());
+                    }
                 }
 
-                for (Reference reference : referencesAnnotation.value()) {
-                    builder.addReference(reference.value());
+                if (referencesAnnotation != null) {
+                    for (Reference reference : referencesAnnotation.value()) {
+                        builder.addReference(reference.value());
+                    }
                 }
 
                 builder.withName(testUnitName)

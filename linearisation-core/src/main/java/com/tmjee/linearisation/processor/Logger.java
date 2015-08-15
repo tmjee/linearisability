@@ -14,7 +14,7 @@ public class Logger {
     }
 
     public static void log(Throwable t) {
-        System.out.println(format("[linearisability] %s exception \n", Thread.currentThread()));
+        System.out.println(format("[linearisability] %s exception ", Thread.currentThread()));
         t.printStackTrace(System.out);
     }
 }

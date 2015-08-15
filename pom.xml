@@ -3,13 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.tmjee.linearisation</groupId>
-	<artifactId>linearisability-parent</artifactId>
+	<artifactId>linearisation-parent</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+        <properties>
+                <compiler.plugin.version>3.1</compiler.plugin.version>
+        </properties>
+
 	<modules>
 		<module>linearisation-core</module>
-		<module>linearisation-processor</module>
+		<module>linearisation-sample</module>
 	</modules>
 
 	<build>
@@ -18,7 +22,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.1</version>
+					<version>${compiler.plugin.version}</version>
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>

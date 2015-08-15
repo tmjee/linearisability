@@ -88,9 +88,9 @@ public class Arguments {
         }
 
 
-        int iterations = orDefault(optionSet.valueOf(iterationsOptionSpec), 20);
-        int minStrides = orDefault(optionSet.valueOf(minStridesPerIterationOptionSpec), 5);
-        int maxStrides = orDefault(optionSet.valueOf(maxStridesPerIterationOptionSpec), 10);
+        int iterations = orDefault(optionSet.valueOf(iterationsOptionSpec), 5);
+        int minStrides = orDefault(optionSet.valueOf(minStridesPerIterationOptionSpec), 100);
+        int maxStrides = orDefault(optionSet.valueOf(maxStridesPerIterationOptionSpec), 10000);
         long time = orDefault(optionSet.valueOf(timeOptionSpec), 5000L);
         int userCpu = orDefault(optionSet.valueOf(userCpuOpitonSpec), 10);
         String output = orDefault(optionSet.valueOf(outputOptionSpec), "output.txt");

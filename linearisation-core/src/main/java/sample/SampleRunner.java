@@ -9,7 +9,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceArray;
-import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 
@@ -19,13 +18,14 @@ import static java.lang.String.format;
  */
 public class SampleRunner extends Runner {
 
-    public SampleRunner(Test test, Arguments args, ExecutorService pool,
-                        TestResultWriter writer) {
-        super(test, args, pool, writer);
+    public SampleRunner(Test test, Arguments args, ExecutorService pool) {
+        super(test, args, pool);
     }
 
 
-    protected void internalRun() {
+    protected Accumulator internalRun() {
+        Accumulator accumulator = new Accumulator();
+
         LinearisabilityTest.TestUnit1 test = new LinearisabilityTest.TestUnit1();
 
         int strides = args.minStrides();
@@ -43,11 +43,11 @@ public class SampleRunner extends Runner {
         AtomicInteger epoch = new AtomicInteger();
         List<Future<?>> tasks = new ArrayList<>();
         tasks.add(pool.submit(() -> {
-            new Worker1(state, control, args, test, holder, epoch, writer).run();
+            new Worker1(accumulator, state, control, args, test, holder, epoch).run();
             return null;
         }));
         tasks.add(pool.submit(()->{
-            new Worker2(state, control, args, test, holder, epoch, writer).run();
+            new Worker2(accumulator, state, control, args, test, holder, epoch).run();
             return null;
         }));
         try {
@@ -57,28 +57,30 @@ public class SampleRunner extends Runner {
         }
         state.running = false;
         waitFor(tasks);
+
+        return accumulator;
     }
 
 
 
     private static abstract class BaseWorker {
 
+        protected final Accumulator accumulator;
         protected final AtomicReference<Control> controlRef;
         protected final Arguments args;
         protected final LinearisabilityTest.TestUnit1 test;
         protected final AtomicReference<Holder> holderRef;
         protected final AtomicInteger epoch;
-        protected final TestResultWriter writer;
         protected final State state;
 
-        public BaseWorker(State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test,
-                          AtomicReference<Holder> holderRef, AtomicInteger epoch, TestResultWriter writer) {
+        public BaseWorker(Accumulator accumulator, State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test,
+                          AtomicReference<Holder> holderRef, AtomicInteger epoch) {
+            this.accumulator = accumulator;
             this.controlRef = controlRef;
             this.args = args;
             this.test = test;
             this.holderRef = holderRef;
             this.epoch = epoch;
-            this.writer = writer;
             this.state = state;
         }
 
@@ -134,10 +136,9 @@ public class SampleRunner extends Runner {
 
                 control.waitForDone();
 
-                Accumulator acc = new Accumulator();
                 for (int a=0; a< pSize; a++) {
                     Pair p = pRef.get(a);
-                    acc.record(p.r.toString());
+                    accumulator.record(p.r.toString());
                 }
 
                 firstToIncrementEpoch = ep.compareAndSet(currentEpoch, currentEpoch + 1);
@@ -147,16 +148,6 @@ public class SampleRunner extends Runner {
                 }
                 currentEpoch++;
 
-
-                long subtotal = 0;
-                for (Long l : acc.get().values()) {
-                    subtotal = subtotal + l;
-                }
-                if (subtotal != pSize) {
-                   System.out.println("\tpSize="+pSize+"\tsubtotal="+subtotal);
-                }
-                total = total + subtotal;
-                writer.writeTestResult(acc);
 
                 while (currentEpoch != ep.get()) {
                     Thread.yield();
@@ -171,9 +162,9 @@ public class SampleRunner extends Runner {
 
 
     private static class Worker2 extends BaseWorker {
-        public Worker2(State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
-                       AtomicInteger epoch, TestResultWriter writer) {
-            super(state, controlRef, args, test, holderRef, epoch, writer);
+        public Worker2(Accumulator accumulator, State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
+                       AtomicInteger epoch) {
+            super(accumulator, state, controlRef, args, test, holderRef, epoch);
         }
 
         @Override
@@ -185,9 +176,9 @@ public class SampleRunner extends Runner {
 
     private static class Worker1 extends BaseWorker {
 
-        public Worker1(State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
-                       AtomicInteger epoch, TestResultWriter writer) {
-            super(state, controlRef, args, test, holderRef, epoch, writer);
+        public Worker1(Accumulator accumulator, State state, AtomicReference<Control> controlRef, Arguments args, LinearisabilityTest.TestUnit1 test, AtomicReference<Holder> holderRef,
+                       AtomicInteger epoch) {
+            super(accumulator, state, controlRef, args, test, holderRef, epoch);
         }
 
         @Override

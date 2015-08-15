@@ -19,13 +19,17 @@ public class TestResultWriter {
         this.m = new ConcurrentHashMap<>();
     }
 
-    public void writeTestResult(Accumulator acc) {
+    public void writeStrideResult(Test test, Accumulator acc) {
         acc.get().forEach((k,v)->{
             m.merge(k, v, (o,n)->o+n);
         });
     }
 
-    public void writeSummary() {
+    public void writeTestResult(Test test) {
         m.forEach((k,v)->Logger.log(format("%s=%s", k, v)));
+        m.clear();
+    }
+
+    public void writeOverallSummary() {
     }
 }

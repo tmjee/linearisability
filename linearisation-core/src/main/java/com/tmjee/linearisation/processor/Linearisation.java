@@ -1,6 +1,5 @@
 package com.tmjee.linearisation.processor;
 
-import sample.SampleRunner;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -39,16 +38,14 @@ public class Linearisation {
         };
 
 
-        TestResultWriter writer = new TestResultWriter(args.output());
-
         Scheduler scheduler = new Scheduler(args.userCpu());
 
 
-        for (Test test : Tests.getAll().values()) {
+        for (final Test test : Tests.getAll().values()) {
             try {
                 Class<?> runnerClass =  Class.forName(test.runner().packageName+"."+test.runner().className);
-                Constructor<?> c = runnerClass.getConstructor(Test.class, Arguments.class, ExecutorService.class, TestResultWriter.class);
-                Runner runner = (Runner) c.newInstance(test, args, pool, writer);
+                Constructor<?> c = runnerClass.getConstructor(Test.class, Arguments.class, ExecutorService.class);
+                Runner runner = (Runner) c.newInstance(test, args, pool);
 
                 scheduler.schedule(new Scheduler.Task(){
                     @Override
@@ -61,40 +58,22 @@ public class Linearisation {
                         return test.testsCount();
                     }
                 });
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
 
-
+            } catch (InstantiationException | IllegalAccessException | ClassNotFoundException |
+                     NoSuchMethodException | InvocationTargetException e) {
+                Logger.log(e);
             }
         }
-
-/*
-        Test test = Tests.getAll().values().iterator().next();
-            scheduler.schedule(new Scheduler.Task() {
-                @Override
-                public void run() {
-                    new SampleRunner(test, args, pool, writer).run();
-                }
-
-                @Override
-                int permits() {
-                    return test.testsCount();
-                }
-            });
-*/
 
         Logger.log("Scheduler waiting for tests to finish ...");
         scheduler.waitToEnd();
         Logger.log("Scheduler end.");
-        writer.writeSummary();
+
+        Logger.log("Shutdown pool ...");
+        pool.shutdown();
+        pool.awaitTermination(1, TimeUnit.DAYS);
+        Logger.log("Pool end.");
+
         Logger.log("Bye !");
     }
 }

@@ -7,13 +7,13 @@ import static java.lang.String.format;
 /**
  * @author tmjee
  */
-@Linearisable
+//@Linearisable
 @Consequence(id="[1]", expectation = Expectation.ACCEPTABLE, description = "result 1")
 @Consequence(id="[2]", expectation = Expectation.ACCEPTABLE, description = "result 2")
 @Consequence(id="[3]", expectation = Expectation.ACCEPTABLE, description = "result 3")
 @Reference("ref 1")
 @Reference("ref 2")
-public class LinearisabilityTest {
+public class TwoActorsTest {
 
     @Invariant
     public static class State {
@@ -32,7 +32,7 @@ public class LinearisabilityTest {
     }
 
 
-    @TestUnit(name="TestUnit1", description = "Test Unit 1")
+    @TestUnit(name="TwoActorTest", description = "Set value to two actors")
     public static class TestUnit1 {
         @Player
         public void player1Action(State state, Result result) {
