@@ -16,22 +16,19 @@ public class Arguments {
     private final int maxStrides;
     private final long time;
     private final int userCpu;
-    private final String output;
 
     private Arguments(
             int iterations,
             int minStrides,
             int maxStrides,
             long time,
-            int userCpu,
-            String output
+            int userCpu
             ){
         this.iterations = iterations;
         this.minStrides = minStrides;
         this.maxStrides = maxStrides;
         this.time = time;
         this.userCpu = userCpu;
-        this.output = output;
     }
 
 
@@ -40,7 +37,6 @@ public class Arguments {
     public int maxStrides() { return maxStrides; }
     public long time() { return time; }
     public int userCpu() { return userCpu; }
-    public String output() { return output; }
 
 
     public static void main(String[] args) throws Exception {
@@ -72,12 +68,8 @@ public class Arguments {
                 optionParser.accepts("userCpu", "number of max thread to schedule")
                     .withRequiredArg().ofType(Integer.class).describedAs("userCpu");
 
-        OptionSpec<String> outputOptionSpec =
-                optionParser.accepts("output", "file location where output goes to")
-                    .withRequiredArg().ofType(String.class).describedAs("output");
 
         optionParser.accepts("h", "help");
-
         optionParser.formatHelpWith(new ArgumentsHelpFormatter());
 
         OptionSet optionSet = optionParser.parse(args);
@@ -93,15 +85,13 @@ public class Arguments {
         int maxStrides = orDefault(optionSet.valueOf(maxStridesPerIterationOptionSpec), 10000);
         long time = orDefault(optionSet.valueOf(timeOptionSpec), 5000L);
         int userCpu = orDefault(optionSet.valueOf(userCpuOpitonSpec), 10);
-        String output = orDefault(optionSet.valueOf(outputOptionSpec), "output.txt");
 
         return new Arguments(
                 iterations,
                 minStrides,
                 maxStrides,
                 time,
-                userCpu,
-                output
+                userCpu
         );
     }
 
