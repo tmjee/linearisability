@@ -21,7 +21,7 @@
         <dependency>
             <groupId>com.tmjee.linearisation</groupId>
             <artifactId>linearisation-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
