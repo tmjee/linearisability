@@ -67,10 +67,18 @@ public abstract class Runner {
             if (x.containsKey(k)) {
                 Test.Consequence c = x.get(k);
                 sb.append(format("\t%-10s%-,20d%-20s%-100s%n", k, v, c.expectation().name(), c.description()));
+                x.remove(k);
             } else {
                 sb.append(format("\t%-10s%-,20d%-20s%-100s%n", k, v, Expectation.UNKNOWN.name(), "unknown"));
             }
         });
+
+
+        // result in consequence but not found in actual run
+        if (!x.isEmpty()) { // we found such cases
+            x.forEach((k, v)->sb.append(format("\t%-10s%-,20d%-20s%-100s%n", k, 0L, Expectation.UNKNOWN.name(), "unknown")));
+        }
+
         sb.append(format("%n"));
 
         Logger.log(format("%n%n\tSummary of Test %s (%s) :- %n%s", test.name(), test.description(), sb.toString()));

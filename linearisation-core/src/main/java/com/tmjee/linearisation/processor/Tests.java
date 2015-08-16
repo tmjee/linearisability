@@ -172,21 +172,25 @@ public class Tests {
 
         for (int a=0; a< consequenceNodeListLength; a++) {
             Node consequenceNode = consequenceNodeList.item(a);
-            NodeList contentNodeList = consequenceNode.getChildNodes();
-            int contentNodeListLength = contentNodeList.getLength();
-            for (int b=0; b< contentNodeListLength; b++) {
-                Node contentNode = contentNodeList.item(b);
-                String contentNodeName = contentNode.getNodeName();
 
-                if ("id".equals(contentNodeName)) {
-                    id = contentNode.getTextContent();
-                } else if ("expectation".equals(contentNodeName)) {
-                    expectation = Expectation.valueOf(contentNode.getTextContent());
-                } else if ("description".equals(contentNodeName)) {
-                    description = contentNode.getTextContent();
+            if ("consequence".equals(consequenceNode.getNodeName())) {
+
+                NodeList contentNodeList = consequenceNode.getChildNodes();
+                int contentNodeListLength = contentNodeList.getLength();
+                for (int b = 0; b < contentNodeListLength; b++) {
+                    Node contentNode = contentNodeList.item(b);
+                    String contentNodeName = contentNode.getNodeName();
+
+                    if ("id".equals(contentNodeName)) {
+                        id = contentNode.getTextContent();
+                    } else if ("expectation".equals(contentNodeName)) {
+                        expectation = Expectation.valueOf(contentNode.getTextContent());
+                    } else if ("description".equals(contentNodeName)) {
+                        description = contentNode.getTextContent();
+                    }
                 }
+                builder.addConsequence(id, expectation, description);
             }
-            builder.addConsequence(id, expectation, description);
         }
     }
 

@@ -37,4 +37,18 @@
 ```
 
 # Tests
-## Test1
+Following are tests that we currently have :-
+
+## Map / Tree
+- [PutAndGetHashMapTest](results/map/0000001.md)
+
+## List
+- [SetAndGetArrayListTest](results/list/0000001.md)
+
+## Set
+- [SetAndGetHashSetTest](results/set/0000001.md)
+
+## Miscs
+- [TwoActorsTest](results/misc/0000001.md)
+
+

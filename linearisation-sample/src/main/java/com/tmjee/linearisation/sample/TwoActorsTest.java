@@ -8,16 +8,15 @@ import static java.lang.String.format;
  * @author tmjee
  */
 @Linearisable
-@Consequence(id="[1]", expectation = Expectation.ACCEPTABLE, description = "result 1")
-@Consequence(id="[2]", expectation = Expectation.ACCEPTABLE, description = "result 2")
-@Consequence(id="[3]", expectation = Expectation.ACCEPTABLE, description = "result 3")
+@Consequence(id="[1,1]", expectation = Expectation.ACCEPTABLE, description = "Both player 1 and 2 executed respective test method")
+@Consequence(id="[0,0]", expectation = Expectation.FORBIDDEN, description = "Both player 1 and 2 do not execute respective test method")
+@Consequence(id="[1,0]", expectation = Expectation.FORBIDDEN, description="Player 2 did not execute it's test method")
+@Consequence(id="[0,1]", expectation = Expectation.FORBIDDEN, description="Player 1 did not execute it's test method")
 @Reference("ref 1")
-@Reference("ref 2")
 public class TwoActorsTest {
 
     @Invariant
     public static class State {
-
     }
 
     @Record

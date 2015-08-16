@@ -16,7 +16,6 @@ import java.util.Map;
 @Consequence(id="[-1,2]", expectation = Expectation.FORBIDDEN, description = "result 3")
 @Consequence(id="[1,-1]", expectation = Expectation.FORBIDDEN, description = "result 3")
 @Reference("htt://google.com")
-@Reference("htt://yahoo.com")
 public class PutAndGetHashMapTest {
 
     @Invariant
