@@ -12,7 +12,7 @@ import static java.lang.String.format;
 @Consequence(id="[0,0]", expectation = Expectation.FORBIDDEN, description = "Both player 1 and 2 do not execute respective test method")
 @Consequence(id="[1,0]", expectation = Expectation.FORBIDDEN, description="Player 2 did not execute it's test method")
 @Consequence(id="[0,1]", expectation = Expectation.FORBIDDEN, description="Player 1 did not execute it's test method")
-@Reference("ref 1")
+@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/misc/0000001.md")
 public class TwoActorsTest {
 
     @Invariant

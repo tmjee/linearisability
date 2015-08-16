@@ -6,7 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
+ * Player 1 try to add an integer '1' into a {@link HashSet} and then try to check if
+ * the {@link HashSet} contains an integer '1'.
+ * <p/>
+ * Player 2 try to add an integer '2' into a {@link HashSet} and then try to check if
+ * the {@link HashSet} contains an integer '2'.
+ * <p/>
+ * Both players are doing the operation at the same time without synchronisation
  *
  * @author tmjee
  */
@@ -19,6 +25,7 @@ import java.util.Set;
         description = "Player 1 did not retrieved value added, Player 2 retrieved value added")
 @Consequence(id="[-1,-1]", expectation = Expectation.FORBIDDEN,
         description = "Player 1 did not retrieved value added, Player 2 did not retrieved value added")
+@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/set/0000001.md")
 public class SetAndGetHashSetTest {
 
     @Invariant
@@ -27,7 +34,7 @@ public class SetAndGetHashSetTest {
     }
 
 
-    @TestUnit(name="SetAndGetArrayListTest_Unit1", description = "Set and get hashset test (unit 1)")
+    @TestUnit(name="SetAndGetHashSetTest_Unit1", description = "Set and get hashset test (unit 1)")
     public static class TestUnit1 {
         @Player
         public void player1(State state, LongResult2 result) {

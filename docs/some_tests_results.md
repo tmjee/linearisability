@@ -36,6 +36,13 @@
         Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 ```
 
+## Testing Conditions
+Conditions                        | Descriptions
+--------------------------------- | -------------
+Iterations                        |  5 iterations
+Strides per iteration             |  100 to 10000
+Time per Iteration                |  5000 ms
+
 # Tests
 Following are tests that we currently have :-
 
