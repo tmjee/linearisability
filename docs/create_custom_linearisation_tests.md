@@ -66,7 +66,9 @@
 ## Write Linearisation tests
 ```java
     @Linearisation
-    @Consequence(id="[0]", expectation=Expectation.ACCEPTABLE, description=""
+    @Consequence(id="[1]", expectation=Expectation.ACCEPTABLE, description="get correct value set"
+    @Consequence(id="[-1]", expectation=Expectation.ACCEPTABLE, description="unable to get value set, get was called before set"
+    @Consequence(id="[-2]", expectation=Expectation.FORBIDDEN, description="exception thrown while trying to get"
     @Ref("https://github.com/tmjee/linearisability/blob/master/docs/results/create_custom_linearisation_tests.md")
     public class MyLinearisationTest {
 
@@ -92,11 +94,18 @@
             @Player
             public void player1(MyState state, MyIntResult1 result) {
                 // the state and result objects will be the same for both player 1 and 2
+                state.myLockFreeThreadSafeList.set(1,1);
             }
 
             @Player
             public void player2(MyState state, IntResult1 result) {
-                // the state and result objects will be the same for both player 1 and 2
+                try {
+                    // the state and result objects will be the same for both player 1 and 2
+                    Integer i = state.myLockFreeThreadSafeList.get(1);
+                    result.value1 = (i == null ? -1 : (i == 1 ? 1 : -1));
+                } catch(Exception e) {
+                    i = -2;
+                }
             }
         }
     }
