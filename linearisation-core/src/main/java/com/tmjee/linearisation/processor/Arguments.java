@@ -5,6 +5,8 @@ import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author tmjee
@@ -16,19 +18,24 @@ public class Arguments {
     private final int maxStrides;
     private final long time;
     private final int userCpu;
+    private final List<String> testClasses;
+    private final boolean isRunAllTests;
 
     private Arguments(
             int iterations,
             int minStrides,
             int maxStrides,
             long time,
-            int userCpu
+            int userCpu,
+            List<String> testClasses
             ){
         this.iterations = iterations;
         this.minStrides = minStrides;
         this.maxStrides = maxStrides;
         this.time = time;
         this.userCpu = userCpu;
+        this.testClasses = Collections.unmodifiableList(testClasses);
+        this.isRunAllTests = testClasses.isEmpty();
     }
 
 
@@ -37,6 +44,8 @@ public class Arguments {
     public int maxStrides() { return maxStrides; }
     public long time() { return time; }
     public int userCpu() { return userCpu; }
+    public List<String> testClasses() { return testClasses; }
+    public boolean isRunAllTests() { return isRunAllTests; }
 
 
     public static void main(String[] args) throws Exception {
@@ -64,9 +73,14 @@ public class Arguments {
                 optionParser.accepts("time", "time spend on tests")
                     .withRequiredArg().ofType(Long.class).describedAs("time");
 
-        OptionSpec<Integer> userCpuOpitonSpec =
+        OptionSpec<Integer> userCpuOptionSpec =
                 optionParser.accepts("userCpu", "number of max thread to schedule")
                     .withRequiredArg().ofType(Integer.class).describedAs("userCpu");
+
+        OptionSpec<String> testClassesOptionSpec =
+                optionParser.accepts("testClasses", "test classes (can be multiple with comma separated)")
+                    .withRequiredArg().ofType(String.class).describedAs("testClasses")
+                    .withValuesSeparatedBy(',');
 
 
         optionParser.accepts("h", "help");
@@ -84,14 +98,16 @@ public class Arguments {
         int minStrides = orDefault(optionSet.valueOf(minStridesPerIterationOptionSpec), 100);
         int maxStrides = orDefault(optionSet.valueOf(maxStridesPerIterationOptionSpec), 10000);
         long time = orDefault(optionSet.valueOf(timeOptionSpec), 5000L);
-        int userCpu = orDefault(optionSet.valueOf(userCpuOpitonSpec), 10);
+        int userCpu = orDefault(optionSet.valueOf(userCpuOptionSpec), 10);
+        List<String> testClasses = orDefault(optionSet.valuesOf(testClassesOptionSpec), Collections.emptyList());
 
         return new Arguments(
                 iterations,
                 minStrides,
                 maxStrides,
                 time,
-                userCpu
+                userCpu,
+                testClasses
         );
     }
 
@@ -101,6 +117,10 @@ public class Arguments {
 
     private static long orDefault(Long l, long def) {
         return l == null ? def : l;
+    }
+
+    private static <T> List<T> orDefault(List<T> l, List<T> def) {
+        return (l == null ? def : l);
     }
 
     private static String orDefault(String s, String def) {

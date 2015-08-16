@@ -47,21 +47,33 @@ public abstract class Runner {
             x.put(c.id(), c);
         });
 
+
+        // references
         StringBuilder sb = new StringBuilder();
-        sb.append(format("%n%n"));
-        sb.append(format("\t\t%-10s%-20s%-20s%-100s%n", "Id", "Count", "Expectation", "Description"));
-        sb.append(format("\t\t%-10s%-20s%-20s%-100s%n", "--------", "-----------------", "------------------", "---------------------------------"));
+        List<String> refs = test.references();
+        if (!refs.isEmpty()) {
+            sb.append(format("%n\tReferences:"));
+            for (String ref : refs) {
+                sb.append(format("%n\t\t- %s", ref));
+            }
+            sb.append(format("%n"));
+        }
+
+        // test results
+        sb.append(format("%n"));
+        sb.append(format("\t%-10s%-20s%-20s%-100s%n", "Id", "Count", "Expectation", "Description"));
+        sb.append(format("\t%-10s%-20s%-20s%-100s%n", "--------", "-----------------", "------------------", "---------------------------------"));
         m.forEach((k, v) -> {
             if (x.containsKey(k)) {
                 Test.Consequence c = x.get(k);
-                sb.append(format("\t\t%-10s%-,20d%-20s%-100s%n", k, v, c.expectation().name(), c.description()));
+                sb.append(format("\t%-10s%-,20d%-20s%-100s%n", k, v, c.expectation().name(), c.description()));
             } else {
-                sb.append(format("\t\t%-10s%-,20d%-20s%-100s%n", k, v, Expectation.UNKNOWN.name(), "unknown"));
+                sb.append(format("\t%-10s%-,20d%-20s%-100s%n", k, v, Expectation.UNKNOWN.name(), "unknown"));
             }
         });
         sb.append(format("%n"));
 
-        Logger.log(format("%n%n\tSummary of Test %s (%s) :- %s", test.name(), test.description(), sb.toString()));
+        Logger.log(format("%n%n\tSummary of Test %s (%s) :- %n%s", test.name(), test.description(), sb.toString()));
     }
 
 

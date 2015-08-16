@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author tmjee
@@ -21,12 +22,16 @@ public class Tests {
     private static volatile Map<String, Test> tests;
 
     public static Map<String, Test> getAll() {
+        return getAll(TESTS_LOCATION);
+    }
+
+    static Map<String, Test> getAll(String location) {
         Map<String, Test> m = tests;
         if (m == null) {
 
             m = new LinkedHashMap<>();
 
-            try (InputStream is = Test.class.getResourceAsStream(TESTS_LOCATION)) {
+            try (InputStream is = Test.class.getResourceAsStream(location)) {
                 DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 
 
@@ -42,9 +47,19 @@ public class Tests {
             } catch (SAXException e) {
                 e.printStackTrace();
             }
-            tests = m;
+            tests = Collections.unmodifiableMap(m);
         }
         return tests;
+    }
+
+    public static Map<String, Test> getByClass(List<String> testClasses) {
+        Map<String, Test> _m = getAll();
+        Map<String, Test> r =
+            Collections.unmodifiableMap(
+                _m.entrySet().stream()
+                    .filter((e)->testClasses.contains(e.getKey()))
+                    .collect(Collectors.toMap((e)->e.getKey(), (e)->e.getValue())));
+        return r;
     }
 
 
@@ -63,7 +78,6 @@ public class Tests {
             for (int b=0; b<testNodeLength; b++) {
                 Node testInternalNode = testNodeList.item(b);
                 String testInternalNodeName = testInternalNode.getNodeName();
-
 
                     if ("name".equals(testInternalNodeName)) {
                         name = testInternalNode.getTextContent();
@@ -158,17 +172,22 @@ public class Tests {
 
         for (int a=0; a< consequenceNodeListLength; a++) {
             Node consequenceNode = consequenceNodeList.item(a);
-            String consequenceNodeName = consequenceNode.getNodeName();
+            NodeList contentNodeList = consequenceNode.getChildNodes();
+            int contentNodeListLength = contentNodeList.getLength();
+            for (int b=0; b< contentNodeListLength; b++) {
+                Node contentNode = contentNodeList.item(b);
+                String contentNodeName = contentNode.getNodeName();
 
-            if ("id".equals(consequenceNodeName)) {
-                id = consequenceNode.getTextContent();
-            } else if ("expectation".equals(consequenceNodeName)) {
-                expectation = Expectation.valueOf(consequenceNode.getTextContent());
-            } else if ("description".equals(consequenceNodeName)) {
-                description = consequenceNode.getTextContent();
+                if ("id".equals(contentNodeName)) {
+                    id = contentNode.getTextContent();
+                } else if ("expectation".equals(contentNodeName)) {
+                    expectation = Expectation.valueOf(contentNode.getTextContent());
+                } else if ("description".equals(contentNodeName)) {
+                    description = contentNode.getTextContent();
+                }
             }
+            builder.addConsequence(id, expectation, description);
         }
-        builder.addConsequence(id, expectation, description);
     }
 
     private static void addReferences(Test.Builder builder, Node referencesNode) {
@@ -181,9 +200,11 @@ public class Tests {
         int referenceNodeListLength = referenceNodeList.getLength();
         for (int a=0; a<referenceNodeListLength; a++) {
             Node referenceNode = referenceNodeList.item(a);
-            String reference = referenceNode.getTextContent();
-
-            builder.addReference(reference);
+            String referenceNodeName = referenceNode.getNodeName();
+            if ("reference".equals(referenceNodeName)) {
+                String reference = referenceNode.getTextContent();
+                builder.addReference(reference.trim());
+            }
         }
     }
 
@@ -258,7 +279,6 @@ public class Tests {
         }
         builder.withRecord(packageName, className);
     }
-
 
 
 }

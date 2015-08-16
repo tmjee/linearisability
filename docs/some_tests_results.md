@@ -1,4 +1,4 @@
-# Hardware specs
+# Hardware & Software Specs.
 
 ## CPU
 ```
@@ -36,5 +36,5 @@
         Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 ```
 
-## Tests
-### Test1
+# Tests
+## Test1

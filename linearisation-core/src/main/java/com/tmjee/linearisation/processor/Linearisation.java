@@ -3,6 +3,8 @@ package com.tmjee.linearisation.processor;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -40,8 +42,10 @@ public class Linearisation {
 
         Scheduler scheduler = new Scheduler(args.userCpu());
 
+        Map<String, Test> allTests = args.isRunAllTests() ?
+                Tests.getAll() : Tests.getByClass(args.testClasses());
 
-        for (final Test test : Tests.getAll().values()) {
+        for (final Test test : allTests.values()) {
             try {
                 Class<?> runnerClass =  Class.forName(test.runner().packageName+"."+test.runner().className);
                 Constructor<?> c = runnerClass.getConstructor(Test.class, Arguments.class, ExecutorService.class);

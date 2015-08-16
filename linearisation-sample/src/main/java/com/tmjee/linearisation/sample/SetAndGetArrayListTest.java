@@ -1,4 +1,4 @@
-package com.tmjee.linearisation.core;
+package com.tmjee.linearisation.sample;
 
 import com.tmjee.linearisation.processor.*;
 

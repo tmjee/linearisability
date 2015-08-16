@@ -1,4 +1,4 @@
-package com.tmjee.linearisation.core;
+package com.tmjee.linearisation.sample;
 
 import com.tmjee.linearisation.processor.*;
 
@@ -7,7 +7,7 @@ import static java.lang.String.format;
 /**
  * @author tmjee
  */
-//@Linearisable
+@Linearisable
 @Consequence(id="[1]", expectation = Expectation.ACCEPTABLE, description = "result 1")
 @Consequence(id="[2]", expectation = Expectation.ACCEPTABLE, description = "result 2")
 @Consequence(id="[3]", expectation = Expectation.ACCEPTABLE, description = "result 3")
