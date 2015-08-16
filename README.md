@@ -20,9 +20,9 @@ I could be reachable at
 ## Contents
 Following are the contents of this piece of work.
 
-[How it works](docs/how_it_works.md)
-[Building Linearisation (the tool) from source](docs/building.md)
-[Some Tests Results](docs/some_tests_results.md)
-[References](docs/references.md)
+- [How it works](docs/how_it_works.md)
+- [Building Linearisation (the tool) from source](docs/building.md)
+- [Some Tests Results](docs/some_tests_results.md)
+- [References](docs/references.md)
 
 
