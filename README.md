@@ -23,6 +23,7 @@ Following are the contents of this piece of work.
 - [How it works](docs/how_it_works.md)
 - [Building Linearisation (the tool) from source](docs/building.md)
 - [Creating Custom Linearisation tests](docs/create_custom_linearisation_tests.md)
+- [Configuration Options](docs/configuration_options.md)
 - [Some Tests Results](docs/some_tests_results.md)
 - [References](docs/references.md)
 
