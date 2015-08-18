@@ -16,7 +16,7 @@ import java.util.Set;
  *
  * @author tmjee
  */
-@Linearisable
+//@Linearisable
 @Consequence(id="[1,1]", expectation = Expectation.ACCEPTABLE,
         description = "Player 1 retrieved value added, Player 2 retrieved value added.")
 @Consequence(id="[1,-1]", expectation = Expectation.FORBIDDEN,

@@ -15,11 +15,12 @@ public class Test {
     private final ClassInfo testClass;
     private final List<MethodInfo> testMethods;
     private final Set<Consequence> consequences;
+    private final MethodInfo arbiterMethod;
     private final List<String> references;
 
     private Test(String name, String description, ClassInfo runner, ClassInfo invariant, ClassInfo record,
-                 ClassInfo testClass, List<MethodInfo> testMethods, Set<Consequence> conseqeunces,
-                 List<String> references) {
+                 ClassInfo testClass, List<MethodInfo> testMethods, MethodInfo arbiterMethod,
+                 Set<Consequence> conseqeunces, List<String> references) {
         this.name = name;
         this.description = description;
         this.runner = runner;
@@ -29,6 +30,7 @@ public class Test {
         this.testClass = testClass;
         this.consequences = Collections.unmodifiableSet(conseqeunces);
         this.references = Collections.unmodifiableList(references);
+        this.arbiterMethod = arbiterMethod;
     }
 
     public String name() { return name; }
@@ -40,6 +42,7 @@ public class Test {
     public List<String> references() { return references; }
     public List<MethodInfo> testMethods() { return testMethods; }
     public ClassInfo testClass() { return testClass; }
+    public MethodInfo arbiterMethod() { return arbiterMethod; }
     public int testsCount() { return testMethods.size(); }
 
 
@@ -153,6 +156,7 @@ public class Test {
         private ClassInfo testClass;
         private List<MethodInfo> testMethods = new ArrayList<MethodInfo>();
         private Set<Consequence> consequences = new LinkedHashSet<>();
+        private MethodInfo arbiterMethod;
         private List<String> references = new ArrayList<>();
 
         public Builder withName(String name) {
@@ -187,6 +191,13 @@ public class Test {
             return this;
         }
 
+        public Builder addArbiterMethod(String arbiterMethodName, String[] args) {
+            this.arbiterMethod = new MethodInfo(arbiterMethodName,
+                    args != null && args.length >= 1 ? args[0] : null,
+                    args != null && args.length >= 2 ? args[1] : null);
+            return this;
+        }
+
         public Builder addConsequence(String id, Expectation expectation, String description) {
             this.consequences.add(new Consequence(id, expectation, description));
             return this;
@@ -203,7 +214,8 @@ public class Test {
         }
 
         public Test build() {
-            return new Test(name, description, runner, invariant, record, testClass, testMethods, consequences, references);
+            return new Test(name, description, runner, invariant, record, testClass,
+                    testMethods, arbiterMethod, consequences, references);
         }
     }
 }

@@ -129,6 +129,7 @@ public class AnnotationProcessor extends AbstractProcessor {
 
     private List<Test> parse(Element e) {
 
+        System.out.println("***e="+e);
         Consequences consequencesAnnotation = e.getAnnotation(Consequences.class);
         References referencesAnnotation = e.getAnnotation(References.class);
 
@@ -148,7 +149,9 @@ public class AnnotationProcessor extends AbstractProcessor {
                 String runnerPackageName = "linearisation.generated";
                 String runnerClassName = buildRunnerClassName((TypeElement)e1);
 
+                System.out.println("****** consequencesAnnotation.value()="+consequencesAnnotation);
                 if (consequencesAnnotation != null) {
+                    System.out.println("****** consequencesAnnotation.value()="+consequencesAnnotation.value());
                     for (Consequence consequence : consequencesAnnotation.value()) {
                         builder.addConsequence(consequence.id(), consequence.expectation(), consequence.description());
                     }
@@ -167,25 +170,34 @@ public class AnnotationProcessor extends AbstractProcessor {
 
 
                 for (Element e2 : e1.getEnclosedElements()) {
-                    if (e2.getKind() == ElementKind.METHOD && e2.getAnnotation(Player.class) != null) {
-                        List<String> args = new ArrayList<>(2);
-                        List<? extends VariableElement> e3s = ((ExecutableElement)e2).getParameters();
-                        if (e3s.size() <= 2) {
-                            for (Element e3 : e3s) {
-                                TypeElement paramElement = (TypeElement)types.asElement(e3.asType());
-                                if (paramElement.getAnnotation(Invariant.class) != null) {
-                                    builder.withInvariant(getPackageName(paramElement), getClassName(paramElement));
-                                    args.add("invariant");
-                                }
-                                if (paramElement.getAnnotation(Record.class) != null) {
-                                    builder.withRecord(getPackageName(paramElement), getClassName(paramElement));
-                                    args.add("record");
+                    if (e2.getKind() == ElementKind.METHOD) {
+                        boolean isPlayer = (e2.getAnnotation(Player.class) != null);
+                        boolean isArbiter = (e2.getAnnotation(Arbiter.class) != null);
+                        if (isPlayer || isArbiter) {
+                            List<String> args = new ArrayList<>(2);
+                            List<? extends VariableElement> e3s = ((ExecutableElement) e2).getParameters();
+                            if (e3s.size() <= 2) {
+                                for (Element e3 : e3s) {
+                                    TypeElement paramElement = (TypeElement) types.asElement(e3.asType());
+                                    if (paramElement.getAnnotation(Invariant.class) != null) {
+                                        builder.withInvariant(getPackageName(paramElement), getClassName(paramElement));
+                                        args.add("invariant");
+                                    }
+                                    if (paramElement.getAnnotation(Record.class) != null) {
+                                        builder.withRecord(getPackageName(paramElement), getClassName(paramElement));
+                                        args.add("record");
+                                    }
                                 }
                             }
-                        }
 
-                        builder.addTestMethod(
-                                getMethodName((ExecutableElement) e2), args.toArray(new String[0]));
+                            if (isPlayer) {
+                                builder.addTestMethod(
+                                        getMethodName((ExecutableElement) e2), args.toArray(new String[0]));
+                            } else if (isArbiter) {
+                                builder.addArbiterMethod(
+                                        getMethodName((ExecutableElement) e2), args.toArray(new String[0]));
+                            }
+                        }
                     }
                 }
 

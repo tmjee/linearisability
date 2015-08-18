@@ -27,11 +27,17 @@
 						<source>1.8</source>
 						<target>1.8</target>
 						<encoding>UTF-8</encoding>
-						<compilerArgument>-XDignore.symbol.file</compilerArgument>
+						<!--compilerArgument>-XDignore.symbol.file</compilerArgument-->
 						<!--compilerArgument>-DCachingArchiveProvider.disableCtSym=true</compilerArgument-->
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 </project>

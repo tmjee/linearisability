@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author tmjee
  */
-@Linearisable
+//@Linearisable
 @Consequence(id="[1,1]", expectation = Expectation.ACCEPTABLE, description = "Player 1 and 2 got back expected values")
 @Consequence(id="[1,-1]", expectation = Expectation.FORBIDDEN, description = "Player 1 get back value inserted, Player 2 did not get back value expected")
 @Consequence(id="[-1,1]", expectation = Expectation.FORBIDDEN, description = "Player 1 did not get back value inserted, Player 2 get back value inserted")
