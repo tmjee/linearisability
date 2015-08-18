@@ -173,6 +173,7 @@ public class AnnotationProcessor extends AbstractProcessor {
                     if (e2.getKind() == ElementKind.METHOD) {
                         boolean isPlayer = (e2.getAnnotation(Player.class) != null);
                         boolean isArbiter = (e2.getAnnotation(Arbiter.class) != null);
+                        System.out.println("********* "+isPlayer+"\t"+isArbiter);
                         if (isPlayer || isArbiter) {
                             List<String> args = new ArrayList<>(2);
                             List<? extends VariableElement> e3s = ((ExecutableElement) e2).getParameters();
