@@ -15,6 +15,7 @@ import javax.tools.StandardLocation;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.lang.annotation.Annotation;
 import java.util.*;
 
 /**
@@ -129,9 +130,6 @@ public class AnnotationProcessor extends AbstractProcessor {
 
     private List<Test> parse(Element e) {
 
-        System.out.println("***e="+e);
-        Consequences consequencesAnnotation = e.getAnnotation(Consequences.class);
-        References referencesAnnotation = e.getAnnotation(References.class);
 
         List<Test> tests = new ArrayList<>();
 
@@ -149,14 +147,45 @@ public class AnnotationProcessor extends AbstractProcessor {
                 String runnerPackageName = "linearisation.generated";
                 String runnerClassName = buildRunnerClassName((TypeElement)e1);
 
-                System.out.println("****** consequencesAnnotation.value()="+consequencesAnnotation);
+                Consequences consequencesAnnotation = e.getAnnotation(Consequences.class);
+                if (consequencesAnnotation == null && e.getAnnotation(Consequence.class) != null) {
+                    consequencesAnnotation = new Consequences(){
+                        @Override
+                        public Class<? extends Annotation> annotationType() {
+                            return Consequences.class;
+                        }
+
+                        @Override
+                        public Consequence[] value() {
+                            return new Consequence[] {
+                                   e.getAnnotation(Consequence.class)
+                            };
+                        }
+                    };
+                }
                 if (consequencesAnnotation != null) {
-                    System.out.println("****** consequencesAnnotation.value()="+consequencesAnnotation.value());
                     for (Consequence consequence : consequencesAnnotation.value()) {
                         builder.addConsequence(consequence.id(), consequence.expectation(), consequence.description());
                     }
                 }
 
+                References referencesAnnotation = e.getAnnotation(References.class);
+                if (referencesAnnotation == null && e.getAnnotation(Reference.class) != null) {
+                    referencesAnnotation = new References() {
+
+                        @Override
+                        public Class<? extends Annotation> annotationType() {
+                            return References.class;
+                        }
+
+                        @Override
+                        public Reference[] value() {
+                            return new Reference[]{
+                                    e.getAnnotation(Reference.class)
+                            };
+                        }
+                    };
+                }
                 if (referencesAnnotation != null) {
                     for (Reference reference : referencesAnnotation.value()) {
                         builder.addReference(reference.value());
@@ -173,7 +202,6 @@ public class AnnotationProcessor extends AbstractProcessor {
                     if (e2.getKind() == ElementKind.METHOD) {
                         boolean isPlayer = (e2.getAnnotation(Player.class) != null);
                         boolean isArbiter = (e2.getAnnotation(Arbiter.class) != null);
-                        System.out.println("********* "+isPlayer+"\t"+isArbiter);
                         if (isPlayer || isArbiter) {
                             List<String> args = new ArrayList<>(2);
                             List<? extends VariableElement> e3s = ((ExecutableElement) e2).getParameters();

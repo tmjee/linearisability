@@ -76,7 +76,7 @@ public abstract class Runner {
 
         // result in consequence but not found in actual run
         if (!x.isEmpty()) { // we found such cases
-            x.forEach((k, v)->sb.append(format("\t%-10s%-,20d%-20s%-100s%n", k, 0L, Expectation.UNKNOWN.name(), "unknown")));
+            x.forEach((k, v)->sb.append(format("\t%-10s%-,20d%-20s%-100s%n", k, 0L, v.expectation().name(), v.description())));
         }
 
         sb.append(format("%n"));

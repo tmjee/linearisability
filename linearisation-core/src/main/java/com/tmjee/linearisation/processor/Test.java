@@ -31,7 +31,6 @@ public class Test {
         this.consequences = Collections.unmodifiableSet(conseqeunces);
         this.references = Collections.unmodifiableList(references);
         this.arbiterMethod = arbiterMethod;
-        System.out.println("**** in constructor="+arbiterMethod);
     }
 
     public String name() { return name; }

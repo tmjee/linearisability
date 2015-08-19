@@ -8,9 +8,9 @@ import java.util.Map;
 /**
  * @author tmjee
  */
-@Linearisable
+//@Linearisable
 @Consequence(id = "[1]", expectation = Expectation.ACCEPTABLE, description = "Running count for player 1 and 2 match expected result")
-@Consequence(id = "[1]", expectation = Expectation.ACCEPTABLE, description = "Running count for player 1 and 2 match expected result")
+@Consequence(id = "[0]", expectation = Expectation.FORBIDDEN, description = "Running count for player 1 and 2 do not match expected result")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000002.md")
 public class PutRunningCountHashMapTest {
 
@@ -25,17 +25,22 @@ public class PutRunningCountHashMapTest {
 
         @Player
         public void player1(State state, LongResult1 result1) {
-
+            for (int a=0; a<100; a++) {
+                state.m.put(a,a);
+            }
         }
 
         @Player
         public void player2(State state, LongResult1 result1) {
-
+            for(int b=100; b<200; b++) {
+                state.m.put(b, b);
+            }
         }
 
         @Arbiter
         public void arbiter(State state, LongResult1 result1) {
-
+            int size = state.m.size();
+            result1.value1 = ((size == 100)?1:0);
         }
     }
 }
