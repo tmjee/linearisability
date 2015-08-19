@@ -10,37 +10,37 @@ import java.util.Map;
  */
 @Linearisable
 @Consequence(id = "[1]", expectation = Expectation.ACCEPTABLE, description = "Running count for player 1 and 2 match expected result")
-@Consequence(id = "[0]", expectation = Expectation.FORBIDDEN, description = "Running count for player 1 and 2 do not match expected result")
+@Consequence(id = "[-1]", expectation = Expectation.FORBIDDEN, description = "Running count for player 1 and 2 do not match expected result")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000002.md")
-public class HashMap_PutRunningCount_Test {
+public class HashMap_PutRunningCount_Test extends Abstract_Map_PutRunningCount_Test {
 
     @Invariant
-    public static class State {
+    public static class State extends Abstract_Map_PutRunningCount_Test.AbstractState {
         public volatile Map<Integer, Integer> m = new HashMap<>();
+
+        @Override
+        Map<Integer, Integer> get() {
+            return m;
+        }
     }
 
 
     @TestUnit(name="PutRunningCountHashMapTest_TestUnit1", description = "Put and do running count (unit1)")
-    public static class TestUnit1 {
+    public static class TestUnit1 extends Abstract_Map_PutRunningCount_Test.AbstractTestUnit {
 
         @Player
-        public void player1(State state, LongResult1 result1) {
-            for (int a=0; a<100; a++) {
-                state.m.put(a,a);
-            }
+        public void player1(State state, LongResult1 r) {
+            _player1(state, r);
         }
 
         @Player
-        public void player2(State state, LongResult1 result1) {
-            for(int b=100; b<200; b++) {
-                state.m.put(b, b);
-            }
+        public void player2(State state, LongResult1 r) {
+            _player2(state, r);
         }
 
         @Arbiter
-        public void arbiter(State state, LongResult1 result1) {
-            int size = state.m.size();
-            result1.value1 = ((size == 100)?1:0);
+        public void arbiter(State state, LongResult1 r) {
+            _arbiter(state, r);
         }
     }
 }

@@ -2,18 +2,10 @@ package com.tmjee.linearisation.sample;
 
 import com.tmjee.linearisation.processor.*;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
- * Player 1 insert an integer '1' into a {@link HashMap} with key '1' and then
- * try to retrieve the value inserted.
- * <p/>
- * Player 2 insert an integer '1' into a {@link HashMap} with key 2' and then
- * try to retrieve the value inserted.
- * <p/>
- * Both players are doing the operation at the same time without synchronisation
- *
  * @author tmjee
  */
 @Linearisable
@@ -25,12 +17,13 @@ import java.util.Map;
 @Consequence(id="[-2,-1]", expectation = Expectation.FORBIDDEN, description = "Player 1 throws Exception, Player 2 results is unexpected")
 @Consequence(id="[1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 2 throws Exception")
 @Consequence(id="[-1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 1 result is unexpected, Player 2 throws exception ")
-@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000001.md")
-public class HashMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
+@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000004.md")
+public class ConcurrentSkipListMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
+
 
     @Invariant
     public static class State extends Abstract_Map_PutAndGet_Test.AbstractState {
-       public volatile Map<Integer, Integer> m = new HashMap<>();
+        volatile Map<Integer, Integer> m = new ConcurrentSkipListMap<>();
 
         @Override
         Map<Integer, Integer> get() {
@@ -38,15 +31,17 @@ public class HashMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
         }
     }
 
-    @TestUnit(name="PutAndGetHashMap_TestUnit_1", description = "Put and get hash map (unit1)")
+
+    @TestUnit(name="ConcurrentSkipListMap_PutAndGet_Test", description = "ConcurrentSkipListMap Put and Get Test")
     public static class TestUnit1 extends Abstract_Map_PutAndGet_Test.AbstractTestUnit {
+
         @Player
-        public void player1(State state, LongResult2 r) {
+        protected void _player1(AbstractState state, LongResult2 r) {
             _player1(state, r);
         }
 
         @Player
-        public void player2(State state, LongResult2 r) {
+        protected void _player2(AbstractState state, LongResult2 r) {
             _player2(state, r);
         }
     }

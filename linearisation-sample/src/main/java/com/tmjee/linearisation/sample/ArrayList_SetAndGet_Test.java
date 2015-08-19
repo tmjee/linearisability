@@ -4,6 +4,7 @@ import com.tmjee.linearisation.processor.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Player 1 try to insert an integer '1' into index 1 and then try to get back the integer at
@@ -27,36 +28,29 @@ import java.util.List;
 @Consequence(id="[1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 2 throws exception")
 @Consequence(id="[-1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 1 gets back unexpected result, Player 2 throws exception")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/list/0000001.md")
-public class ArrayList_SetAndGet_Test {
+public class ArrayList_SetAndGet_Test extends Abstract_List_SetAndGet_Test {
 
     @Invariant
-    public static class State {
+    public static class State extends Abstract_List_SetAndGet_Test.AbstractState {
         public volatile List<Integer> list = new ArrayList<>();
+
+        @Override
+        List<Integer> get() {
+            return list;
+        }
     }
 
 
     @TestUnit(name="SetAndGetArrayListTest_Unit1", description = "Set and get array list test (unit 1)")
-    public static class TestUnit1 {
+    public static class TestUnit1 extends Abstract_List_SetAndGet_Test.AbstractTestUnit {
         @Player
         public void player1(State state, LongResult2 result) {
-            try {
-                state.list.add(1, 1);
-                Integer i = state.list.get(1);
-                result.value1 = ((i == null) ? -1 : (i == 1 ? 1 : -1));
-            }catch(Throwable t) {
-                result.value1 = -2;
-            }
+            _player1(state, result);
         }
 
         @Player
         public void player2(State state, LongResult2 result) {
-            try {
-                state.list.add(2, 1);
-                Integer i = state.list.get(2);
-                result.value2 = ((i == null) ? -1 : (i == 1 ? 1 : -1));
-            }catch(Throwable t) {
-                result.value2 = -2;
-            }
+            _player2(state, result);
         }
     }
 
