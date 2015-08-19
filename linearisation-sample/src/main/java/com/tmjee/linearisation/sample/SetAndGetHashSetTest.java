@@ -16,15 +16,11 @@ import java.util.Set;
  *
  * @author tmjee
  */
-//@Linearisable
-@Consequence(id="[1,1]", expectation = Expectation.ACCEPTABLE,
-        description = "Player 1 retrieved value added, Player 2 retrieved value added.")
-@Consequence(id="[1,-1]", expectation = Expectation.FORBIDDEN,
-        description = "Player 1 retrieved value added, Player 2 did not retrieved value added")
-@Consequence(id="[-1,1]", expectation = Expectation.FORBIDDEN,
-        description = "Player 1 did not retrieved value added, Player 2 retrieved value added")
-@Consequence(id="[-1,-1]", expectation = Expectation.FORBIDDEN,
-        description = "Player 1 did not retrieved value added, Player 2 did not retrieved value added")
+@Linearisable
+@Consequence(id="[1,1]", expectation = Expectation.ACCEPTABLE, description = "Player 1 retrieved value added, Player 2 retrieved value added.")
+@Consequence(id="[1,-1]", expectation = Expectation.FORBIDDEN, description = "Player 1 retrieved value added, Player 2 did not retrieved value added")
+@Consequence(id="[-1,1]", expectation = Expectation.FORBIDDEN, description = "Player 1 did not retrieved value added, Player 2 retrieved value added")
+@Consequence(id="[-1,-1]", expectation = Expectation.FORBIDDEN, description = "Player 1 did not retrieved value added, Player 2 did not retrieved value added")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/set/0000001.md")
 public class SetAndGetHashSetTest {
 
