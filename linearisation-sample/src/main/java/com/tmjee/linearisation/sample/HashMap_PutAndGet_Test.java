@@ -22,7 +22,7 @@ import java.util.Map;
 @Consequence(id="[-1,1]", expectation = Expectation.FORBIDDEN, description = "Player 1 did not get back expected value but Player 2 did")
 @Consequence(id="[-1,-1]", expectation = Expectation.FORBIDDEN, description = "Both player 1 and player 2 did not get back expected value")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000001.md")
-public class PutAndGetHashMapTest {
+public class HashMap_PutAndGet_Test {
 
     @Invariant
     public static class State {

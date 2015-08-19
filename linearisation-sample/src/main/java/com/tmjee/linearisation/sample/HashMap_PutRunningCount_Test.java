@@ -12,7 +12,7 @@ import java.util.Map;
 @Consequence(id = "[1]", expectation = Expectation.ACCEPTABLE, description = "Running count for player 1 and 2 match expected result")
 @Consequence(id = "[0]", expectation = Expectation.FORBIDDEN, description = "Running count for player 1 and 2 do not match expected result")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000002.md")
-public class PutRunningCountHashMapTest {
+public class HashMap_PutRunningCount_Test {
 
     @Invariant
     public static class State {

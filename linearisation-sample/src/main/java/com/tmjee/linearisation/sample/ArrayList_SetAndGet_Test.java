@@ -27,7 +27,7 @@ import java.util.List;
 @Consequence(id="[1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 2 throws exception")
 @Consequence(id="[-1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 1 gets back unexpected result, Player 2 throws exception")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/list/0000001.md")
-public class SetAndGetArrayListTest {
+public class ArrayList_SetAndGet_Test {
 
     @Invariant
     public static class State {

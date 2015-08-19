@@ -13,7 +13,7 @@ import static java.lang.String.format;
 @Consequence(id="[1,0]", expectation = Expectation.FORBIDDEN, description="Player 2 did not execute it's test method")
 @Consequence(id="[0,1]", expectation = Expectation.FORBIDDEN, description="Player 1 did not execute it's test method")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/misc/0000001.md")
-public class TwoActorsTest {
+public class Actors_TwoRunning_Test {
 
     @Invariant
     public static class State {
