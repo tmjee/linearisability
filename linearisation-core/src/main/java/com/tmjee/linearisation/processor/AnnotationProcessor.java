@@ -9,13 +9,17 @@ import freemarker.template.TemplateExceptionHandler;
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
+import javax.lang.model.type.MirroredTypeException;
+import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
+import javax.tools.Diagnostic;
 import javax.tools.StandardLocation;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
 import java.util.*;
 
 /**
@@ -23,6 +27,8 @@ import java.util.*;
  */
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class AnnotationProcessor extends AbstractProcessor {
+
+    private static final String GENERATED_RUNNER_PACKAGE_NAME = "linearisation.generated";
 
     private Elements elements;
     private Types types;
@@ -88,6 +94,8 @@ public class AnnotationProcessor extends AbstractProcessor {
 
             for (Test test : tests) {
 
+                messager.printMessage(Diagnostic.Kind.NOTE, "**** testing ");
+
                 // create model for templating
                 Map<String, Object> model = new HashMap<>();
                 model.put("test", test);
@@ -128,6 +136,99 @@ public class AnnotationProcessor extends AbstractProcessor {
         }
     }
 
+
+    private TypeElement findMetaAnnotationTargetTypeElement(Element e) {
+        String metaClassName = Meta.class.getName();
+        for (AnnotationMirror annotationMirror : e.getAnnotationMirrors()) {
+            if (metaClassName.equals(annotationMirror.getAnnotationType().toString())) {
+                for(Map.Entry<? extends ExecutableElement, ? extends AnnotationValue> entry : annotationMirror.getElementValues().entrySet()) {
+                    if ("value".equals(entry.getKey().getSimpleName().toString())) {
+                        AnnotationValue v = entry.getValue();
+                        String metaValueClassName = v.getValue().toString();
+                        TypeElement typeElement = elements.getTypeElement(metaValueClassName);
+                        return typeElement;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private Set<Consequence> _findConsequencesAnnotation(Element e) {
+        Consequences consequencesAnnotation = e.getAnnotation(Consequences.class);
+        if (consequencesAnnotation == null && e.getAnnotation(Consequence.class) != null) {
+            return Collections.singleton(e.getAnnotation(Consequence.class));
+        } else if (consequencesAnnotation == null) {
+            return Collections.EMPTY_SET;
+        }
+        return new HashSet<>(Arrays.<Consequence>asList(consequencesAnnotation.value()));
+    }
+
+
+    private Consequences findConsequencesAnnotation(Element e) {
+        Set<Consequence> consequencesFromMeta = Collections.EMPTY_SET;
+        Set<Consequence> consequencesFromTestClass = Collections.EMPTY_SET;
+        Meta meta = e.getAnnotation(Meta.class);
+        if (meta != null) {
+            TypeElement typeElement = findMetaAnnotationTargetTypeElement(e);
+            if (typeElement != null) {
+                consequencesFromMeta = _findConsequencesAnnotation(typeElement);
+            }
+        }
+        consequencesFromTestClass = _findConsequencesAnnotation(e);
+        final Set<Consequence> consequencesSet = new TreeSet<>((c1,c2)->c1.id().equals(c2.id()) ? 0 : (c1.id().compareTo(c2.id())));
+        consequencesSet.addAll(consequencesFromMeta);
+        consequencesSet.addAll(consequencesFromTestClass);
+        return new Consequences() {
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return Consequences.class;
+            }
+
+            @Override
+            public Consequence[] value() {
+                return consequencesSet.toArray(new Consequence[0]);
+            }
+        };
+    }
+
+    private Set<Reference> _findReferencesAnnotation(Element e) {
+        References referencesAnnotation = e.getAnnotation(References.class);
+        if (referencesAnnotation == null && e.getAnnotation(Reference.class) != null) {
+            return Collections.singleton(e.getAnnotation(Reference.class));
+        } else if (referencesAnnotation == null) {
+            return Collections.EMPTY_SET;
+        }
+        return new HashSet<>(Arrays.<Reference>asList(referencesAnnotation.value()));
+    }
+
+    private References findReferencesAnnotation(Element e) {
+        Set<Reference> referencesFromMeta = Collections.EMPTY_SET;
+        Set<Reference> referencesFromTestClass = Collections.EMPTY_SET;
+        Meta meta = e.getAnnotation(Meta.class);
+        if (meta != null) {
+            TypeElement typeElement = findMetaAnnotationTargetTypeElement(e);
+            if (typeElement != null) {
+                referencesFromMeta = _findReferencesAnnotation(typeElement);
+            }
+        }
+        referencesFromTestClass = _findReferencesAnnotation(e);
+        final Set<Reference> referencesSet = new HashSet<>(referencesFromMeta);
+        referencesSet.addAll(referencesFromTestClass);
+        return new References(){
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return References.class;
+            }
+
+            @Override
+            public Reference[] value() {
+                return referencesSet.toArray(new Reference[0]);
+            }
+        };
+    }
+
     private List<Test> parse(Element e) {
 
 
@@ -142,50 +243,19 @@ public class AnnotationProcessor extends AbstractProcessor {
 
                 String testUnitName = testUnitAnnotation.name();
                 String testUnitDescription = testUnitAnnotation.description();
-                String testPackageName = getPackageName((TypeElement)e1);
-                String testClassName = getClassName((TypeElement)e1);
-                String runnerPackageName = "linearisation.generated";
-                String runnerClassName = buildRunnerClassName((TypeElement)e1);
+                String testPackageName = getPackageName((TypeElement) e1);
+                String testClassName = getClassName((TypeElement) e1);
+                String runnerPackageName =  GENERATED_RUNNER_PACKAGE_NAME;
+                String runnerClassName = buildRunnerClassName((TypeElement) e1);
 
-                Consequences consequencesAnnotation = e.getAnnotation(Consequences.class);
-                if (consequencesAnnotation == null && e.getAnnotation(Consequence.class) != null) {
-                    consequencesAnnotation = new Consequences(){
-                        @Override
-                        public Class<? extends Annotation> annotationType() {
-                            return Consequences.class;
-                        }
-
-                        @Override
-                        public Consequence[] value() {
-                            return new Consequence[] {
-                                   e.getAnnotation(Consequence.class)
-                            };
-                        }
-                    };
-                }
+                Consequences consequencesAnnotation = findConsequencesAnnotation(e);
                 if (consequencesAnnotation != null) {
                     for (Consequence consequence : consequencesAnnotation.value()) {
                         builder.addConsequence(consequence.id(), consequence.expectation(), consequence.description());
                     }
                 }
 
-                References referencesAnnotation = e.getAnnotation(References.class);
-                if (referencesAnnotation == null && e.getAnnotation(Reference.class) != null) {
-                    referencesAnnotation = new References() {
-
-                        @Override
-                        public Class<? extends Annotation> annotationType() {
-                            return References.class;
-                        }
-
-                        @Override
-                        public Reference[] value() {
-                            return new Reference[]{
-                                    e.getAnnotation(Reference.class)
-                            };
-                        }
-                    };
-                }
+                References referencesAnnotation = findReferencesAnnotation(e);
                 if (referencesAnnotation != null) {
                     for (Reference reference : referencesAnnotation.value()) {
                         builder.addReference(reference.value());

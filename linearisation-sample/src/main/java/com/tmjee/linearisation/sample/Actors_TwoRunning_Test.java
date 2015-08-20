@@ -7,7 +7,7 @@ import static java.lang.String.format;
 /**
  * @author tmjee
  */
-@Linearisable
+//@Linearisable
 @Consequence(id="[1,1]", expectation = Expectation.ACCEPTABLE, description = "Both player 1 and 2 executed respective test method")
 @Consequence(id="[0,0]", expectation = Expectation.FORBIDDEN, description = "Both player 1 and 2 do not execute respective test method")
 @Consequence(id="[1,0]", expectation = Expectation.FORBIDDEN, description="Player 2 did not execute it's test method")
@@ -34,12 +34,12 @@ public class Actors_TwoRunning_Test {
     @TestUnit(name="TwoActorTest", description = "Set value to two actors")
     public static class TestUnit1 {
         @Player
-        public void player1Action(State state, Result result) {
+        public void player1(State state, Result result) {
             result.x=1;
         }
 
         @Player
-        public void player2Action(State state, Result result) {
+        public void player2(State state, Result result) {
             result.y=1;
         }
     }

@@ -75,7 +75,7 @@ public class Linearisation {
 
         Logger.log("Shutdown pool ...");
         pool.shutdown();
-        pool.awaitTermination(1, TimeUnit.DAYS);
+        pool.awaitTermination(5, TimeUnit.SECONDS);
         Logger.log("Pool end.");
 
         Logger.log("Bye !");

@@ -4,8 +4,8 @@ import com.tmjee.linearisation.abstrack.Abstract_List_SetAndGet_Test;
 import com.tmjee.linearisation.meta.Meta_List_SetAndGet_Test;
 import com.tmjee.linearisation.processor.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author tmjee
@@ -13,30 +13,30 @@ import java.util.List;
 @Linearisable
 @Meta(Meta_List_SetAndGet_Test.class)
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/list/0000001.md")
-public class ArrayList_SetAndGet_Test extends Abstract_List_SetAndGet_Test {
+public class CopyOnWriteArrayList_SetAndGet_Test extends Abstract_List_SetAndGet_Test {
 
     @Invariant
     public static class State extends Abstract_List_SetAndGet_Test.AbstractState {
-        public volatile List<Integer> list = new ArrayList<>();
+        volatile List<Integer> l = new CopyOnWriteArrayList<>();
 
         @Override
         protected List<Integer> get() {
-            return list;
+            return l;
         }
     }
 
 
-    @TestUnit(name="SetAndGetArrayListTest_Unit1", description = "Set and get array list test (unit 1)")
-    public static class TestUnit1 extends Abstract_List_SetAndGet_Test.AbstractTestUnit {
+    @TestUnit(name="CopyOnWriteArrayList_SetAndGet_Test", description = "CopyOnWriteArrayList Set and get test")
+    public static class TestUnit1 extends CopyOnWriteArrayList_SetAndGet_Test.AbstractTestUnit {
+
         @Player
-        public void player1(State state, LongResult2 result) {
-            _player1(state, result);
+        public void player1(State state, LongResult2 r) {
+            _player1(state, r);
         }
 
         @Player
-        public void player2(State state, LongResult2 result) {
-            _player2(state, result);
+        public void player2(State state, LongResult2 r) {
+            _player2(state, r);
         }
     }
-
 }

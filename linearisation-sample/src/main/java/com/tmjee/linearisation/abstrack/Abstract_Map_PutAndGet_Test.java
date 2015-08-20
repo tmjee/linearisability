@@ -1,21 +1,26 @@
-package com.tmjee.linearisation.sample;
+package com.tmjee.linearisation.abstrack;
 
 import com.tmjee.linearisation.processor.LongResult2;
 
 import java.util.Map;
 
 /**
+ * Player 1 puts (1,1) into the map and expects to get 1 back from get(1).
+ * <p/>
+ * Player 2 puts (2,1) into the map and expects to get 1 back from get(2).
+ * </p>
+ *
  * @author tmjee
  */
-public class Abstract_Map_PutAndGet_Test {
+public abstract class Abstract_Map_PutAndGet_Test {
 
 
     public static abstract class AbstractState {
-        abstract Map<Integer, Integer> get();
+        protected abstract Map<Integer, Integer> get();
     }
 
 
-    public static class AbstractTestUnit {
+    public static abstract class AbstractTestUnit {
 
         protected void _player1(AbstractState state, LongResult2 r) {
             try {

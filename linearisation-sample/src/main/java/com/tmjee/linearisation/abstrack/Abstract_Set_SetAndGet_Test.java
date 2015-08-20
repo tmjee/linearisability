@@ -1,16 +1,21 @@
-package com.tmjee.linearisation.sample;
+package com.tmjee.linearisation.abstrack;
 
 import com.tmjee.linearisation.processor.LongResult2;
 
 import java.util.Set;
 
 /**
+ * Player 1 add 1 into the set and expects the set to contains 1.
+ * <p/>
+ * Player 2 add 2 into the set and expects the set to contains 2.
+ * <p/>
+ *
  * @author tmjee
  */
-public class Abstract_Set_SetAndGet_Test {
+public abstract class Abstract_Set_SetAndGet_Test {
 
     public abstract static class AbstractState {
-        abstract Set<Integer> get();
+        protected abstract Set<Integer> get();
     }
 
     public static class AbstractTestUnit {

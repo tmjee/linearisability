@@ -63,6 +63,17 @@ public class Test {
         public String id() { return id; }
         public Expectation expectation() { return expectation; }
         public String description() { return description; }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[Consequence:");
+            sb.append("\n\tid="+id);
+            sb.append("\n\texpectation="+expectation);
+            sb.append("\n\tdescription="+description);
+            sb.append("]");
+            return sb.toString();
+        }
     }
 
 
@@ -135,7 +146,7 @@ public class Test {
         @Override
         public String toString() {
             StringBuffer sb = new StringBuffer();
-            sb.append("[ClassInfo:");
+            sb.append("[MethodInfo:");
             sb.append("\n\tmethodName="+methodName);
             sb.append("\n\targ0="+arg0);
             sb.append("\n\targ1="+arg1);

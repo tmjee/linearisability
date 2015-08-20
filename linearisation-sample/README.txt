@@ -32,10 +32,6 @@ Queue
         - LinkedBlockingQueue
         - PriorityBlockingQueue
 
-TransferQueue
--------------
-    - LinkedTransferQueue
-
 Deque
 -----
     - ConcurrentLinkedDeque
@@ -43,6 +39,11 @@ Deque
     BlockingDeque
     -------------
         - LinkedBlockingDequeue
+
+TransferQueue
+-------------
+    - LinkedTransferQueue
+
 
 
 Non JDK Data Structures from Synchrobench

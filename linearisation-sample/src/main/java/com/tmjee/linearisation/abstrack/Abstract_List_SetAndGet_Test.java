@@ -1,16 +1,21 @@
-package com.tmjee.linearisation.sample;
+package com.tmjee.linearisation.abstrack;
 
 import com.tmjee.linearisation.processor.LongResult2;
 
 import java.util.List;
 
 /**
+ * Player 1 puts (1,1) into the list and expect to get 1 back from get(1).
+ * <p/>
+ * Player 2 puts (2,1) into the list and expect to get 1 back from get(1)
+ * <p/>
+ *
  * @author tmjee
  */
 public abstract class Abstract_List_SetAndGet_Test {
 
     public abstract static class AbstractState {
-        abstract List<Integer> get();
+        protected abstract List<Integer> get();
     }
 
     public abstract static class AbstractTestUnit {
