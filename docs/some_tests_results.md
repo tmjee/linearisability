@@ -51,26 +51,16 @@ Following are tests that we currently have :-
 - [Put Running Count Test](results/map/PutRunningCount_Test.md)
 - [Bulk Put Remove Test](results/map/BulkPutRemove_Test.md)
 
-### Bulk Put Remove Test
-- [HashMap](results/map/0000007.md)
-- [ConcurrentHashMap](results/map/0000008.md)
-- [ConcurrentSkipListMap](results/map/0000009.md)
-
 ## List
-### Set adn Get Test
-- [ArrayList - SetAndGet Test](results/list/0000001.md)
-- [CopyOnWriteArrayList - SetAndGet Test](results/list/0000002.md)
+- [Get and Set Test](results/list/GetAndSet_Test.md)
 
 ## Set
-### Set and Get Test
-- [HashSet - SetAndGet Test](results/set/0000001.md)
-- [ConcurrentSkipListSet - SetAndGet Test](results/set/0000002.md)
-- [CopyOnWriteArraySet - SetAndGet Test](results/set/0000003.md)
+- [Get and Set Test](results/set/GetAndSet_Test.md)
 
 ## Queue
-### Offer And Pool Test
+- [Offer and Poll Test](results/queue/OfferAndPoll_Test.md)
 
 ## Miscs
-- [TwoActorsTest](results/misc/0000001.md)
+- [TwoActorsTest](results/misc/Actors_TwoRunning_Test.md)
 
 
