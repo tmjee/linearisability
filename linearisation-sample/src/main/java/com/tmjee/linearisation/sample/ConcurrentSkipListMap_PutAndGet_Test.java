@@ -12,7 +12,6 @@ import java.util.concurrent.ConcurrentSkipListMap;
  */
 @Linearisable
 @Meta(Meta_Map_PutAndGet_Test.class)
-@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000004.md")
 public class ConcurrentSkipListMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
 
 

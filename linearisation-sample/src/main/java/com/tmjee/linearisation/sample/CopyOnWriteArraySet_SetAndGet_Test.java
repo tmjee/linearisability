@@ -12,7 +12,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 @Linearisable
 @Meta(Meta_Set_SetAndGet_Test.class)
-@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/set/0000003.md")
 public class CopyOnWriteArraySet_SetAndGet_Test extends Abstract_Set_SetAndGet_Test {
 
 
@@ -21,7 +20,7 @@ public class CopyOnWriteArraySet_SetAndGet_Test extends Abstract_Set_SetAndGet_T
         volatile Set<Integer> s = new CopyOnWriteArraySet<>();
 
         @Override
-        Set<Integer> get() {
+        protected Set<Integer> get() {
             return s;
         }
     }

@@ -12,7 +12,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Linearisable
 @Meta(Meta_Map_PutAndGet_Test.class)
-@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000003.md")
 public class ConcurrentHashMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
 
     @Invariant

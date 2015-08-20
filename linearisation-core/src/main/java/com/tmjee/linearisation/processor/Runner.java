@@ -91,14 +91,14 @@ public abstract class Runner {
             ended = true;
             for (Future<?> future : tasks) {
                 try {
-                    future.get(1, TimeUnit.SECONDS);
+                    future.get(10, TimeUnit.SECONDS);
                 } catch (InterruptedException e) {
                     Logger.log(e);
                 } catch (ExecutionException e) {
                     Logger.log(e);
                 } catch (TimeoutException e) {
                     ended = false;
-                    boolean cancelled = future.cancel(false);
+                    boolean cancelled = future.cancel(true);
                     Logger.log(format("future %s cancel=%s", future, cancelled));
                     Logger.log(e);
                 }

@@ -12,7 +12,6 @@ import java.util.Map;
  */
 @Linearisable
 @Meta(Meta_Map_PutRunningCount_Test.class)
-@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000002.md")
 public class HashMap_PutRunningCount_Test extends Abstract_Map_PutRunningCount_Test {
 
     @Invariant

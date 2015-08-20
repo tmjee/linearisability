@@ -12,7 +12,6 @@ import java.util.List;
  */
 @Linearisable
 @Meta(Meta_List_SetAndGet_Test.class)
-@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/list/0000001.md")
 public class ArrayList_SetAndGet_Test extends Abstract_List_SetAndGet_Test {
 
     @Invariant

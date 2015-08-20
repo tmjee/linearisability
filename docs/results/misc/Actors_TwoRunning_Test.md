@@ -1,30 +1,27 @@
-
-# HashMap_PutRunningCount_Test
+<!--
+    #
+    #   TwoActorsTest
+    #
+-->
+# Actor_TwoRunning_Test
 
 ## Summary
-Player 1 put 100 entries into 100 different locations in HashMap.
 
-Player 2 put 100 entries into 100 different locations in HashMap.
-
-Player 1 and 2 run concurrently
-
-After Player 1 and 2 ended, Arbiter evaluate the total entries in HashMap. If the total
-is 200, expecting it to be 200 in total.
 
 ## Output
 ```
-./run_HashMap_PutRunningCount_Test.sh
+$>./run_Actors_TwoRunning_Test.sh
 [linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test PutRunningCountHashMapTest_TestUnit1 - Put and do running count (unit1)
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test TwoActorTest - Set value to two actors
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
 [linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
 [linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
@@ -33,15 +30,17 @@ is 200, expecting it to be 200 in total.
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
 [linearisability] Thread[Scheduler_Thread_1,10,main] ->
 
-	Summary of Test PutRunningCountHashMapTest_TestUnit1 (Put and do running count (unit1)) :-
+	Summary of Test TwoActorTest (Set value to two actors) :-
 
 	References:
-		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000002.md
+		- https://github.com/tmjee/linearisability/blob/master/docs/results/misc/Actors_TwoRunning_Test.md
 
 	Id        Count               Expectation         Description
 	--------  -----------------   ------------------  ---------------------------------
-	[-1]      5,563,496           FORBIDDEN           Running count for player 1 and 2 do not match expected result
-	[1]       4                   ACCEPTABLE          Running count for player 1 and 2 match expected result
+	[1,1]     19,053,500          ACCEPTABLE          Both player 1 and 2 executed respective test method
+	[1,0]     0                   FORBIDDEN           Player 2 did not execute it's test method
+	[0,1]     0                   FORBIDDEN           Player 1 did not execute it's test method
+	[0,0]     0                   FORBIDDEN           Both player 1 and 2 do not execute respective test method
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
@@ -50,3 +49,4 @@ is 200, expecting it to be 200 in total.
 [linearisability] Thread[main,5,main] -> Bye !
 
 ```
+

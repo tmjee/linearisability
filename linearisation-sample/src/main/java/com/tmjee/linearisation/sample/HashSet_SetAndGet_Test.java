@@ -20,7 +20,6 @@ import java.util.Set;
  */
 @Linearisable
 @Meta(Meta_Set_SetAndGet_Test.class)
-@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/set/0000001.md")
 public class HashSet_SetAndGet_Test extends Abstract_Set_SetAndGet_Test {
 
     @Invariant
@@ -28,7 +27,7 @@ public class HashSet_SetAndGet_Test extends Abstract_Set_SetAndGet_Test {
         public volatile Set<Integer> s = new HashSet<>();
 
         @Override
-        Set<Integer> get() {
+        protected Set<Integer> get() {
             return s;
         }
     }

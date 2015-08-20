@@ -29,6 +29,7 @@ Queue
 
     BlockingQueue
     -------------
+        - ArrayBlockingQueue
         - LinkedBlockingQueue
         - PriorityBlockingQueue
 

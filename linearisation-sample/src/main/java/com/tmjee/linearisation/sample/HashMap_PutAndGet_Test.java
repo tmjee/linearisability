@@ -20,7 +20,6 @@ import java.util.Map;
  */
 @Linearisable
 @Meta(Meta_Map_PutAndGet_Test.class)
-@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/0000001.md")
 public class HashMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
 
     @Invariant

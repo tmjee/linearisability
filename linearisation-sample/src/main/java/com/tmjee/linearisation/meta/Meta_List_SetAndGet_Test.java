@@ -2,6 +2,7 @@ package com.tmjee.linearisation.meta;
 
 import com.tmjee.linearisation.processor.Consequence;
 import com.tmjee.linearisation.processor.Expectation;
+import com.tmjee.linearisation.processor.Reference;
 
 /**
  * @author tmjee
@@ -15,5 +16,6 @@ import com.tmjee.linearisation.processor.Expectation;
 @Consequence(id="[-2,-1]", expectation = Expectation.FORBIDDEN, description = "Player 1 throws exception, Player 2 get back unexpected value")
 @Consequence(id="[1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 2 throws exception")
 @Consequence(id="[-1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 1 gets back unexpected result, Player 2 throws exception")
+@Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/list/SetAndGet_Test.md")
 public class Meta_List_SetAndGet_Test {
 }

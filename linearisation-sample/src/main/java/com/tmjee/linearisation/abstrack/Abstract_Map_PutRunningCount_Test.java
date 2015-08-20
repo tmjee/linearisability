@@ -24,23 +24,31 @@ public abstract class Abstract_Map_PutRunningCount_Test {
     public static abstract class AbstractTestUnit {
 
         protected void _player1(AbstractState state, LongResult1 r) {
-            Map<Integer, Integer> m = state.get();
-            for (int a=0; a<1000; a++) {
-                m.put(a,a);
+            try {
+                Map<Integer, Integer> m = state.get();
+                for (int a = 0; a < 100; a++) {
+                    m.put(a, a);
+                }
+            }catch(Exception e) {
+                e.printStackTrace();
             }
         }
 
         protected void _player2(AbstractState state, LongResult1 r) {
-            Map<Integer, Integer> m = state.get();
-            for(int b=1000; b<3000; b++) {
-                m.put(b, b);
+            try {
+                Map<Integer, Integer> m = state.get();
+                for (int b = 100; b < 300; b++) {
+                    m.put(b, b);
+                }
+            } catch(Exception e) {
+                e.printStackTrace();
             }
         }
 
         protected void _arbiter(AbstractState state, LongResult1 r) {
             Map<Integer, Integer> m = state.get();
             int size = m.size();
-            r.value1 = ((size == 3000)?1:-1);
+            r.value1 = ((size == 300)?1:-1);
         }
 
     }
