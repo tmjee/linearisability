@@ -36,12 +36,12 @@ public class HashSet_SetAndGet_Test extends Abstract_Set_SetAndGet_Test {
     @TestUnit(name="SetAndGetHashSetTest_Unit1", description = "Set and get hashset test (unit 1)")
     public static class TestUnit1 extends Abstract_Set_SetAndGet_Test.AbstractTestUnit {
         @Player
-        public void player1(State state, LongResult2 result) {
+        public void player1(State state, IntResult2 result) {
             _player1(state, result);
         }
 
         @Player
-        public void player2(State state, LongResult2 result) {
+        public void player2(State state, IntResult2 result) {
             _player2(state, result);
         }
     }

@@ -72,6 +72,8 @@
                         <argument>-classpath</argument>
                         <classpath/>
                         <argument>com.tmjee.linearisation.processor.Main</argument>
+                        <argument>-testClasses</argument>
+                        <argument>SbLockBasedJavaHashMap_BulkPutRemove_Test.TestUnit1</argument>
                     </arguments>
                 </configuration>
             </plugin>

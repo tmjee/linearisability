@@ -49,41 +49,36 @@ TransferQueue
 
 Non JDK Data Structures from Synchrobench
 =========================================
-Hashtable
----------
-    - hashtables.lockfree.NonBlockingCliffHashMap
-    - hashtables.lockfree.NonBlockingFriendlyHashMap
-    - hashtables.sequential.SequentialHashIntSet
-    - hashtables.lockbased.LazyListBasedSet
-    - hashtables.lockbased.LockedLinkedListIntSet
 
-Linkedlist
-----------
-    - linkedlists.lockbased.lazyutils.LazyList
-    - linkedlists.lockfree.NonBlockingLinkedListSet
-    - linkedlists.lockfree.NonBlockingLinkedListSetRTTI
-    - linkedlists.sequential.SequentialLinkedListIntSet
-    - linkedlists.sequential.SequentialLinkedListSortedSet
+Map
+---
+    - synchrobench.hashtables.lockbased.LockBasedJavaHashMap
+    - synchrobench.hashtables.lockfree.NonBlockingCliffHashMap
+    - synchrobench.hashtables.lockfree.NonBlockingFriendlyHashMap
+    - synchrobench.trees.lockbased.LockBasedFriendlyTreeMap
+    - synchrobench.trees.lockbased.LockBasedStanfordTreeMap
+    - synchrobench.trees.lockbased.LogicalOrderingAVL
+    - synchrobench.trees.lockfree.NonBlockingTorontoBSTMap
+    - synchrobench.skiplists.lockfree.NonBlockingFriendlySkipListMap
+    - synchrobench.skiplists.lockfree.NonBlockingJavaSkipListMap
 
-Queue
------
-    - queues.sequential.SequentialQueueIntSet
+Set
+---
+    - synchrobench.hashtables.sequential.SequentialHashIntSet
+    - synchrobench.trees.sequential.SequentialRBTreeIntSet
+    - synchrobench.linkedlists.lockbased.LazyListBasedSet
+    - synchrobench.linkedlists.lockbased.LazyLinkedListSortedSet
+    - synchrobench.linkedlists.lockbased.LockedLinkedListIntSet
+    - synchrobench.linkedlists.lockfree.NonBlockingLinkedListSet
+    - synchrobench.linkedlists.lockfree.NonBlockingLinkedListSetRTTI
+    - synchrobench.linkedlists.sequential.SequentialLinkedListIntSet
+    - synchrobench.linkedlists.sequential.SequentialLinkedListSortedSet
+    - synchrobench.queues.sequential.SequentialQueueIntSet
+    - synchrobench.skiplists.sequential.SequentialSkipListIntSet
 
-Skiplist
---------
-    - skiplists.lockfree.NonBlockingFriendlySkipListMap
-    - skiplists.lockfree.NonBlockingJavaSkipListMap
-    - skiplists.sequential.SequentialSkipListIntSet
-
-Tree / Map
-----------
-    - trees.lockbased.LockBasedFriendlyTreeMap
-    - trees.lockbased.StanfordTreeMap
-    - trees.lockbased.LogicalOrderingAVL
-    - trees.lockfree.NonBlockingTorontoBSTMap
-    - trees.sequential.SequentialRBTreeIntSet
-
-
+List
+----
+    - synchrobench.linkedlists.lockbased.lazyutils.LazyList
 
 
 Questions:-

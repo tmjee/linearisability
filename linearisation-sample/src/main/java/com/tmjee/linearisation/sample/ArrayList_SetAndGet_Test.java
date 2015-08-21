@@ -28,12 +28,12 @@ public class ArrayList_SetAndGet_Test extends Abstract_List_SetAndGet_Test {
     @TestUnit(name="SetAndGetArrayListTest_Unit1", description = "Set and get array list test (unit 1)")
     public static class TestUnit1 extends Abstract_List_SetAndGet_Test.AbstractTestUnit {
         @Player
-        public void player1(State state, LongResult2 result) {
+        public void player1(State state, IntResult2 result) {
             _player1(state, result);
         }
 
         @Player
-        public void player2(State state, LongResult2 result) {
+        public void player2(State state, IntResult2 result) {
             _player2(state, result);
         }
     }

@@ -29,13 +29,11 @@ public class CopyOnWriteArrayList_SetAndGet_Test extends Abstract_List_SetAndGet
     public static class TestUnit1 extends CopyOnWriteArrayList_SetAndGet_Test.AbstractTestUnit {
 
         @Player
-        public void player1(State state, LongResult2 r) {
+        public void player1(State state, IntResult2 r) {
             _player1(state, r);
         }
 
         @Player
-        public void player2(State state, LongResult2 r) {
-            _player2(state, r);
-        }
+        public void player2(State state, IntResult2 r) { _player2(state, r); }
     }
 }

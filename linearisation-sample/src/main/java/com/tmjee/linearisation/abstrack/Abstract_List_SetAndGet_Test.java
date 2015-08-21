@@ -1,6 +1,6 @@
 package com.tmjee.linearisation.abstrack;
 
-import com.tmjee.linearisation.processor.LongResult2;
+import com.tmjee.linearisation.processor.IntResult2;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public abstract class Abstract_List_SetAndGet_Test {
 
     public abstract static class AbstractTestUnit {
 
-        protected void _player1(AbstractState state, LongResult2 r) {
+        protected void _player1(AbstractState state, IntResult2 r) {
             try {
                 List<Integer> l = state.get();
                 l.add(1, 1);
@@ -31,7 +31,7 @@ public abstract class Abstract_List_SetAndGet_Test {
             }
         }
 
-        protected void _player2(AbstractState state, LongResult2 r) {
+        protected void _player2(AbstractState state, IntResult2 r) {
             try {
                 List<Integer> l = state.get();
                 l.add(2, 1);

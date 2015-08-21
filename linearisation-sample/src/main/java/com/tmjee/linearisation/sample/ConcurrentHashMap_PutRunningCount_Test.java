@@ -29,17 +29,17 @@ public class ConcurrentHashMap_PutRunningCount_Test extends Abstract_Map_PutRunn
     public static class TestUnit1 extends Abstract_Map_PutRunningCount_Test.AbstractTestUnit {
 
         @Player
-        public void player1(State state, LongResult1 r) {
+        public void player1(State state, IntResult1 r) {
             _player1(state, r);
         }
 
         @Player
-        public void player2(State state, LongResult1 r) {
+        public void player2(State state, IntResult1 r) {
             _player2(state, r);
         }
 
         @Arbiter
-        public void arbiter(State state, LongResult1 r) {
+        public void arbiter(State state, IntResult1 r) {
             _arbiter(state, r);
         }
     }

@@ -35,12 +35,12 @@ public class HashMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
     @TestUnit(name="PutAndGetHashMap_TestUnit_1", description = "Put and get hash map (unit1)")
     public static class TestUnit1 extends Abstract_Map_PutAndGet_Test.AbstractTestUnit {
         @Player
-        public void player1(State state, LongResult2 r) {
+        public void player1(State state, IntResult2 r) {
             _player1(state, r);
         }
 
         @Player
-        public void player2(State state, LongResult2 r) {
+        public void player2(State state, IntResult2 r) {
             _player2(state, r);
         }
     }

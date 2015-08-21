@@ -1,6 +1,7 @@
 package com.tmjee.linearisation.abstrack;
 
-import com.tmjee.linearisation.processor.LongResult2;
+
+import com.tmjee.linearisation.processor.IntResult2;
 
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public abstract class Abstract_Map_PutAndGet_Test {
 
     public static abstract class AbstractTestUnit {
 
-        protected void _player1(AbstractState state, LongResult2 r) {
+        protected void _player1(AbstractState state, IntResult2 r) {
             try {
                 final Map<Integer, Integer> m = state.get();
                 m.put(1, 1);
@@ -33,7 +34,7 @@ public abstract class Abstract_Map_PutAndGet_Test {
             }
         }
 
-        protected void _player2(AbstractState state, LongResult2 r) {
+        protected void _player2(AbstractState state, IntResult2 r) {
             try {
                 final Map<Integer, Integer> m = state.get();
                 m.put(2, 1);

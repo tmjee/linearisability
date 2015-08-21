@@ -1,6 +1,6 @@
 package com.tmjee.linearisation.abstrack;
 
-import com.tmjee.linearisation.processor.LongResult1;
+import com.tmjee.linearisation.processor.IntResult1;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public abstract class Abstract_Map_PutRunningCount_Test {
 
     public static abstract class AbstractTestUnit {
 
-        protected void _player1(AbstractState state, LongResult1 r) {
+        protected void _player1(AbstractState state, IntResult1 r) {
             try {
                 Map<Integer, Integer> m = state.get();
                 for (int a = 0; a < 100; a++) {
@@ -34,7 +34,7 @@ public abstract class Abstract_Map_PutRunningCount_Test {
             }
         }
 
-        protected void _player2(AbstractState state, LongResult1 r) {
+        protected void _player2(AbstractState state, IntResult1 r) {
             try {
                 Map<Integer, Integer> m = state.get();
                 for (int b = 100; b < 300; b++) {
@@ -45,7 +45,7 @@ public abstract class Abstract_Map_PutRunningCount_Test {
             }
         }
 
-        protected void _arbiter(AbstractState state, LongResult1 r) {
+        protected void _arbiter(AbstractState state, IntResult1 r) {
             Map<Integer, Integer> m = state.get();
             int size = m.size();
             r.value1 = ((size == 300)?1:-1);
