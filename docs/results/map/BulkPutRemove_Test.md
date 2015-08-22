@@ -1,7 +1,9 @@
 # BulkPutRemove
 
 ## Summary
-
+ * Player 1 put (0,0) till (299,299) into the map
+ * Player 2 remove (0,0) till (99,00) from the map.
+ * Arbiter makes sure the size is 200 (300 - 100)
 
 ## Output
 ### HashMap
@@ -335,5 +337,8 @@ java.util.concurrent.CancellationException
 [linearisability] Thread[main,5,main] -> Pool end.
 [linearisability] Thread[main,5,main] -> Bye !
 ```
+
+
+###
 
 

@@ -5,6 +5,12 @@ import com.tmjee.linearisation.processor.IntResult1;
 import java.util.Map;
 
 /**
+ * Player 1 put (0,0) till (299,299) into the map
+ * <p/>
+ * Player 2 remove (0,0) till (99,00) from the map.
+ * <p/>
+ * Arbiter makes sure the size is 200 (300 - 100)
+ *
  * @author tmjee
  */
 public abstract class Abstract_Map_BulkPutRemove_Test {

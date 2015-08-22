@@ -1,19 +1,8 @@
-<!--
-    #
-    # PutAndGetHashMapTest
-    #
--->
-
 # HashMap_PutAndGet_Test
 
 ## Summary
-Player 1 insert an integer '1' into a {@link HashMap} with key '1' and then
-try to retrieve the value inserted.
-
-Player 2 insert an integer '1' into a {@link HashMap} with key 2' and then
-try to retrieve the value inserted.
-
-Both players are doing the operation at the same time without synchronisation
+ * Player 1 puts (1,1) into the map and expects to get 1 back from get(1).
+ * Player 2 puts (2,1) into the map and expects to get 1 back from get(2).
 
 
 ## Output

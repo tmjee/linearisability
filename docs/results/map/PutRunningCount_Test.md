@@ -2,14 +2,10 @@
 # HashMap_PutRunningCount_Test
 
 ## Summary
-Player 1 put 100 entries into 100 different locations in HashMap.
-
-Player 2 put 100 entries into 100 different locations in HashMap.
-
-Player 1 and 2 run concurrently
-
-After Player 1 and 2 ended, Arbiter evaluate the total entries in HashMap. If the total
-is 200, expecting it to be 200 in total.
+ * Player 1 puts 1000 entries into the map from (0,0) till (999,999)
+ * Player 2 puts 2000 entries into the map from (1000,1000) till (2999,2999)
+ * Arbiter expects to see a size of 3000 (1000 from player 1 and 2000 from
+ * player 2).
 
 ## Output
 ### HashMap

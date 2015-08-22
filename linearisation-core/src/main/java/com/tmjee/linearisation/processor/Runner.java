@@ -26,6 +26,19 @@ public abstract class Runner {
 
     public void run() {
         Logger.log(format("Running test %s - %s", test.name(), test.description()));
+
+
+        try {
+            runVerification();
+            Logger.log("verification run ok");
+        } catch(Throwable t) {
+            Logger.log("verification of test failed");
+            Logger.log(t);
+            return;
+        }
+
+
+
         Accumulator totalAccumulator = new Accumulator();
         for (int a=0; a< args.iterations(); a++) {
             try {
@@ -107,4 +120,5 @@ public abstract class Runner {
     }
 
     protected abstract Accumulator internalRun();
+    protected abstract void runVerification() throws Throwable;
 }

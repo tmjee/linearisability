@@ -1,18 +1,8 @@
-<!--
-    #
-    # SetAndGetArrayListTest
-    #
--->
-# ArrayList_SetAndGet_Test
+# SetAndGet Test
 
 ## Summary
-Player 1 try to insert an integer '1' into index 1 and then try to get back the integer at
-index 1.
-
-Player 2 try to insert an integer '1' into index 2 and then try to get back the integer at
-index 2.
-
-Both players are doing the operation at the same time without synchronisation
+ * Player 1 puts (1,1) into the list and expect to get 1 back from get(1).
+ * Player 2 puts (2,1) into the list and expect to get 1 back from get(1)
 
 
 ## Sample output

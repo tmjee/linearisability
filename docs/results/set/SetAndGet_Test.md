@@ -1,12 +1,8 @@
-<!--
-    #
-    # SetAndGetHashSetTest
-    #
--->
 # HashSet_SetAndGet_Test
 
 ## Summary
-
+ * Player 1 add 1 into the set and expects the set to contains 1.
+ * Player 2 add 2 into the set and expects the set to contains 2.
 
 ## Output
 ### HashSet

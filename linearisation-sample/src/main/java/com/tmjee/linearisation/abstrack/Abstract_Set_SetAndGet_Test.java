@@ -1,7 +1,6 @@
 package com.tmjee.linearisation.abstrack;
 
 
-import com.tmjee.linearisation.processor.IntResult1;
 import com.tmjee.linearisation.processor.IntResult2;
 
 import java.util.Set;

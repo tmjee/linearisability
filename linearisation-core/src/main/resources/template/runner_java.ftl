@@ -47,6 +47,18 @@ public class ${runnerClassName} extends Runner {
         super(test, args, pool);
     }
 
+    protected void runVerification() throws Throwable{
+
+        ${testClassClassName} test = new ${testClassClassName}();
+        ${invariantClassName} s = new ${invariantClassName}();
+        ${recordClassName} r = new ${recordClassName}();
+
+
+        <#list testMethods as testMethod>
+        test.${testMethod.methodName()}(s,r);
+        </#list>
+    }
+
     protected Accumulator internalRun() {
         Accumulator accumulator = new Accumulator();
 

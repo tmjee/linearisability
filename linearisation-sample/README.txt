@@ -52,7 +52,7 @@ Non JDK Data Structures from Synchrobench
 
 Map
 ---
-    - synchrobench.hashtables.lockbased.LockBasedJavaHashMap
+#   - synchrobench.hashtables.lockbased.LockBasedJavaHashMap (same as j.u.c.ConcurrentHashMap)
     - synchrobench.hashtables.lockfree.NonBlockingCliffHashMap
     - synchrobench.hashtables.lockfree.NonBlockingFriendlyHashMap
     - synchrobench.trees.lockbased.LockBasedFriendlyTreeMap
@@ -60,7 +60,9 @@ Map
     - synchrobench.trees.lockbased.LogicalOrderingAVL
     - synchrobench.trees.lockfree.NonBlockingTorontoBSTMap
     - synchrobench.skiplists.lockfree.NonBlockingFriendlySkipListMap
-    - synchrobench.skiplists.lockfree.NonBlockingJavaSkipListMap
+#   - synchrobench.skiplists.lockfree.NonBlockingJavaSkipListMap (same as j.u.c.ConcurrentSkipListMap)
+
+
 
 Set
 ---
