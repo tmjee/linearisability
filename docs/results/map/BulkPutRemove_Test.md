@@ -264,251 +264,46 @@
 
 ### 8. NonBlockingFriendlyHashMap
 ```
-./run_Map_BulkPutRemove_NonBlockingFriendlyHashMap.sh
+./run_Map_BulkPutRemove_NonBlockingFriendlyHashMap.sh 
 [linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlyHashMap_BulkPutRemove_Test -
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlyHashMap_BulkPutRemove_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@590f49d3 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@1c348478 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.CancellationException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:121)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:206)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@2be9781d timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@77ff023a timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@2be9781d already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@77ff023a already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@73cbc186 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@27355df0 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.CancellationException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:121)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:206)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@30089c04 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@2f34fb6 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.CancellationException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:121)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:206)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@4d214cd2 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@4df10c8b timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@4d214cd2 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@4df10c8b already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6aac4953 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@37daaecb cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.CancellationException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:121)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:206)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@53ca5617 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@169a9db1 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@53ca5617 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@169a9db1 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@2462b06 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@5b052b52 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.CancellationException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:121)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:206)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_BulkPutRemove_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/237852351.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@41a18d38 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@394f7a8 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@41a18d38 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@394f7a8 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
-	Summary of Test SbNonBlockingFriendlyHashMap_BulkPutRemove_Test () :-
+	Summary of Test SbNonBlockingFriendlyHashMap_BulkPutRemove_Test () :- 
 
 	References:
 		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/BulkPutRemove_Test.md
 
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[-1]      0                   FORBIDDEN           size after bulk insert and delete is not good
-	[1]       0                   ACCEPTABLE          size after bulk insert and delete is good
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[-1]      0                   FORBIDDEN           size after bulk insert and delete is not good                                                       
+	[1]       0                   ACCEPTABLE          size after bulk insert and delete is good                                                           
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
