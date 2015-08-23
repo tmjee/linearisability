@@ -1,5 +1,4 @@
-
-# HashMap_PutRunningCount_Test
+# PutRunningCount Tests
 
 ## Summary
  * Player 1 puts 1000 entries into the map from (0,0) till (999,999)

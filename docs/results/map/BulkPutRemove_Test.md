@@ -1,4 +1,4 @@
-# BulkPutRemove
+# BulkPutRemove Tests
 
 ## Summary
  * Player 1 put (0,0) till (299,299) into the map

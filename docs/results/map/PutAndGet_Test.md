@@ -1,4 +1,4 @@
-# HashMap_PutAndGet_Test
+# PutAndGet Tests
 
 ## Summary
  * Player 1 puts (1,1) into the map and expects to get 1 back from get(1).
