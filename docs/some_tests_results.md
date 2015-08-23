@@ -63,12 +63,12 @@ No    | Data Structures                          |  PutAndGet  |  PutRunningCoun
 2.    | j.u.c.ConcurrentHashMap                  |    P        |    P              |    P
 3.    | j.u.c.ConcurrentSkipListMap              |    P        |    P              |    P
 4.    | s.LockBasedFriendlyTreeMap               |    U        |    U              |    U
-5.    | s.LockBasedStanfordTreeMap               |    P        |    F              |    P
-6.    | s.LogicalOrderingAVL                     |    P        |    F              |    P
-7.    | s.NonBlockingCliffHashMap                |    P        |    F              |    P
+5.    | s.LockBasedStanfordTreeMap               |    P        |    P              |    P
+6.    | s.LogicalOrderingAVL                     |    P        |    P              |    P
+7.    | s.NonBlockingCliffHashMap                |    P        |    P              |    P
 8.    | s.NonBlockingFriendlyHashMap             |    F/T      |    F/T            |    T
-9.    | s.NonBlockingFriendlySkipListMap         |    F        |    F              |    F/T
-10.   | s.NonBlockingTorontoBSTMap               |    P        |    F              |    T
+9.    | s.NonBlockingFriendlySkipListMap         |    F        |    P              |    F/T
+10.   | s.NonBlockingTorontoBSTMap               |    P        |    P              |    T
 
 - [Put and Get Test](results/map/PutAndGet_Test.md)
 - [Put Running Count Test](results/map/PutRunningCount_Test.md)
