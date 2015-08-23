@@ -290,132 +290,53 @@
 
 ### 8. NonBlockingFriendlyHashMap
 ```
-./run_Map_PutAndGetTest_NonBlockingFriendlyHashMap.sh
+./run_Map_PutAndGetTest_NonBlockingFriendlyHashMap.sh 
 [linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlyHashMap_PutRunningCount_Test -
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlyHashMap_PutAndGet_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@590f49d3 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/1763847188.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.CancellationException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:121)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:206)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/1763847188.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6d997232 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6d997232 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@49d675b3 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/1763847188.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.CancellationException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:121)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:206)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/1763847188.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7b909f59 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7b909f59 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@94a46f1 cancel=true
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/1763847188.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] exception
-java.util.concurrent.CancellationException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:121)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:206)
-	at com.tmjee.linearisation.processor.Runner.waitFor(Runner.java:107)
-	at linearisation.generated.SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.internalRun(SbNonBlockingFriendlyHashMap_PutAndGet_Test_TestUnit1_Runner.java:87)
-	at com.tmjee.linearisation.processor.Runner.run(Runner.java:46)
-	at com.tmjee.linearisation.processor.Linearisation$2.run(Linearisation.java:57)
-	at com.tmjee.linearisation.processor.Scheduler.lambda$schedule$4(Scheduler.java:51)
-	at com.tmjee.linearisation.processor.Scheduler$$Lambda$12/1763847188.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@4d214cd2 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@4d214cd2 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
-	Summary of Test SbNonBlockingFriendlyHashMap_PutRunningCount_Test () :-
+	Summary of Test SbNonBlockingFriendlyHashMap_PutAndGet_Test () :- 
 
 	References:
 		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutAndGet_Test.md
 
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[-1,-1]   200                 FORBIDDEN           Both player 1 and player 2 did not get back expected value
-	[-2,1]    0                   FORBIDDEN           Player 1 throws exception
-	[1,-2]    0                   FORBIDDEN           Player 2 throws Exception
-	[-1,-2]   0                   FORBIDDEN           Player 1 result is unexpected, Player 2 throws exception
-	[-1,1]    0                   FORBIDDEN           Player 1 did not get back expected value but Player 2 did
-	[1,-1]    0                   FORBIDDEN           Player 1 get back expected value while Player 2 did not
-	[-2,-1]   0                   FORBIDDEN           Player 1 throws Exception, Player 2 results is unexpected
-	[1,1]     0                   ACCEPTABLE          Both player 1 and 2 get back expected values
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[-1,-1]   500                 FORBIDDEN           Both player 1 and player 2 did not get back expected value                                          
+	[-2,1]    0                   FORBIDDEN           Player 1 throws exception                                                                           
+	[1,-2]    0                   FORBIDDEN           Player 2 throws Exception                                                                           
+	[-1,-2]   0                   FORBIDDEN           Player 1 result is unexpected, Player 2 throws exception                                            
+	[-1,1]    0                   FORBIDDEN           Player 1 did not get back expected value but Player 2 did                                           
+	[1,-1]    0                   FORBIDDEN           Player 1 get back expected value while Player 2 did not                                             
+	[-2,-2]   0                   FORBIDDEN           Player 1 and Player 2 both throws exception                                                         
+	[-2,-1]   0                   FORBIDDEN           Player 1 throws Exception, Player 2 results is unexpected                                           
+	[1,1]     0                   ACCEPTABLE          Both player 1 and 2 get back expected values                                                        
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
