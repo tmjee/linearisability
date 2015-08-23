@@ -1,10 +1,9 @@
 package com.tmjee.linearisation.sample;
 
 import com.tmjee.linearisation.abstrack.Abstract_Map_PutAndGet_Test;
-import com.tmjee.linearisation.processor.IntResult2;
-import com.tmjee.linearisation.processor.Invariant;
-import com.tmjee.linearisation.processor.Player;
-import com.tmjee.linearisation.processor.TestUnit;
+import com.tmjee.linearisation.meta.Meta_Map_BulkPutRemove_Test;
+import com.tmjee.linearisation.meta.Meta_Map_PutAndGet_Test;
+import com.tmjee.linearisation.processor.*;
 import synchrobench.trees.lockfree.NonBlockingTorontoBSTMap;
 
 import java.util.Map;
@@ -12,6 +11,8 @@ import java.util.Map;
 /**
  * @author tmjee
  */
+@Linearisable
+@Meta(Meta_Map_PutAndGet_Test.class)
 public class SbNonBlockingTorontoBSTMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
 
     @Invariant

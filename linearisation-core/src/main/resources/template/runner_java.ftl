@@ -48,15 +48,20 @@ public class ${runnerClassName} extends Runner {
     }
 
     protected void runVerification() throws Throwable{
-
+/*
         ${testClassClassName} test = new ${testClassClassName}();
         ${invariantClassName} s = new ${invariantClassName}();
         ${recordClassName} r = new ${recordClassName}();
 
+        List<Future<?>> tasks = new ArrayList<>();
 
         <#list testMethods as testMethod>
-        test.${testMethod.methodName()}(s,r);
+        tasks.add(pool.submit(()->{
+           test.${testMethod.methodName()}(s,r);
+            return;
+        });
         </#list>
+*/
     }
 
     protected Accumulator internalRun() {
