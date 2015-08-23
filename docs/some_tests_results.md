@@ -75,9 +75,32 @@ No    | Data Structures                          |  PutAndGet  |  PutRunningCoun
 - [Bulk Put Remove Test](results/map/BulkPutRemove_Test.md)
 
 ## List
+No    | Data Structures                          |  SetAndGet  
+----- | ---------------------------------------- | -----------
+1.    | j.u.ArrayList                            |
+2.    | j.u.c.CopyOnWriteArrayList               |
+3.    | s.LazyList                               |
+
 - [Get and Set Test](results/list/GetAndSet_Test.md)
 
 ## Set
+No    | Data Structures                          |  SetAndGet  
+----- | ---------------------------------------- | -----------
+1.    | j.u.HashSet                              |
+2.    | j.u.c.CopyOnWriteArraySet                |
+3.    | j.u.c.ConcurrentSkipListSet              |
+4.    | s.SequentialHashSet   
+5.    | s.SequentialRBTreeIntSet
+6.    | s.LazyListBasedSet
+7.    | s.LazyLinkedListSortedSet
+8.    | s.LockedLinkedListIntSet
+9.    | s.NonBlockingLinkedListSet
+10.   | s.NonBlockingLinkedListSetRTTI
+11.   | s.SequentialLinkedListIntSet
+12.   | s.SequentialLinkedListSortedSet
+13.   | s.SequentialQueueIntSet
+14.   | s.SequentialSkipListIntSet
+
 - [Get and Set Test](results/set/GetAndSet_Test.md)
 
 ## Queue
