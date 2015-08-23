@@ -112,8 +112,9 @@ public abstract class Runner {
                 } catch (TimeoutException e) {
                     ended = false;
                     boolean cancelled = future.cancel(true);
-                    Logger.log(format("future %s cancel=%s", future, cancelled));
-                    Logger.log(e);
+                    Logger.log(format("future %s timeout cancelled task, cancellation result =%s", future, cancelled));
+                } catch(CancellationException e) {
+                    Logger.log(format("future %s already cancelled", future));
                 }
             }
         }

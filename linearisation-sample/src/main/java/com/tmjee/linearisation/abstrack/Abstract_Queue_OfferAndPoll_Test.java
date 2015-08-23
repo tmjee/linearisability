@@ -1,6 +1,7 @@
 package com.tmjee.linearisation.abstrack;
 
 import com.tmjee.linearisation.processor.IntResult2;
+import com.tmjee.linearisation.processor.Logger;
 
 import java.util.Queue;
 
@@ -29,7 +30,7 @@ public abstract class Abstract_Queue_OfferAndPoll_Test {
     public static abstract class AbstractTestUnit {
 
         protected void _player1(AbstractState state, IntResult2 r) {
-
+            try {
                 Queue<Integer> q = state.get();
                 int a = 0;
                 do {
@@ -38,10 +39,13 @@ public abstract class Abstract_Queue_OfferAndPoll_Test {
                         a++;
                     }
                 } while (a < 5000);
-
+            }catch(Throwable t) {
+               Logger.log("Player 1 throws Exception ", t);
+            }
         }
 
         protected void _player2(AbstractState state, IntResult2 r) {
+            try {
                 Queue<Integer> q = state.get();
                 int b = 0;
                 boolean fifoViolation = false;
@@ -56,13 +60,20 @@ public abstract class Abstract_Queue_OfferAndPoll_Test {
                     }
                 } while (b < 3000);
                 r.value1 = fifoViolation ? -1 : 1;
+            }catch(Throwable t) {
+                Logger.log("Player 2 throws Exception", t);
+            }
         }
 
         protected void _arbiter(AbstractState state, IntResult2 r) {
-            Queue<Integer> q = state.get();
+            try {
+                Queue<Integer> q = state.get();
 
-            int s = q.size();
-            r.value2 = (s == 2000 ? 1 : -1);
+                int s = q.size();
+                r.value2 = (s == 2000 ? 1 : -1);
+            }catch(Throwable t) {
+                Logger.log("Arbiter throws exception ", t);
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-# HashSet_SetAndGet_Test
+# SetAndGet Test
 
 ## Summary
  * Player 1 add 1 into the set and expects the set to contains 1.

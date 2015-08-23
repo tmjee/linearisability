@@ -2,6 +2,7 @@ package com.tmjee.linearisation.abstrack;
 
 
 import com.tmjee.linearisation.processor.IntResult2;
+import com.tmjee.linearisation.processor.Logger;
 
 import java.util.Set;
 
@@ -28,6 +29,7 @@ public abstract class Abstract_Set_SetAndGet_Test {
                 boolean i = s.contains(1);
                 r.value1 = i ? 1 : -1;
             }catch(Throwable t) {
+                Logger.log("Player 1 throw exception ", t);
                 r.value1 = -2;
             }
         }
@@ -39,6 +41,7 @@ public abstract class Abstract_Set_SetAndGet_Test {
                 boolean i = s.contains(2);
                 r.value2 = i ? 1 : -1;
             }catch(Throwable t) {
+                Logger.log("Player 2 throw exception ", t);
                 r.value2 = -2;
             }
         }

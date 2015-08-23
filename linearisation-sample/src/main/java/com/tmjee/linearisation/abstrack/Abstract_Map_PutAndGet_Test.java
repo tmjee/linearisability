@@ -2,6 +2,7 @@ package com.tmjee.linearisation.abstrack;
 
 
 import com.tmjee.linearisation.processor.IntResult2;
+import com.tmjee.linearisation.processor.Logger;
 
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public abstract class Abstract_Map_PutAndGet_Test {
                 Integer i = m.get(1);
                 r.value1 = (i == null ? -1 : (i != 1 ? -1 : 1));
             } catch (Throwable t) {
+                Logger.log("Player 1 experienced exception", t);
                 r.value1 = -2;
             }
         }
@@ -41,6 +43,7 @@ public abstract class Abstract_Map_PutAndGet_Test {
                 Integer i = m.get(2);
                 r.value2 = (i == null ? -1 : (i != 1 ? -1 : 1));
             } catch (Throwable t) {
+                Logger.log("Player 2 experienced exception", t);
                 r.value2 = -2;
             }
         }

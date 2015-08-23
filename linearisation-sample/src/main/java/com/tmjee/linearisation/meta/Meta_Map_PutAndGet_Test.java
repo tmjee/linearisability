@@ -15,6 +15,7 @@ import com.tmjee.linearisation.processor.Reference;
 @Consequence(id="[-2,-1]", expectation = Expectation.FORBIDDEN, description = "Player 1 throws Exception, Player 2 results is unexpected")
 @Consequence(id="[1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 2 throws Exception")
 @Consequence(id="[-1,-2]", expectation = Expectation.FORBIDDEN, description = "Player 1 result is unexpected, Player 2 throws exception ")
+@Consequence(id="[-2,-2]", expectation = Expectation.FORBIDDEN, description = "Player 1 and Player 2 both throws exception")
 @Reference("https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutAndGet_Test.md")
 public class Meta_Map_PutAndGet_Test {
 }

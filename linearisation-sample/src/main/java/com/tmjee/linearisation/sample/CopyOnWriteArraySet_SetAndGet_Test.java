@@ -17,8 +17,7 @@ public class CopyOnWriteArraySet_SetAndGet_Test extends Abstract_Set_SetAndGet_T
 
     @Invariant
     public static class State extends Abstract_Set_SetAndGet_Test.AbstractState {
-        volatile Set<Integer> s = new CopyOnWriteArraySet<>();
-
+        final Set<Integer> s = new CopyOnWriteArraySet<>();
         @Override
         protected Set<Integer> get() {
             return s;

@@ -52,10 +52,10 @@ Following are tests that we currently have :-
 - [Bulk Put Remove Test](results/map/BulkPutRemove_Test.md)
 
 ## List
-- [Get and Set Test](results/list/GetAndSet_Test.md)
+- [Set and Get Test](results/list/SetAndGet_Test.md)
 
 ## Set
-- [Get and Set Test](results/set/GetAndSet_Test.md)
+- [Set and Get Test](results/set/SetAndGet_Test.md)
 
 ## Queue
 - [Offer and Poll Test](results/queue/OfferAndPoll_Test.md)

@@ -21,7 +21,7 @@ public class SbNonBlockingFriendlyHashMap_PutAndGet_Test extends Abstract_Map_Pu
         @Override protected Map<Integer, Integer> get() { return m; }
     }
 
-    @TestUnit(name="SbNonBlockingFriendlyHashMap_PutRunningCount_Test")
+    @TestUnit(name="SbNonBlockingFriendlyHashMap_PutAndGet_Test")
     public static class TestUnit1 extends Abstract_Map_PutAndGet_Test.AbstractTestUnit {
         @Player public void player1(State s, IntResult2 r) { _player1(s,r);}
         @Player public void player2(State s, IntResult2 r) { _player2(s,r);}

@@ -22,9 +22,8 @@ public class SbNonBlockingFriendlySkipListMap_PutRunningCount_Test extends Abstr
 
     @TestUnit(name="SbNonBlockingFriendlySkipListMap_PutRunningCount_Test")
     public static class TestUnit1 extends Abstract_Map_PutRunningCount_Test.AbstractTestUnit {
-        @Player
-        public void player1(State s, IntResult1 r) { _player1(s,r);}
+        @Player public void player1(State s, IntResult1 r) { _player1(s,r);}
         @Player public void player2(State s, IntResult1 r) { _player2(s,r);}
-        @Player public void arbiter(State s, IntResult1 r) { _arbiter(s,r);}
+        @Arbiter public void arbiter(State s, IntResult1 r) { _arbiter(s,r);}
     }
 }

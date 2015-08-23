@@ -1,6 +1,7 @@
 package com.tmjee.linearisation.abstrack;
 
 import com.tmjee.linearisation.processor.IntResult1;
+import com.tmjee.linearisation.processor.Logger;
 
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public abstract class Abstract_Map_BulkPutRemove_Test {
                     m.put(a, a);
                 }
             }catch(Exception e) {
-                e.printStackTrace();
+                Logger.log("Player 1 experienced exception", e);
             }
         }
 
@@ -44,7 +45,7 @@ public abstract class Abstract_Map_BulkPutRemove_Test {
                     m.remove(b);
                 }
             }catch(Exception e) {
-                e.printStackTrace();
+                Logger.log("Player 2 experienced exception", e);
             }
         }
 
