@@ -134,41 +134,36 @@
 
 ### 5. LockBasedStanfordTreeMap
 ```
-./run_Map_PutRunningCount_LockBasedStanfordTreeMap.sh
+./run_Map_PutRunningCount_LockBasedStanfordTreeMap.sh 
 [linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbLockBasedStanfordTreeMap_PutRunningCount_Test -
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbLockBasedStanfordTreeMap_PutRunningCount_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
-	Summary of Test SbLockBasedStanfordTreeMap_PutRunningCount_Test () :-
+	Summary of Test SbLockBasedStanfordTreeMap_PutRunningCount_Test () :- 
 
 	References:
 		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutRunningCount_Test.md
 
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[-1]      483,345             FORBIDDEN           Running count for player 1 and 2 do not match expected result
-	[1]       155                 ACCEPTABLE          Running count for player 1 and 2 match expected result
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1]       483,500             ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
+	[-1]      0                   FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
@@ -180,41 +175,36 @@
 
 ### 6. LogicalOrderingAVL
 ```
-./run_Map_PutRunningCount_LogicalOrderingAVL.sh
+./run_Map_PutRunningCount_LogicalOrderingAVL.sh 
 [linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbLogicalOrderingAVL_PutRunningCount_Test -
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbLogicalOrderingAVL_PutRunningCount_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
-	Summary of Test SbLogicalOrderingAVL_PutRunningCount_Test () :-
+	Summary of Test SbLogicalOrderingAVL_PutRunningCount_Test () :- 
 
 	References:
 		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutRunningCount_Test.md
 
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[-1]      323,500             FORBIDDEN           Running count for player 1 and 2 do not match expected result
-	[1]       0                   ACCEPTABLE          Running count for player 1 and 2 match expected result
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1]       323,500             ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
+	[-1]      0                   FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
@@ -226,41 +216,36 @@
 
 ### 7. NonBlockingCliffHashMap
 ```
-./run_Map_PutRunningCount_NonBlockingCliffHashMap.sh
+./run_Map_PutRunningCount_NonBlockingCliffHashMap.sh 
 [linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingCliffHashMap_PutRunningCount_Test -
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingCliffHashMap_PutRunningCount_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
-	Summary of Test SbNonBlockingCliffHashMap_PutRunningCount_Test () :-
+	Summary of Test SbNonBlockingCliffHashMap_PutRunningCount_Test () :- 
 
 	References:
 		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutRunningCount_Test.md
 
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[-1]      593,500             FORBIDDEN           Running count for player 1 and 2 do not match expected result
-	[1]       0                   ACCEPTABLE          Running count for player 1 and 2 match expected result
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1]       613,500             ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
+	[-1]      0                   FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
@@ -279,29 +264,28 @@
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@fc3faa7 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@fc3faa7 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@3e39be27 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@3e39be27 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@22d7b7 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@22d7b7 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit 
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@62654726 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@62654726 already cancelled
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 timeout cancelled task, cancellation result =true
 [linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit 
 [linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@3f401d2b timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@3f401d2b already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6d997232 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6d997232 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
 	Summary of Test SbNonBlockingFriendlyHashMap_PutRunningCount_Test () :- 
@@ -324,41 +308,36 @@
 
 ### 9. NonBlockingFriendlySkipListMap
 ```
-./run_Map_PutRunningCount_NonBlockingFriendlySkipListMap.sh
+./run_Map_PutRunningCount_NonBlockingFriendlySkipListMap.sh 
 [linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlySkipListMap_PutRunningCount_Test -
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlySkipListMap_PutRunningCount_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_4,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
-	Summary of Test SbNonBlockingFriendlySkipListMap_PutRunningCount_Test () :-
+	Summary of Test SbNonBlockingFriendlySkipListMap_PutRunningCount_Test () :- 
 
 	References:
 		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutRunningCount_Test.md
 
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[-1]      57,100              FORBIDDEN           Running count for player 1 and 2 do not match expected result
-	[1]       0                   ACCEPTABLE          Running count for player 1 and 2 match expected result
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1]       60,700              ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
+	[-1]      0                   FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
@@ -370,41 +349,36 @@
 
 ### 10. NonBlockingTorontoBSTMap
 ```
-./run_Map_PutRunningCount_NonBlockingTorontoBSTMap.sh
+./run_Map_PutRunningCount_NonBlockingTorontoBSTMap.sh 
 [linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingTorontoBSTMap_PutRunningCount_Test -
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingTorontoBSTMap_PutRunningCount_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
-	Summary of Test SbNonBlockingTorontoBSTMap_PutRunningCount_Test () :-
+	Summary of Test SbNonBlockingTorontoBSTMap_PutRunningCount_Test () :- 
 
 	References:
 		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutRunningCount_Test.md
 
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[-1]      193,489             FORBIDDEN           Running count for player 1 and 2 do not match expected result
-	[1]       11                  ACCEPTABLE          Running count for player 1 and 2 match expected result
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1]       133,500             ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
+	[-1]      0                   FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
