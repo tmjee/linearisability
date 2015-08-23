@@ -77,36 +77,46 @@ No    | Data Structures                          |  PutAndGet  |  PutRunningCoun
 ## List
 No    | Data Structures                          |  SetAndGet  
 ----- | ---------------------------------------- | -----------
-1.    | j.u.ArrayList                            |
-2.    | j.u.c.CopyOnWriteArrayList               |
-3.    | s.LazyList                               |
+1.    | j.u.ArrayList                            |   F/E
+2.    | j.u.c.CopyOnWriteArrayList               |   P
+3.    | s.LazyList                               |   U
 
 - [Get and Set Test](results/list/GetAndSet_Test.md)
 
 ## Set
 No    | Data Structures                          |  SetAndGet  
 ----- | ---------------------------------------- | -----------
-1.    | j.u.HashSet                              |
-2.    | j.u.c.CopyOnWriteArraySet                |
-3.    | j.u.c.ConcurrentSkipListSet              |
-4.    | s.SequentialHashSet   
-5.    | s.SequentialRBTreeIntSet
-6.    | s.LazyListBasedSet
-7.    | s.LazyLinkedListSortedSet
-8.    | s.LockedLinkedListIntSet
-9.    | s.NonBlockingLinkedListSet
-10.   | s.NonBlockingLinkedListSetRTTI
-11.   | s.SequentialLinkedListIntSet
-12.   | s.SequentialLinkedListSortedSet
-13.   | s.SequentialQueueIntSet
-14.   | s.SequentialSkipListIntSet
+1.    | j.u.HashSet                              |   F
+2.    | j.u.c.CopyOnWriteArraySet                |   P
+3.    | j.u.c.ConcurrentSkipListSet              |   P
+4.    | s.SequentialHashSet                      |
+5.    | s.SequentialRBTreeIntSet                 |
+6.    | s.LazyListBasedSet                       |
+7.    | s.LazyLinkedListSortedSet                |
+8.    | s.LockedLinkedListIntSet                 |
+9.    | s.NonBlockingLinkedListSet               |
+10.   | s.NonBlockingLinkedListSetRTTI           |
+11.   | s.SequentialLinkedListIntSet             |
+12.   | s.SequentialLinkedListSortedSet          |
+13.   | s.SequentialQueueIntSet                  |
+14.   | s.SequentialSkipListIntSet               |
 
 - [Get and Set Test](results/set/GetAndSet_Test.md)
 
 ## Queue
+No    | Data Structures                          |  SetAndGet  
+----- | ---------------------------------------- | -----------
+1.    | PriorityQueue                            |   F/T/E
+2.    | ConcurrentLinkedQueue                    |   P
+3.    | ArrayBlockingQueue                       |   P
+
 - [Offer and Poll Test](results/queue/OfferAndPoll_Test.md)
 
 ## Miscs
+No   |  Data Structure                           |  TwoRunning
+---- | ----------------------------------------- | -------------
+1.   |  Two Actor                                |   P
+
 - [TwoActorsTest](results/misc/Actors_TwoRunning_Test.md)
 
 
