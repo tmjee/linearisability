@@ -69,7 +69,7 @@ No    | Data Structures                          |  PutAndGet  |  PutRunningCoun
 8.    | s.NonBlockingFriendlyHashMap             |    F/T      |    F/T            |    T
 9.    | s.NonBlockingFriendlySkipListMap         |    F        |    P              |    F/T
 10.   | s.NonBlockingTorontoBSTMap               |    P        |    P              |    T
-11.   | s.SnapHashMap                            |             |                   |
+11.   | s.SnapHashMap                            |    P        |    P              |    P
 
 - [PutAndGet test results](results/map/PutAndGet_Test.md)
 - [PutRunningCount test results](results/map/PutRunningCount_Test.md)
