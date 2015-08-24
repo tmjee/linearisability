@@ -91,7 +91,7 @@ No    | Data Structures                          |  SetAndGet
 1.    | j.u.HashSet                              |   F
 2.    | j.u.c.CopyOnWriteArraySet                |   P
 3.    | j.u.c.ConcurrentSkipListSet              |   P
-4.    | s.SnapHashMap                            |
+4.    | s.LinkedSet                              |   P
 5.    | s.SequentialHashSet                      |
 6.    | s.SequentialRBTreeIntSet                 |
 7.    | s.LazyListBasedSet                       |
