@@ -26,5 +26,6 @@ Following are the contents of this piece of work.
 - [Configuration Options](docs/configuration_options.md)
 - [Some Tests Results](docs/some_tests_results.md)
 - [References](docs/references.md)
+- [Definitions](docs/definitions.md)
 
 
