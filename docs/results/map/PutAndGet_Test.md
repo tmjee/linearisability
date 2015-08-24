@@ -438,3 +438,49 @@
 [linearisability] Thread[main,5,main] -> Bye !
 ```
 
+### SnapHashMap
+```
+./run_Map_PutAndGet_SnapHashMap.sh 
+[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbSnapHashMap_PutAndGet_Test - 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
+
+	Summary of Test SbSnapHashMap_PutAndGet_Test () :- 
+
+	References:
+		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutAndGet_Test.md
+
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1,1]     15,293,500          ACCEPTABLE          Both player 1 and 2 get back expected values                                                        
+	[-2,1]    0                   FORBIDDEN           Player 1 throws exception                                                                           
+	[1,-2]    0                   FORBIDDEN           Player 2 throws Exception                                                                           
+	[-1,-2]   0                   FORBIDDEN           Player 1 result is unexpected, Player 2 throws exception                                            
+	[-1,1]    0                   FORBIDDEN           Player 1 did not get back expected value but Player 2 did                                           
+	[1,-1]    0                   FORBIDDEN           Player 1 get back expected value while Player 2 did not                                             
+	[-1,-1]   0                   FORBIDDEN           Both player 1 and player 2 did not get back expected value                                          
+	[-2,-2]   0                   FORBIDDEN           Player 1 and Player 2 both throws exception                                                         
+	[-2,-1]   0                   FORBIDDEN           Player 1 throws Exception, Player 2 results is unexpected                                           
+
+
+[linearisability] Thread[main,5,main] -> Scheduler end.
+[linearisability] Thread[main,5,main] -> Shutdown pool ...
+[linearisability] Thread[main,5,main] -> Pool end.
+[linearisability] Thread[main,5,main] -> Bye !
+```
