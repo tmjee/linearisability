@@ -80,7 +80,7 @@ Set
 
 List
 ----
-    - synchrobench.linkedlists.lockbased.lazyutils.LazyList
+    - synchrobench.linkedlists.lockbased.lazyutils.LazySet
 
 
 Questions:-

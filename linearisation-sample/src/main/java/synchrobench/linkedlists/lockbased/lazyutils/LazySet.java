@@ -1,11 +1,11 @@
 package synchrobench.linkedlists.lockbased.lazyutils;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
 
@@ -16,9 +16,9 @@ import java.util.stream.Stream;
  * Lazy list implementation: lock-free contains method.
  * removed element are first removed logically and only than physically
  *
- * @param T Item type.
+ * @param <T> Item type.
  */
-public class LazyList<T> implements List<T>  {
+public class LazySet<T> implements Set<T>  {
         /**
          * First list Node
          */
@@ -28,16 +28,21 @@ public class LazyList<T> implements List<T>  {
          * counter for number of element in the list
          */
         volatile private SnapshotCounter m_counter;
+
+        private AtomicInteger i;
+
+        private ThreadLocal<Integer> threadLocalId = ThreadLocal.withInitial(()->i.getAndIncrement());
  
         /**
          * Constructor
          */
-        public LazyList(int numOfThreads) {
+        public LazySet(int numOfThreads) {
                 // Add sentinels to start and end
                 this.m_head  = new Node(Integer.MIN_VALUE);
                 this.m_head.m_next = new Node(Integer.MAX_VALUE);
    
                 m_counter = new SnapshotCounter(numOfThreads);
+                i = new AtomicInteger(0);
         }
  
 
@@ -141,7 +146,8 @@ public class LazyList<T> implements List<T>  {
                 //return true iff found element in list and it is not logically removed
                 return curr.m_key == key && !curr.marked;
         }
- 
+
+
         public void clean(int threadID) {
                
                 m_head.lock();
@@ -204,153 +210,99 @@ public class LazyList<T> implements List<T>  {
 
         @Override
         public int size() {
-                return 0;
+                return size(threadLocalId.get());
         }
 
         @Override
         public boolean isEmpty() {
-                return false;
+                return isEmpty(threadLocalId.get());
         }
 
         @Override
         public boolean contains(Object o) {
-                return false;
+                return contains((T)o, threadLocalId.get());
         }
 
         @Override
         public Iterator<T> iterator() {
-                return null;
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public void forEach(Consumer<? super T> action) {
-
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public Object[] toArray() {
-                return new Object[0];
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public <T1> T1[] toArray(T1[] a) {
-                return null;
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public boolean add(T t) {
-                return false;
+                return add(t, threadLocalId.get());
         }
 
         @Override
         public boolean remove(Object o) {
-                return false;
+                return remove((T)o, threadLocalId.get());
         }
 
         @Override
         public boolean containsAll(Collection<?> c) {
-                return false;
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public boolean addAll(Collection<? extends T> c) {
-                return false;
+                throw new UnsupportedOperationException("Not supported");
         }
 
-        @Override
-        public boolean addAll(int index, Collection<? extends T> c) {
-                return false;
-        }
 
         @Override
         public boolean removeAll(Collection<?> c) {
-                return false;
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public boolean removeIf(Predicate<? super T> filter) {
-                return false;
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public boolean retainAll(Collection<?> c) {
-                return false;
+                throw new UnsupportedOperationException("Not supported");
         }
 
-        @Override
-        public void replaceAll(UnaryOperator<T> operator) {
-
-        }
-
-        @Override
-        public void sort(Comparator<? super T> c) {
-
-        }
 
         @Override
         public void clear() {
-
+                clean(threadLocalId.get());
         }
 
-        @Override
-        public T get(int index) {
-                return null;
-        }
-
-        @Override
-        public T set(int index, T element) {
-                return null;
-        }
-
-        @Override
-        public void add(int index, T element) {
-
-        }
-
-        @Override
-        public T remove(int index) {
-                return null;
-        }
-
-        @Override
-        public int indexOf(Object o) {
-                return 0;
-        }
-
-        @Override
-        public int lastIndexOf(Object o) {
-                return 0;
-        }
-
-        @Override
-        public ListIterator<T> listIterator() {
-                return null;
-        }
-
-        @Override
-        public ListIterator<T> listIterator(int index) {
-                return null;
-        }
-
-        @Override
-        public List<T> subList(int fromIndex, int toIndex) {
-                return null;
-        }
 
         @Override
         public Spliterator<T> spliterator() {
-                return null;
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public Stream<T> stream() {
-                return null;
+                throw new UnsupportedOperationException("Not supported");
         }
 
         @Override
         public Stream<T> parallelStream() {
-                return null;
+                throw new UnsupportedOperationException("Not supported");
         }
+
+
+
 
 
 

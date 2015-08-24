@@ -1,7 +1,7 @@
 package synchrobench.linkedlists.lockbased;
 
 import synchrobench.contention.abstractions.CompositionalSortedSet;
-import synchrobench.linkedlists.lockbased.lazyutils.LazyList;
+import synchrobench.linkedlists.lockbased.lazyutils.LazySet;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -25,7 +25,7 @@ public class LazyLinkedListSortedSet<E extends Comparable<E>> implements Composi
 	private static ConcurrentHashMap<Long, Integer> THREADMAP = new ConcurrentHashMap<Long, Integer>();
 	
 	/** The Lazy linked list */
-	private LazyList<E> list = new LazyList<E>(THREADNUM);
+	private LazySet<E> list = new LazySet<E>(THREADNUM);
 	
 	private int getSmallThreadId() {
 		Long threadId = Thread.currentThread().getId();
