@@ -1,0 +1,17 @@
+# Definitions
+
+## Blocking
+Where process/thread gives up it's allocated time slot, reverting back to lower-level (possibly os) scheduling intervention 
+for it's next allocated slot of execution, when it's attempt to get access to a monitor failed, that's blocking
+
+## Non-Blocking
+The opposite of blocking. Process / Thread that never willingly gives up it's allocated slot of execution, but rather could
+possibly attempt to 'loop to success'.
+
+## Lock-Free
+Guarantee system-wide progress but not thread/process-wide progress. Eg. cas implementation where a particular 
+thread/process couldpotentially be starving while others made progress
+
+## Wait-Free
+Guarantee both system-wide progress and also thread/process-wide progress.
+
