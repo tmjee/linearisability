@@ -70,9 +70,9 @@ No    | Data Structures                          |  PutAndGet  |  PutRunningCoun
 9.    | s.NonBlockingFriendlySkipListMap         |    F        |    P              |    F/T
 10.   | s.NonBlockingTorontoBSTMap               |    P        |    P              |    T
 
-- [Put and Get Test](results/map/PutAndGet_Test.md)
-- [Put Running Count Test](results/map/PutRunningCount_Test.md)
-- [Bulk Put Remove Test](results/map/BulkPutRemove_Test.md)
+- [PutAndGet test results](results/map/PutAndGet_Test.md)
+- [PutRunningCount test results](results/map/PutRunningCount_Test.md)
+- [BulkPutRemove test results](results/map/BulkPutRemove_Test.md)
 
 ## List
 
@@ -80,9 +80,8 @@ No    | Data Structures                          |  SetAndGet
 ----- | ---------------------------------------- | -----------
 1.    | j.u.ArrayList                            |   F/E
 2.    | j.u.c.CopyOnWriteArrayList               |   P
-3.    | s.LazyList                               |   U
 
-- [Get and Set Test](results/list/GetAndSet_Test.md)
+- [GetandSet test results](results/list/GetAndSet_Test.md)
 
 
 ## Set
@@ -91,19 +90,20 @@ No    | Data Structures                          |  SetAndGet
 1.    | j.u.HashSet                              |   F
 2.    | j.u.c.CopyOnWriteArraySet                |   P
 3.    | j.u.c.ConcurrentSkipListSet              |   P
-4.    | s.SequentialHashSet                      |
-5.    | s.SequentialRBTreeIntSet                 |
-6.    | s.LazyListBasedSet                       |
-7.    | s.LazyLinkedListSortedSet                |
-8.    | s.LockedLinkedListIntSet                 |
-9.    | s.NonBlockingLinkedListSet               |
-10.   | s.NonBlockingLinkedListSetRTTI           |
-11.   | s.SequentialLinkedListIntSet             |
-12.   | s.SequentialLinkedListSortedSet          |
-13.   | s.SequentialQueueIntSet                  |
-14.   | s.SequentialSkipListIntSet               |
+4.    | s.SnapHashMap                            |
+5.    | s.SequentialHashSet                      |
+6.    | s.SequentialRBTreeIntSet                 |
+7.    | s.LazyListBasedSet                       |
+8.    | s.LazyLinkedListSortedSet                |
+9.    | s.LockedLinkedListIntSet                 |
+10.   | s.NonBlockingLinkedListSet               |
+11.   | s.NonBlockingLinkedListSetRTTI           |
+12.   | s.SequentialLinkedListIntSet             |
+13.   | s.SequentialLinkedListSortedSet          |
+14.   | s.SequentialQueueIntSet                  |
+15.   | s.SequentialSkipListIntSet               |
 
-- [Get and Set Test](results/set/GetAndSet_Test.md)
+- [GetAndSet test results](results/set/GetAndSet_Test.md)
 
 ## Queue
 No    | Data Structures                          |  SetAndGet  
@@ -112,13 +112,13 @@ No    | Data Structures                          |  SetAndGet
 2.    | ConcurrentLinkedQueue                    |   P
 3.    | ArrayBlockingQueue                       |   P
 
-- [Offer and Poll Test](results/queue/OfferAndPoll_Test.md)
+- [OfferAndPoll test results](results/queue/OfferAndPoll_Test.md)
 
 ## Miscs
 No   |  Data Structure                           |  TwoRunning
 ---- | ----------------------------------------- | -------------
 1.   |  Two Actor                                |   P
 
-- [TwoActorsTest](results/misc/Actors_TwoRunning_Test.md)
+- [TwoActors test results](results/misc/Actors_TwoRunning_Test.md)
 
 
