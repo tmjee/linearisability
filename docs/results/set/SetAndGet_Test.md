@@ -138,3 +138,48 @@
 [linearisability] Thread[main,5,main] -> Bye !
 ```
 
+### LazySet
+```
+./run_Set_SetAndGet_LazySet.sh 
+[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test LazySet_SetAndGet_Test - 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
+
+	Summary of Test LazySet_SetAndGet_Test () :- 
+
+	References:
+		- https://github.com/tmjee/linearisability/blob/master/docs/results/set/SetAndGet_Test.md
+
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1,1]     12,303,500          ACCEPTABLE          Player 1 retrieved value added, Player 2 retrieved value added.                                     
+	[-2,1]    0                   FORBIDDEN           Player 1 throws exception                                                                           
+	[1,-2]    0                   FORBIDDEN           Player 2 throws exception                                                                           
+	[-1,-2]   0                   FORBIDDEN           Player 1 result is incorrect, Player 2 throws exception                                             
+	[-1,1]    0                   FORBIDDEN           Player 1 did not retrieved value added, Player 2 retrieved value added                              
+	[1,-1]    0                   FORBIDDEN           Player 1 retrieved value added, Player 2 did not retrieved value added                              
+	[-1,-1]   0                   FORBIDDEN           Player 1 did not retrieved value added, Player 2 did not retrieved value added                      
+	[-2,-1]   0                   FORBIDDEN           Player 2 throws exception, Player 2 result is incorrect                                             
+
+
+[linearisability] Thread[main,5,main] -> Scheduler end.
+[linearisability] Thread[main,5,main] -> Shutdown pool ...
+[linearisability] Thread[main,5,main] -> Pool end.
+[linearisability] Thread[main,5,main] -> Bye !
+```

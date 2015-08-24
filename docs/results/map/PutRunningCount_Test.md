@@ -387,6 +387,45 @@
 [linearisability] Thread[main,5,main] -> Bye !
 ```
 
+### SnapHashMap
+```
+./run_Map_PutRunningCount_SnapHashMap.sh 
+[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbSnapHashMap_PutRunningCount_Test - 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
+
+	Summary of Test SbSnapHashMap_PutRunningCount_Test () :- 
+
+	References:
+		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutRunningCount_Test.md
+
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1]       1,193,500           ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
+	[-1]      0                   FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
+
+
+[linearisability] Thread[main,5,main] -> Scheduler end.
+[linearisability] Thread[main,5,main] -> Shutdown pool ...
+[linearisability] Thread[main,5,main] -> Pool end.
+[linearisability] Thread[main,5,main] -> Bye !
+```
 
 
 

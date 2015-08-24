@@ -432,6 +432,44 @@
 ```
 
 
+### SnapHashMap
+```
+./run_Map_BulkPutRemove_SnapHashMap.sh 
+[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbSnapHashMap_BulkPutRemove_Test - 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
+	Summary of Test SbSnapHashMap_BulkPutRemove_Test () :- 
+
+	References:
+		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/BulkPutRemove_Test.md
+
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[1]       563,500             ACCEPTABLE          size after bulk insert and delete is good                                                           
+	[-1]      0                   FORBIDDEN           size after bulk insert and delete is not good                                                       
+
+
+[linearisability] Thread[main,5,main] -> Scheduler end.
+[linearisability] Thread[main,5,main] -> Shutdown pool ...
+[linearisability] Thread[main,5,main] -> Pool end.
+[linearisability] Thread[main,5,main] -> Bye !
+```
 
 

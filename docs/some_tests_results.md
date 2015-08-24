@@ -69,7 +69,7 @@ No    | Data Structures                          |  PutAndGet  |  PutRunningCoun
 8.    | s.NonBlockingFriendlyHashMap             |    F/T      |    F/T            |    T
 9.    | s.NonBlockingFriendlySkipListMap         |    F        |    P              |    F/T
 10.   | s.NonBlockingTorontoBSTMap               |    P        |    P              |    T
-11.   | s.SnapHashMap                            |             |                   |
+11.   | s.SnapHashMap                            |    P        |    P              |    P
 
 - [PutAndGet test results](results/map/PutAndGet_Test.md)
 - [PutRunningCount test results](results/map/PutRunningCount_Test.md)
@@ -91,7 +91,7 @@ No    | Data Structures                          |  SetAndGet
 1.    | j.u.HashSet                              |   F
 2.    | j.u.c.CopyOnWriteArraySet                |   P
 3.    | j.u.c.ConcurrentSkipListSet              |   P
-4.    | s.SnapHashMap                            |
+4.    | s.LinkedSet                              |   P
 5.    | s.SequentialHashSet                      |
 6.    | s.SequentialRBTreeIntSet                 |
 7.    | s.LazyListBasedSet                       |
