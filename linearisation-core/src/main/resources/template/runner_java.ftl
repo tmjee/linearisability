@@ -161,7 +161,12 @@ public class ${runnerClassName} extends Runner {
             int pSize = pRef.length();
             for (int a=0; a<pSize; a++) {
                 Pair p = pRef.get(a);
-                runPlayerAction(p);
+                try {
+                    runPlayerAction(p);
+                } catch(Throwable t) {
+                    Logger.log("error while running player's action", t);
+                    return;
+                }
             }
         }
 
@@ -170,13 +175,18 @@ public class ${runnerClassName} extends Runner {
             <#if hasArbiterMethod>
             int pSize = pRef.length();
             for (int a=0; a<pSize; a++) {
-                Pair p = pRef.get(a);
-                test.${arbiterMethod.methodName()}(p.s,p.r);
+                try {
+                   Pair p = pRef.get(a);
+                   test.${arbiterMethod.methodName()}(p.s,p.r);
+                } catch(Throwable t) {
+                    Logger.log("error while running actor's action", t);
+                    return;
+                }
             }
             </#if>
         }
 
-        public void run() throws BrokenBarrierException, InterruptedException {
+        public void run() throws InterruptedException {
             boolean firstToIncrementEpoch = false;
             AtomicInteger ep = epoch;
             int currentEpoch = 0;
@@ -190,8 +200,8 @@ public class ${runnerClassName} extends Runner {
 
                 control.waitForStart();
 
-                if ((!running)) {
-                    Logger.log(format("worker exit "));
+                if ((!running) || Thread.currentThread().isInterrupted()) {
+                    Logger.log(format("worker exit, interrupted=%s",Thread.currentThread().isInterrupted()));
                     return;
                 }
 
