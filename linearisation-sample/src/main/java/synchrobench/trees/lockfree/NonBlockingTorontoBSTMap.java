@@ -21,8 +21,6 @@
 
 package synchrobench.trees.lockfree;
 
-import synchrobench.contention.abstractions.CompositionalMap;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +28,8 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 public class NonBlockingTorontoBSTMap<K extends Comparable<? super K>, V>
-		implements CompositionalMap<K, V> {
+		implements Map<K,V> {
+		//implements CompositionalMap<K, V> {
 
 	// --------------------------------------------------------------------------------
 	// Class: Node
@@ -139,6 +138,7 @@ public class NonBlockingTorontoBSTMap<K extends Comparable<? super K>, V>
 		this.root = root;
 	}
 
+
 	// --------------------------------------------------------------------------------
 	// PUBLIC METHODS:
 	// - find : boolean
@@ -147,7 +147,8 @@ public class NonBlockingTorontoBSTMap<K extends Comparable<? super K>, V>
 	// --------------------------------------------------------------------------------
 
 	/** PRECONDITION: k CANNOT BE NULL **/
-	public final boolean containsKey(final K key) {
+	public final boolean containsKey(final Object o) {
+		K key = (K)o;
 		if (key == null)
 			throw new NullPointerException();
 		Node<K, V> l = root.left;
@@ -540,11 +541,6 @@ public class NonBlockingTorontoBSTMap<K extends Comparable<? super K>, V>
 		return sequentialSize(root);
 	}
 
-	@Override
-	public boolean containsKey(Object key) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public boolean containsValue(Object value) {
