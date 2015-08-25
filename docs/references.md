@@ -18,7 +18,7 @@
 ## Tools
 - [JCStress](https://www.google.com.au/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CB0QFjAAahUKEwjt0dCynqzHAhUin6YKHeJ0C4c&url=http%3A%2F%2Fopenjdk.java.net%2Fprojects%2Fcode-tools%2Fjcstress%2F&ei=rMrPVe3LNKK-mgXi6a24CA&usg=AFQjCNEV5BowlwTdpIh8tIU3CeG4z9S0eQ&sig2=gpqNxmLivLyy6VI4VAkMDA&bvm=bv.99804247,d.dGY)
 - [HdrHistogram](https://github.com/HdrHistogram/HdrHistogram)
-- 
+ 
 
 ## Others
 - [Trevor Brown Phd Page](http://www.cs.utoronto.ca/~tabrown/)
