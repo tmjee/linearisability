@@ -66,9 +66,9 @@ No    | Data Structures                          |  PutAndGet  |  PutRunningCoun
 5.    | s.LockBasedStanfordTreeMap               |    P        |    P              |    P
 6.    | s.LogicalOrderingAVL                     |    P        |    P              |    P
 7.    | s.NonBlockingCliffHashMap                |    P        |    P              |    P
-8.    | s.NonBlockingFriendlyHashMap             |    F/T      |    F/T            |    T
-9.    | s.NonBlockingFriendlySkipListMap         |    F        |    P              |    F/T
-10.   | s.NonBlockingTorontoBSTMap               |    P        |    P              |    T
+8.    | s.NonBlockingFriendlyHashMap             |    P        |    F              |    F
+9.    | s.NonBlockingFriendlySkipListMap         |    F        |    P              |    T
+10.   | s.NonBlockingTorontoBSTMap               |    P        |    P              |    P
 11.   | s.SnapHashMap                            |    P        |    P              |    P
 
 - [PutAndGet test results](results/map/PutAndGet_Test.md)
