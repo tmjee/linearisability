@@ -295,30 +295,21 @@
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlyHashMap_PutAndGet_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 already cancelled
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6d997232 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 already cancelled
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6d997232 already cancelled
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7b909f59 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7b909f59 already cancelled
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@4d214cd2 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@4d214cd2 already cancelled
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@636a1a2f timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@636a1a2f already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
 	Summary of Test SbNonBlockingFriendlyHashMap_PutAndGet_Test () :- 
@@ -328,15 +319,15 @@
 
 	Id        Count               Expectation         Description                                                                                         
 	--------  -----------------   ------------------  ---------------------------------                                                                   
-	[-1,-1]   500                 FORBIDDEN           Both player 1 and player 2 did not get back expected value                                          
+	[1,1]     6,503,500           ACCEPTABLE          Both player 1 and 2 get back expected values                                                        
 	[-2,1]    0                   FORBIDDEN           Player 1 throws exception                                                                           
 	[1,-2]    0                   FORBIDDEN           Player 2 throws Exception                                                                           
 	[-1,-2]   0                   FORBIDDEN           Player 1 result is unexpected, Player 2 throws exception                                            
 	[-1,1]    0                   FORBIDDEN           Player 1 did not get back expected value but Player 2 did                                           
 	[1,-1]    0                   FORBIDDEN           Player 1 get back expected value while Player 2 did not                                             
+	[-1,-1]   0                   FORBIDDEN           Both player 1 and player 2 did not get back expected value                                          
 	[-2,-2]   0                   FORBIDDEN           Player 1 and Player 2 both throws exception                                                         
 	[-2,-1]   0                   FORBIDDEN           Player 1 throws Exception, Player 2 results is unexpected                                           
-	[1,1]     0                   ACCEPTABLE          Both player 1 and 2 get back expected values                                                        
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
@@ -348,88 +339,42 @@
 
 ### 9. NonBlockingFriendlySkipListMap
 ```
-./run_Map_PutAndGetTest_NonBlockingFriendlySkipListMap.sh
-[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlySkipListMap_PutAndGet_Test -
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlySkipListMap_PutAndGet_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_4,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_4,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
+[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_4,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
+[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_4,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
-	Summary of Test SbNonBlockingFriendlySkipListMap_PutAndGet_Test () :-
+	Summary of Test SbNonBlockingFriendlySkipListMap_PutAndGet_Test () :- 
 
 	References:
 		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutAndGet_Test.md
 
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[-1,1]    861                 FORBIDDEN           Player 1 did not get back expected value but Player 2 did
-	[1,1]     3,012,639           ACCEPTABLE          Both player 1 and 2 get back expected values
-	[-2,1]    0                   FORBIDDEN           Player 1 throws exception
-	[1,-2]    0                   FORBIDDEN           Player 2 throws Exception
-	[-1,-2]   0                   FORBIDDEN           Player 1 result is unexpected, Player 2 throws exception
-	[1,-1]    0                   FORBIDDEN           Player 1 get back expected value while Player 2 did not
-	[-1,-1]   0                   FORBIDDEN           Both player 1 and player 2 did not get back expected value
-	[-2,-1]   0                   FORBIDDEN           Player 1 throws Exception, Player 2 results is unexpected
-
-
-[linearisability] Thread[main,5,main] -> Scheduler end.
-[linearisability] Thread[main,5,main] -> Shutdown pool ...
-[linearisability] Thread[main,5,main] -> Pool end.
-[linearisability] Thread[main,5,main] -> Bye !
-```
-
-### 10. NonBlockingTorontoBSTMap
-```
-./run_Map_PutAndGetTest_NonBlockingTorontoBSTMap.sh
-[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingTorontoBSTMap_PutAndGet_Test -
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit
-[linearisability] Thread[Scheduler_Thread_1,10,main] ->
-
-	Summary of Test SbNonBlockingTorontoBSTMap_PutAndGet_Test () :-
-
-	References:
-		- https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutAndGet_Test.md
-
-	Id        Count               Expectation         Description
-	--------  -----------------   ------------------  ---------------------------------
-	[1,1]     17,503,500          ACCEPTABLE          Both player 1 and 2 get back expected values
-	[-2,1]    0                   FORBIDDEN           Player 1 throws exception
-	[1,-2]    0                   FORBIDDEN           Player 2 throws Exception
-	[-1,-2]   0                   FORBIDDEN           Player 1 result is unexpected, Player 2 throws exception
-	[-1,1]    0                   FORBIDDEN           Player 1 did not get back expected value but Player 2 did
-	[1,-1]    0                   FORBIDDEN           Player 1 get back expected value while Player 2 did not
-	[-1,-1]   0                   FORBIDDEN           Both player 1 and player 2 did not get back expected value
-	[-2,-1]   0                   FORBIDDEN           Player 1 throws Exception, Player 2 results is unexpected
+	Id        Count               Expectation         Description                                                                                         
+	--------  -----------------   ------------------  ---------------------------------                                                                   
+	[-1,1]    1                   FORBIDDEN           Player 1 did not get back expected value but Player 2 did                                           
+	[1,1]     11,543,499          ACCEPTABLE          Both player 1 and 2 get back expected values                                                        
+	[-2,1]    0                   FORBIDDEN           Player 1 throws exception                                                                           
+	[1,-2]    0                   FORBIDDEN           Player 2 throws Exception                                                                           
+	[-1,-2]   0                   FORBIDDEN           Player 1 result is unexpected, Player 2 throws exception                                            
+	[1,-1]    0                   FORBIDDEN           Player 1 get back expected value while Player 2 did not                                             
+	[-1,-1]   0                   FORBIDDEN           Both player 1 and player 2 did not get back expected value                                          
+	[-2,-2]   0                   FORBIDDEN           Player 1 and Player 2 both throws exception                                                         
+	[-2,-1]   0                   FORBIDDEN           Player 1 throws Exception, Player 2 results is unexpected                                           
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
