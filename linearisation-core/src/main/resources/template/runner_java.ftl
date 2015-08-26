@@ -139,14 +139,19 @@ public class ${runnerClassName} extends Runner {
             int length = pRef.length();
             int strides = Math.max(args.minStrides(), Math.min(length * 2, args.maxStrides()));
 
-            Pair[] p = new Pair[strides];
-            for (int a =0; a< strides; a++) {
-                p[a] = new Pair(
-                    new ${invariantClassName}(),
-                    new ${recordClassName}());
+            int diff = strides - length;
+            if (diff > 0) {
+               Pair[] p = new Pair[strides];
+               for (int a=0; a<length; a++) {
+                  p[a]=pRef.get(a);
+               }
+               for (int a=length; a<strides; a++) {
+                  p[a] = new Pair(
+                     new ${invariantClassName}(),
+                     new ${recordClassName}());
+               }
+               holderRef.set(new Holder(new AtomicReferenceArray<>(p)));
             }
-
-            holderRef.set(new Holder(new AtomicReferenceArray<>(p)));
         }
 
         protected void accumulateStrideResult(AtomicReferenceArray<Pair> pRef) {
