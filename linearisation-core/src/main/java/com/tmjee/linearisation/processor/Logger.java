@@ -7,8 +7,20 @@ import static java.lang.String.format;
  */
 public class Logger {
 
+    static volatile QueuedLogger Q;
+
+    public static void setLogger(QueuedLogger l) {
+       Q = l;
+    }
+
+
     public static void log(String msg) {
-        System.out.println(format("[linearisability] %s -> %s", Thread.currentThread(), msg));
+        String m  = format("[linearisability] %s -> %s", Thread.currentThread(), msg);
+        if (Q != null) {
+            Q.log(m, null);
+        } else {
+            System.out.println(m);
+        }
     }
 
     public static void log(String msg, Throwable t) {
@@ -17,7 +29,12 @@ public class Logger {
     }
 
     public static void log(Throwable t) {
-        System.out.println(format("[linearisability] %s exception ", Thread.currentThread()));
-        t.printStackTrace(System.out);
+        String m = format("[linearisability] %s exception ", Thread.currentThread());
+        if (Q != null) {
+            Q.log(m, t);
+        } else {
+            System.out.println(m);
+            t.printStackTrace(System.out);
+        }
     }
 }

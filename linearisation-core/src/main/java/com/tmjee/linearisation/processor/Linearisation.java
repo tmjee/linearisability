@@ -18,6 +18,14 @@ public class Linearisation {
 
 
     public void run(Arguments args) throws InterruptedException {
+        QueuedLogger ql = new QueuedLogger();
+        ql.start();
+
+        Logger.setLogger(ql);
+
+        System.out.println("*** here");
+
+
         AtomicInteger id = new AtomicInteger();
         ThreadFactory threadFactory = (r)->{
             Thread t = new Thread(r);
@@ -78,6 +86,8 @@ public class Linearisation {
         pool.awaitTermination(5, TimeUnit.SECONDS);
         Logger.log("Pool end.");
 
-        Logger.log("Bye !");
+        ql.stop();
+
+        System.out.println("Bye");
     }
 }
