@@ -299,24 +299,24 @@
 ### 9. NonBlockingFriendlySkipListMap
 ```
 ./run_Map_PutRunningCount_NonBlockingFriendlySkipListMap.sh 
-[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlySkipListMap_PutRunningCount_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
 	Summary of Test SbNonBlockingFriendlySkipListMap_PutRunningCount_Test () :- 
@@ -326,7 +326,7 @@
 
 	Id        Count               Expectation         Description                                                                                         
 	--------  -----------------   ------------------  ---------------------------------                                                                   
-	[1]       60,700              ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
+	[1]       111,500             ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
 	[-1]      0                   FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
 
 
