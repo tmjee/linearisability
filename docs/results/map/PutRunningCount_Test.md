@@ -262,30 +262,20 @@
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlyHashMap_PutRunningCount_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@fc3faa7 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@fc3faa7 already cancelled
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@22d7b7 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@22d7b7 already cancelled
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@405ecb22 already cancelled
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit 
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6d997232 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7d1fa9f4 already cancelled
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6d997232 already cancelled
+[linearisability] Thread[Pool_Thread_2,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_1,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
 	Summary of Test SbNonBlockingFriendlyHashMap_PutRunningCount_Test () :- 
@@ -295,8 +285,8 @@
 
 	Id        Count               Expectation         Description                                                                                         
 	--------  -----------------   ------------------  ---------------------------------                                                                   
-	[-1]      500                 FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
-	[1]       0                   ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
+	[-1]      11                  FORBIDDEN           Running count for player 1 and 2 do not match expected result                                       
+	[1]       423,489             ACCEPTABLE          Running count for player 1 and 2 match expected result                                              
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
