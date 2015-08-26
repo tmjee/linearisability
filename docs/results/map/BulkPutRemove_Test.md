@@ -307,38 +307,28 @@
 ### 9. NonBlockingFriendlySkipListMap
 ```
 ./run_Map_BulkPutRemove_NonBlockingFriendlySkipListMap.sh 
-[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> Running test SbNonBlockingFriendlySkipListMap_BulkPutRemove_Test - 
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> verification run ok
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #0
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@5b138d3e timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@55e984c5 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@514d4177 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@5b138d3e already cancelled
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@55e984c5 already cancelled
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@514d4177 already cancelled
+[linearisability] Thread[main,5,main] -> Scheduler waiting for tests to finish ...
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@37ec6209 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@255b37a2 timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@37ec6209 already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@255b37a2 already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #1
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@519a8b07 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@1d84f5f5 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@3b71986a timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@519a8b07 already cancelled
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@1d84f5f5 already cancelled
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@3b71986a already cancelled
+[linearisability] Thread[Pool_Thread_4,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #2
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@19a289dc timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7c5e267 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@27c7e229 timeout cancelled task, cancellation result =true
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@19a289dc already cancelled
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@7c5e267 already cancelled
-[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@27c7e229 already cancelled
+[linearisability] Thread[Pool_Thread_3,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_4,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #3
-[linearisability] Thread[Pool_Thread_10,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_12,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_11,10,main] -> worker exit 
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6c88670d timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@5c1ebf1e timeout cancelled task, cancellation result =true
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@6c88670d already cancelled
+[linearisability] Thread[Scheduler_Thread_1,10,main] -> future java.util.concurrent.FutureTask@5c1ebf1e already cancelled
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> iteration #4
-[linearisability] Thread[Pool_Thread_12,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_10,10,main] -> worker exit 
-[linearisability] Thread[Pool_Thread_11,10,main] -> worker exit 
+[linearisability] Thread[Pool_Thread_6,10,main] -> worker exit, interrupted=false
+[linearisability] Thread[Pool_Thread_5,10,main] -> worker exit, interrupted=false
 [linearisability] Thread[Scheduler_Thread_1,10,main] -> 
 
 	Summary of Test SbNonBlockingFriendlySkipListMap_BulkPutRemove_Test () :- 
@@ -348,8 +338,8 @@
 
 	Id        Count               Expectation         Description                                                                                         
 	--------  -----------------   ------------------  ---------------------------------                                                                   
-	[-1]      46,220              FORBIDDEN           size after bulk insert and delete is not good                                                       
-	[1]       80                  ACCEPTABLE          size after bulk insert and delete is good                                                           
+	[1]       45,400              ACCEPTABLE          size after bulk insert and delete is good                                                           
+	[-1]      0                   FORBIDDEN           size after bulk insert and delete is not good                                                       
 
 
 [linearisability] Thread[main,5,main] -> Scheduler end.
