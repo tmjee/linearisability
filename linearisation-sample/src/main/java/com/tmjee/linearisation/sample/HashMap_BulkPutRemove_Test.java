@@ -16,7 +16,7 @@ public class HashMap_BulkPutRemove_Test extends Abstract_Map_BulkPutRemove_Test 
 
     @Invariant
     public static class State extends Abstract_Map_BulkPutRemove_Test.AbstractState {
-        volatile Map<Integer, Integer> m = new HashMap<>();
+        final Map<Integer, Integer> m = new HashMap<>();
         @Override
         protected Map<Integer, Integer> get() {
             return m;

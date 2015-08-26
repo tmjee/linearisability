@@ -16,7 +16,7 @@ public class LinkedBlockingQueue_OfferAndPoll_Test extends Abstract_Queue_OfferA
 
     @Invariant
     public static class State extends Abstract_Queue_OfferAndPoll_Test.AbstractState {
-        volatile Queue<Integer> q = new LinkedBlockingQueue<>();
+        final Queue<Integer> q = new LinkedBlockingQueue<>();
         @Override
         protected Queue<Integer> get() {
             return q;

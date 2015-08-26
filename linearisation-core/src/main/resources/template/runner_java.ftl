@@ -48,20 +48,9 @@ public class ${runnerClassName} extends Runner {
     }
 
     protected void runVerification() throws Throwable{
-/*
-        ${testClassClassName} test = new ${testClassClassName}();
-        ${invariantClassName} s = new ${invariantClassName}();
-        ${recordClassName} r = new ${recordClassName}();
-
-        List<Future<?>> tasks = new ArrayList<>();
-
-        <#list testMethods as testMethod>
-        tasks.add(pool.submit(()->{
-           test.${testMethod.methodName()}(s,r);
-            return;
-        });
-        </#list>
-*/
+         if (test instanceof com.tmjee.linearisation.processor.TestUnitType) {
+            ((com.tmjee.linearisation.processor.TestUnitType)test).verify();
+         }
     }
 
     protected Accumulator internalRun() {
@@ -144,6 +133,9 @@ public class ${runnerClassName} extends Runner {
                Pair[] p = new Pair[strides];
                for (int a=0; a<length; a++) {
                   p[a]=pRef.get(a);
+                  if (p[a].r instanceof com.tmjee.linearisation.processor.RecordType) {
+                      ((com.tmjee.linearisation.processor.RecordType)p[a].r).reset();
+                  }
                }
                for (int a=length; a<strides; a++) {
                   p[a] = new Pair(

@@ -16,7 +16,7 @@ public class SbLockBasedFriendlyTreeMap_BulkPutRemove_Test extends Abstract_Map_
 
     @Invariant
     public static class State extends Abstract_Map_BulkPutRemove_Test.AbstractState {
-        volatile Map<Integer, Integer> m = new LockBasedFriendlyTreeMap<>();
+        final Map<Integer, Integer> m = new LockBasedFriendlyTreeMap<>();
         @Override protected Map<Integer, Integer> get() { return m; }
     }
 

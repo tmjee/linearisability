@@ -17,8 +17,7 @@ public class PriorityQueue_OfferAndPoll_Test extends Abstract_Queue_OfferAndPoll
 
     @Invariant
     public static class State extends Abstract_Queue_OfferAndPoll_Test.AbstractState {
-        volatile Queue<Integer> q = new PriorityQueue<>();
-
+        final Queue<Integer> q = new PriorityQueue<>();
         @Override
         protected Queue<Integer> get() {
             return q;

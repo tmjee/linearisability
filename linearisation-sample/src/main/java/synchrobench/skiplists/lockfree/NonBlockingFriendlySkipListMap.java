@@ -140,6 +140,10 @@ public class NonBlockingFriendlySkipListMap<K, V> extends AbstractMap<K, V>
 	 * 
 	 */
 	private static class MaintenanceThread extends Thread {
+		public MaintenanceThread() {
+			setDaemon(true);
+			setPriority(Thread.MIN_PRIORITY);
+		}
 
 		public void run() {
 			doMaintenance();

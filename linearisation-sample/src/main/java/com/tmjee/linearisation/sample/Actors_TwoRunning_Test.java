@@ -20,7 +20,7 @@ public class Actors_TwoRunning_Test {
     }
 
     @Record
-    public static class Result {
+    public static class Result implements RecordType {
         volatile int x = 0;
         volatile int y = 0;
 
@@ -28,6 +28,9 @@ public class Actors_TwoRunning_Test {
         public String toString() {
             return format("[%s,%s]", x, y);
         }
+
+        @Override
+        public void reset() { x=0; y=0; }
     }
 
 

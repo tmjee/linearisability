@@ -24,8 +24,7 @@ public class HashMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
 
     @Invariant
     public static class State extends Abstract_Map_PutAndGet_Test.AbstractState {
-       public volatile Map<Integer, Integer> m = new HashMap<>();
-
+        final Map<Integer, Integer> m = new HashMap<>();
         @Override
         protected Map<Integer, Integer> get() {
             return m;

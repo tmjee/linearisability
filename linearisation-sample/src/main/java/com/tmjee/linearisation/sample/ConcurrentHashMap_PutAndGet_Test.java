@@ -16,8 +16,7 @@ public class ConcurrentHashMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Tes
 
     @Invariant
     public static class State extends Abstract_Map_PutAndGet_Test.AbstractState {
-        volatile Map<Integer, Integer> m = new ConcurrentHashMap<>();
-
+        final Map<Integer, Integer> m = new ConcurrentHashMap<>();
         @Override
         protected Map<Integer, Integer> get() {
             return m;

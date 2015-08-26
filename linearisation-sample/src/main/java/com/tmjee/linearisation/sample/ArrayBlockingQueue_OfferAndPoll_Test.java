@@ -16,7 +16,7 @@ public class ArrayBlockingQueue_OfferAndPoll_Test extends Abstract_Queue_OfferAn
 
     @Invariant
     public static class State extends Abstract_Queue_OfferAndPoll_Test.AbstractState {
-        volatile Queue<Integer> q = new ArrayBlockingQueue<Integer>(9000);
+        final Queue<Integer> q = new ArrayBlockingQueue<Integer>(9000);
         @Override
         protected Queue<Integer> get() {
             return q;

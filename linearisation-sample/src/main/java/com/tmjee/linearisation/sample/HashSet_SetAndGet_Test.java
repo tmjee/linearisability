@@ -24,8 +24,7 @@ public class HashSet_SetAndGet_Test extends Abstract_Set_SetAndGet_Test {
 
     @Invariant
     public static class State extends Abstract_Set_SetAndGet_Test.AbstractState {
-        public volatile Set<Integer> s = new HashSet<>();
-
+        final Set<Integer> s = new HashSet<>();
         @Override
         protected Set<Integer> get() {
             return s;

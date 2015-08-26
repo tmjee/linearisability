@@ -16,8 +16,7 @@ public class ConcurrentHashMap_BulkPutRemove_Test extends Abstract_Map_BulkPutRe
 
     @Invariant
     public static class State extends Abstract_Map_BulkPutRemove_Test.AbstractState {
-        volatile Map<Integer, Integer> m = new ConcurrentHashMap<>();
-
+        final  Map<Integer, Integer> m = new ConcurrentHashMap<>();
         @Override
         protected Map<Integer, Integer> get() {
             return m;

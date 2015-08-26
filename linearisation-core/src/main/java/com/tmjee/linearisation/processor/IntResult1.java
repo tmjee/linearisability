@@ -6,11 +6,14 @@ import static java.lang.String.format;
  * @author tmjee
  */
 @Record
-public class IntResult1 {
+public class IntResult1 implements RecordType {
     public volatile int value1;
 
     @Override
     public String toString() {
         return format("[%s]", value1);
     }
+
+    @Override
+    public void reset() { value1=0; }
 }
