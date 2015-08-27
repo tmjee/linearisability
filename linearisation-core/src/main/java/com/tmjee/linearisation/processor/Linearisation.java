@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static java.lang.String.format;
+
 /**
  * @author tmjee
  */
@@ -22,9 +24,6 @@ public class Linearisation {
         ql.start();
 
         Logger.setLogger(ql);
-
-        System.out.println("*** here");
-
 
         AtomicInteger id = new AtomicInteger();
         ThreadFactory threadFactory = (r)->{
@@ -88,6 +87,6 @@ public class Linearisation {
 
         ql.stop();
 
-        System.out.println("Bye");
+        System.out.println(format("[linearisability] $s Bye", Thread.currentThread()));
     }
 }

@@ -89,8 +89,8 @@ public class NonBlockingFriendlyHashMap<K, V> implements
     private static final boolean CAS_val(Object[] kvs, int idx, Object old,
                                          Object val) {
         // Do I need to shift the index bit, like done in the lock free table???
-        return _unsafe
-                .compareAndSwapObject(kvs, rawIndex(kvs, (idx)), old, val);
+            return _unsafe
+                    .compareAndSwapObject(kvs, rawIndex(kvs, (idx)), old, val);
     }
 
     int threshold;
@@ -280,6 +280,8 @@ public class NonBlockingFriendlyHashMap<K, V> implements
                         if (k != lastIdx) {
                             lastIdx = k;
                             lastRun = last;
+                        } else {
+                            break;
                         }
                     }
                     newTable[lastIdx] = lastRun;

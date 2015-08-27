@@ -26,7 +26,7 @@ public class QueuedLogger {
     public void start() {
         E.submit(()->{
             running = true;
-            while(running || !Thread.currentThread().isInterrupted()) {
+            while(running && !Thread.currentThread().isInterrupted()) {
                 Tuple t = null;
                 try {
                     t = Q.take();
@@ -36,7 +36,7 @@ public class QueuedLogger {
                     }
                 } catch (InterruptedException e) {
                     System.out.println(format("[linearisability] %s logger taker interrupted", Thread.currentThread()));
-                    break;
+                    return;
                 }
             }
         });
