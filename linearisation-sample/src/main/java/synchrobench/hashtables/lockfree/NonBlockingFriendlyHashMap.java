@@ -65,7 +65,6 @@ public class NonBlockingFriendlyHashMap<K, V> implements
         this.stop = false;
         mainThd = new MaintenanceThread<K, V>(this);
         mainThd.start();
-
         return true;
     }
 
@@ -243,7 +242,7 @@ public class NonBlockingFriendlyHashMap<K, V> implements
         threshold = (int) (table2.table.length * loadFactor);
         int sizeMask = table2.table.length - 1;
         for (int i = 0; i < oldCapacity; i++) {
-            rehashLevel(i, sizeMask);
+            //rehashLevel(i, sizeMask);
         }
         // System.out.println("done rehash");
         table1 = table2;
@@ -272,6 +271,7 @@ public class NonBlockingFriendlyHashMap<K, V> implements
 
                 else {
                     // Reuse trailing consecutive sequence at same slot
+                    /*
                     HashEntry<K, V> lastRun = e;
                     int lastIdx = idx;
                     for (HashEntry<K, V> last = next; last != null; last = last.next) {
@@ -292,6 +292,16 @@ public class NonBlockingFriendlyHashMap<K, V> implements
                         newTable[k] = new HashEntry<K, V>(p.key, p.hash, n,
                                 p.value);
                     }
+                    */
+
+
+
+                    /*for (HashEntry<K, V> p = e; p != null; p = p.next) {
+                        int k = p.hash & sizeMask;
+                        HashEntry<K, V> n = newTable[k];
+                        newTable[k] = new HashEntry<K, V>(p.key, p.hash, n,
+                                    p.value);
+                    }*/
                 }
             }
             if (CAS_val(oldTable, i, e, dummy)) {

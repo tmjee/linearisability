@@ -20,10 +20,10 @@ public class Linearisation {
 
 
     public void run(Arguments args) throws InterruptedException {
-        QueuedLogger ql = new QueuedLogger();
-        ql.start();
+        //QueuedLogger ql = new QueuedLogger();
+        //ql.start();
 
-        Logger.setLogger(ql);
+        //Logger.setLogger(ql);
 
         AtomicInteger id = new AtomicInteger();
         ThreadFactory threadFactory = (r)->{
@@ -85,7 +85,7 @@ public class Linearisation {
         pool.awaitTermination(5, TimeUnit.SECONDS);
         Logger.log("Pool end.");
 
-        ql.stop();
+        //ql.stop();
 
         System.out.println(format("[linearisability] %s Bye", Thread.currentThread()));
     }
