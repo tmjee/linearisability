@@ -198,7 +198,8 @@ public class ${runnerClassName} extends Runner {
                 control.waitForStart();
 
                 if ((!running) || Thread.currentThread().isInterrupted()) {
-                    Logger.log(format("worker exit, interrupted=%s",Thread.currentThread().isInterrupted()));
+                    boolean isInterrupted = Thread.interrupted();
+                    Logger.log(format("worker exit, interrupted=%s", isInterrupted));
                     return;
                 }
 

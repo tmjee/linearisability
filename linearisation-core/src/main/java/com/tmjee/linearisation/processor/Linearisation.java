@@ -87,6 +87,6 @@ public class Linearisation {
 
         ql.stop();
 
-        System.out.println(format("[linearisability] $s Bye", Thread.currentThread()));
+        System.out.println(format("[linearisability] %s Bye", Thread.currentThread()));
     }
 }
