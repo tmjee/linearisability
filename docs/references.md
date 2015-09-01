@@ -13,6 +13,7 @@
 
 ## Blogs
 - [HdrHistorgram: A better latency capture mehtod](https://www.google.com.au/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCkQFjABahUKEwiwo6zRoazHAhVl6KYKHbpEArc&url=http%3A%2F%2Fpsy-lob-saw.blogspot.com%2F2015%2F02%2Fhdrhistogram-better-latency-capture.html&ei=Es7PVbDSI-XQmwW6iYm4Cw&usg=AFQjCNGzOgiqARLq1dmMNT66EOV32Biyuw&sig2=3bXi59LzHulwlyZZG1gc0Q&bvm=bv.99804247,d.dGY)
+- [Consistencies](http://coldattic.info/shvedsky/pro/blogs/a-foo-walks-into-a-bar/posts/88)
 
 
 ## Tools
