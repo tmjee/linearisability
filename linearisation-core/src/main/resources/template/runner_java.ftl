@@ -43,7 +43,7 @@ import ${runnerPackageName}.*;
 
 public class ${runnerClassName} extends Runner {
 
-    public ${runnerClassName}(Test test, Arguments args, ExecutorService pool) {
+    public ${runnerClassName}(Test test, Arguments args, ThreadPool pool) {
         super(test, args, pool);
     }
 
