@@ -15,10 +15,10 @@ import static java.lang.String.format;
 public abstract class Runner {
 
     protected final Arguments args;
-    protected final ExecutorService pool;
+    protected final ThreadPool pool;
     protected final Test test;
 
-    public Runner(Test test, Arguments args, ExecutorService pool) {
+    public Runner(Test test, Arguments args, ThreadPool pool) {
         this.test = test;
         this.args = args;
         this.pool = pool;
