@@ -21,11 +21,15 @@
 - [HdrHistogram](https://github.com/HdrHistogram/HdrHistogram)
  
 
+## Books
+- [The art of multi-processor programming slides](http://booksite.elsevier.com/9780123705914/?ISBN=9780123705914)
+
+## Definitions
+- [Definitions](definitions.md)
+
 ## Others
 - [Trevor Brown Phd Page](http://www.cs.utoronto.ca/~tabrown/)
 
 
-## Books
-- [The art of multi-processor programming slides](http://booksite.elsevier.com/9780123705914/?ISBN=9780123705914)
 
 
