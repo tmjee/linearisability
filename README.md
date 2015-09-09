@@ -29,3 +29,6 @@ Following are the contents of this piece of work.
 - [Definitions](docs/definitions.md)
 
 
+## Notes on "The Art of Multiprocessor Programming"
+- [Peterson Lock](taomp/ch2/peterson_lock.md)
+
