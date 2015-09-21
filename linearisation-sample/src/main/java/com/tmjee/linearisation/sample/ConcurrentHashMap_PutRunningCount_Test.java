@@ -16,8 +16,7 @@ public class ConcurrentHashMap_PutRunningCount_Test extends Abstract_Map_PutRunn
 
     @Invariant
     public static class State extends Abstract_Map_PutRunningCount_Test.AbstractState {
-        volatile Map<Integer, Integer> m = new ConcurrentHashMap<>();
-
+        final Map<Integer, Integer> m = new ConcurrentHashMap<>();
         @Override
         protected Map<Integer, Integer> get() {
             return m;

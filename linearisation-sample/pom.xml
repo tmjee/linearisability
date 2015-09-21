@@ -73,7 +73,7 @@
                         <classpath/>
                         <argument>com.tmjee.linearisation.processor.Main</argument>
                         <argument>-testClasses</argument>
-                        <argument>SbNonBlockingFriendlyHashMap_PutAndGet_Test.TestUnit1</argument>
+                        <argument>SbNonBlockingFriendlyHashMap_PutRunningCount_Test.TestUnit1</argument>
                     </arguments>
                 </configuration>
             </plugin>

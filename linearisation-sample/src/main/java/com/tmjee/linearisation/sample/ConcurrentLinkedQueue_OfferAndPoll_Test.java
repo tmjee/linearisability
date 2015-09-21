@@ -16,8 +16,7 @@ public class ConcurrentLinkedQueue_OfferAndPoll_Test extends Abstract_Queue_Offe
 
     @Invariant
     public static class State extends Abstract_Queue_OfferAndPoll_Test.AbstractState {
-        volatile Queue<Integer> q = new ConcurrentLinkedQueue<>();
-
+        final Queue<Integer> q = new ConcurrentLinkedQueue<>();
         @Override
         protected Queue<Integer> get() {
             return q;

@@ -16,8 +16,7 @@ public class HashMap_PutRunningCount_Test extends Abstract_Map_PutRunningCount_T
 
     @Invariant
     public static class State extends Abstract_Map_PutRunningCount_Test.AbstractState {
-        public volatile Map<Integer, Integer> m = new HashMap<>();
-
+        final Map<Integer, Integer> m = new HashMap<>();
         @Override
         protected Map<Integer, Integer> get() {
             return m;

@@ -16,8 +16,7 @@ public class CopyOnWriteArrayList_SetAndGet_Test extends Abstract_List_SetAndGet
 
     @Invariant
     public static class State extends Abstract_List_SetAndGet_Test.AbstractState {
-        volatile List<Integer> l = new CopyOnWriteArrayList<>();
-
+        final List<Integer> l = new CopyOnWriteArrayList<>();
         @Override
         protected List<Integer> get() {
             return l;

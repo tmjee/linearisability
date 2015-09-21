@@ -8,38 +8,22 @@ import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static java.lang.String.format;
+
 /**
  * @author tmjee
  */
 public class Linearisation {
 
 
-    private static final String PREFIX = "Pool_Thread_";
-
-
     public void run(Arguments args) throws InterruptedException {
-        AtomicInteger id = new AtomicInteger();
-        ThreadFactory threadFactory = (r)->{
-            Thread t = new Thread(r);
-            t.setDaemon(true);
-            t.setName(PREFIX+id.incrementAndGet());
-            return t;
-        };
+        QueuedLogger ql = new QueuedLogger();
+        ql.start();
 
-        ExecutorService pool = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
-                60L, TimeUnit.SECONDS,
-                new SynchronousQueue<>(),
-                threadFactory){
-            @Override
-            protected void afterExecute(Runnable r, Throwable t) {
-                super.afterExecute(r, t);
-                if (t != null) {
-                    t.printStackTrace();
-                }
-            }
-        };
+        Logger.setLogger(ql);
 
 
+        ThreadPool pool = new ThreadPool();
         Scheduler scheduler = new Scheduler(args.userCpu());
 
         Map<String, Test> allTests = args.isRunAllTests() ?
@@ -74,10 +58,11 @@ public class Linearisation {
         Logger.log("Scheduler end.");
 
         Logger.log("Shutdown pool ...");
-        pool.shutdown();
-        pool.awaitTermination(5, TimeUnit.SECONDS);
+        pool.shutdown(5, TimeUnit.SECONDS);
         Logger.log("Pool end.");
 
-        Logger.log("Bye !");
+        ql.stop();
+
+        System.out.println(format("[linearisability] $s Bye", Thread.currentThread()));
     }
 }

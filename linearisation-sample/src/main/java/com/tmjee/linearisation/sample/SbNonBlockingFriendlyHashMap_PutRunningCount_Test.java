@@ -15,15 +15,41 @@ import java.util.Map;
 public class SbNonBlockingFriendlyHashMap_PutRunningCount_Test extends Abstract_Map_PutRunningCount_Test{
 
     @Invariant
-    public static class State extends Abstract_Map_PutRunningCount_Test.AbstractState {
-        final Map<Integer,Integer> m = new NonBlockingFriendlyHashMap<>();
-        @Override protected Map<Integer, Integer> get() { return m; }
+    public static class State {
+        final NonBlockingFriendlyHashMap<Integer,Integer> m = new NonBlockingFriendlyHashMap<>();
     }
 
     @TestUnit(name="SbNonBlockingFriendlyHashMap_PutRunningCount_Test")
-    public static class TestUnit1 extends Abstract_Map_PutRunningCount_Test.AbstractTestUnit {
-        @Player public void player1(State s, IntResult1 r) { _player1(s,r);}
-        @Player public void player2(State s, IntResult1 r) { _player2(s,r);}
-        @Arbiter public void arbiter(State s, IntResult1 r) { _arbiter(s,r);}
+    public static class TestUnit1 {
+        @Player
+        public void player1(State state, IntResult1 r) {
+            try {
+                NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
+                for (int a = 0; a < 100; a++) {
+                    m.put(a, a);
+                }
+            }catch(Exception e) {
+                Logger.log("Player 1 experience exception", e);
+            }
+        }
+
+        @Player
+        public void player2(State state, IntResult1 r) {
+            try {
+                NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
+                for (int b = 100; b < 300; b++) {
+                    m.put(b, b);
+                }
+            } catch(Exception e) {
+                Logger.log("Player 2 experience exception", e);
+            }
+        }
+
+        @Player
+        public void arbiter(State state, IntResult1 r) {
+            NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
+            int size = m.size();
+            r.value1 = ((size == 300)?1:-1);
+        }
     }
 }

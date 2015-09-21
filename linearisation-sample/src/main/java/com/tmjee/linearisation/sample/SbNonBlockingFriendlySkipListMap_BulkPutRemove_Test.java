@@ -22,9 +22,8 @@ public class SbNonBlockingFriendlySkipListMap_BulkPutRemove_Test extends Abstrac
 
     @TestUnit(name="SbNonBlockingFriendlySkipListMap_BulkPutRemove_Test")
     public static class TestUnit1 extends Abstract_Map_BulkPutRemove_Test.AbstractTestUnit {
-        @Player
-        public void player1(State s, IntResult1 r) { _player1(s,r);}
+        @Player public void player1(State s, IntResult1 r) { _player1(s,r);}
         @Player public void player2(State s, IntResult1 r) { _player2(s,r);}
-        @Player public void arbiter(State s, IntResult1 r) { _arbiter(s,r);}
+        @Arbiter public void arbiter(State s, IntResult1 r) { _arbiter(s,r);}
     }
 }

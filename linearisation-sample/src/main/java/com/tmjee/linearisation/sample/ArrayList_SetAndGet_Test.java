@@ -16,8 +16,7 @@ public class ArrayList_SetAndGet_Test extends Abstract_List_SetAndGet_Test {
 
     @Invariant
     public static class State extends Abstract_List_SetAndGet_Test.AbstractState {
-        public volatile List<Integer> list = new ArrayList<>();
-
+        final List<Integer> list = new ArrayList<>();
         @Override
         protected List<Integer> get() {
             return list;

@@ -43,25 +43,14 @@ import ${runnerPackageName}.*;
 
 public class ${runnerClassName} extends Runner {
 
-    public ${runnerClassName}(Test test, Arguments args, ExecutorService pool) {
+    public ${runnerClassName}(Test test, Arguments args, ThreadPool pool) {
         super(test, args, pool);
     }
 
     protected void runVerification() throws Throwable{
-/*
-        ${testClassClassName} test = new ${testClassClassName}();
-        ${invariantClassName} s = new ${invariantClassName}();
-        ${recordClassName} r = new ${recordClassName}();
-
-        List<Future<?>> tasks = new ArrayList<>();
-
-        <#list testMethods as testMethod>
-        tasks.add(pool.submit(()->{
-           test.${testMethod.methodName()}(s,r);
-            return;
-        });
-        </#list>
-*/
+         if (test instanceof com.tmjee.linearisation.processor.TestUnitType) {
+            ((com.tmjee.linearisation.processor.TestUnitType)test).verify();
+         }
     }
 
     protected Accumulator internalRun() {
@@ -139,14 +128,22 @@ public class ${runnerClassName} extends Runner {
             int length = pRef.length();
             int strides = Math.max(args.minStrides(), Math.min(length * 2, args.maxStrides()));
 
-            Pair[] p = new Pair[strides];
-            for (int a =0; a< strides; a++) {
-                p[a] = new Pair(
-                    new ${invariantClassName}(),
-                    new ${recordClassName}());
+            int diff = strides - length;
+            if (diff > 0) {
+               Pair[] p = new Pair[strides];
+               for (int a=0; a<length; a++) {
+                  p[a]=pRef.get(a);
+                  if (p[a].r instanceof com.tmjee.linearisation.processor.RecordType) {
+                      ((com.tmjee.linearisation.processor.RecordType)p[a].r).reset();
+                  }
+               }
+               for (int a=length; a<strides; a++) {
+                  p[a] = new Pair(
+                     new ${invariantClassName}(),
+                     new ${recordClassName}());
+               }
+               holderRef.set(new Holder(new AtomicReferenceArray<>(p)));
             }
-
-            holderRef.set(new Holder(new AtomicReferenceArray<>(p)));
         }
 
         protected void accumulateStrideResult(AtomicReferenceArray<Pair> pRef) {

@@ -12,20 +12,47 @@ import java.util.Map;
  */
 @Linearisable
 @Meta(Meta_Map_BulkPutRemove_Test.class)
-public class SbNonBlockingFriendlyHashMap_BulkPutRemove_Test extends Abstract_Map_BulkPutRemove_Test {
+public class SbNonBlockingFriendlyHashMap_BulkPutRemove_Test {
     @Invariant
-    public static class State extends Abstract_Map_BulkPutRemove_Test.AbstractState {
-       final Map<Integer,Integer> m = new NonBlockingFriendlyHashMap<>();
-        @Override
-        protected Map<Integer, Integer> get() {
-            return m;
-        }
+    public static class State {
+        final NonBlockingFriendlyHashMap<Integer, Integer> m = new NonBlockingFriendlyHashMap<>();
     }
 
     @TestUnit(name="SbNonBlockingFriendlyHashMap_BulkPutRemove_Test")
-    public static class TestUnit1 extends Abstract_Map_BulkPutRemove_Test.AbstractTestUnit {
-       @Player public void player1(State s, IntResult1 r) { _player1(s,r);}
-        @Player public void player2(State s, IntResult1 r) { _player2(s, r);}
-        @Arbiter public void arbier(State s, IntResult1 r) { _arbiter(s,r);}
+    public static class TestUnit1 {
+
+        @Player
+        public void player1(State state, IntResult1 r) {
+            NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
+            try {
+                for (int a = 0; a < 300; a++) {
+                    m.putIfAbsent(a, a);
+                }
+            }catch(Exception e) {
+                Logger.log("Player 1 experienced exception", e);
+            }
+        }
+
+        @Player
+        public void player2(State state, IntResult1 r) {
+            try {
+                NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
+                for (int b = 0; b < 100; b++) {
+                    while (!m.containsKey(b)) {
+                        Thread.currentThread().yield();
+                    }
+                    m.remove(b);
+                }
+            }catch(Exception e) {
+                Logger.log("Player 2 experienced exception", e);
+            }
+        }
+
+        @Arbiter
+        public void arbiter(State state, IntResult1 r) {
+            NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
+            int size = m.size();
+            r.value1 = (size == 200 ? 1 : -1);
+        }
     }
 }

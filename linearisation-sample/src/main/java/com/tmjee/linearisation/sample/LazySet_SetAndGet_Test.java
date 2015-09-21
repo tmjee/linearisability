@@ -16,7 +16,7 @@ public class LazySet_SetAndGet_Test extends Abstract_Set_SetAndGet_Test {
 
     @Invariant
     public static class State extends Abstract_Set_SetAndGet_Test.AbstractState {
-        volatile Set<Integer> s = new LazySet<Integer>(2);
+        final Set<Integer> s = new LazySet<Integer>(2);
         @Override
         protected Set<Integer> get() {
             return s;

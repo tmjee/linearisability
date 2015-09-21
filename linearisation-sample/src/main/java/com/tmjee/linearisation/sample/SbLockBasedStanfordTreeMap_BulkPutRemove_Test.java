@@ -16,7 +16,7 @@ public class SbLockBasedStanfordTreeMap_BulkPutRemove_Test extends Abstract_Map_
 
     @Invariant
     public static class State extends Abstract_Map_BulkPutRemove_Test.AbstractState {
-        volatile Map<Integer,Integer> m = new LockBasedStanfordTreeMap<>();
+        final Map<Integer,Integer> m = new LockBasedStanfordTreeMap<>();
         @Override protected Map<Integer, Integer> get() { return m; }
     }
 
