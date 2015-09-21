@@ -32,3 +32,5 @@ Following are the contents of this piece of work.
 ## Notes on "The Art of Multiprocessor Programming"
 - [Peterson Lock](taomp/ch2/peterson_lock.md)
 
+## Notes on Data Structures ran
+- [NonBlockingFriendlyHashMap](linearisation-datastructures/nonblockingfriendlyhashmap.md)
