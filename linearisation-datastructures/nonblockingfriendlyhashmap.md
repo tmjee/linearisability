@@ -55,8 +55,7 @@ Say for example case 1
 - table1 is being migrated to table2 but table1 reference have not being changed to table2
 - table1 `HashEntry[]` contains dummy
 - size will count entries in table1 that are all dummy object.
-- this do not matter in this implementation as `put()` is not implemented, there will always only be 
-one element in `HashEntry[]`
+- ????
 
 
 Say for example case 2
