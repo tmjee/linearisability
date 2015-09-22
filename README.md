@@ -34,3 +34,8 @@ Following are the contents of this piece of work.
 
 ## Notes on Data Structures ran
 - [NonBlockingFriendlyHashMap](linearisation-datastructures/nonblockingfriendlyhashmap.md)
+
+## Terminologies
+- [Quiescent Consistency](terminologies/quiescent_consistency.md)
+
+
