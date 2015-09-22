@@ -5,3 +5,6 @@ Ideas of hash map applies
 - Table contains HashEntry[]
 - 
 
+
+# Ambiguities
+
