@@ -1,4 +1,5 @@
 # Concept
+// todo: improve
 Ideas of hash map applies
 - Maintain 2 `Table` (table1 and table2)
 - table1 as primary and table2 as secondary when rehashing
@@ -9,8 +10,10 @@ over to table2 one by one
 - once all rows in table1 is rehased table1 reference is set to table2
 
 
+
 # Ambiguities
 ## clear() method
+// todo: improve and confirm
 ```
     @Override
     public void clear() {
@@ -48,6 +51,7 @@ over to table2 one by one
 ```
 
 Say for example case 1
+// todo: improve and confirm
 - table1 is being migrated to table2 but table1 reference have not being changed to table2
 - table1 `HashEntry[]` contains dummy
 - size will count entries in table1 that are all dummy object.
@@ -71,6 +75,7 @@ object, it's size will be 1. In actual fact it should be 2
 
 
 ## rehashLevel() method
+// todo: work this out
 
 
 
