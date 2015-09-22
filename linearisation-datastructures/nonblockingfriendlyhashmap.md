@@ -52,7 +52,12 @@ over to table2 one by one
 ```
 
 Say for example case 1
-- table1 is being migrated to table2 but table1 reference have not being changed to table2
+- table1 size is 4, table2 size is 8
+- entry with key (and hash) 2 goes into index 2 in table1
+- entry with key (and hash) 6 goes into index 2 of table1
+- entry with key (and hash) 2 would go into index 2 in table2
+- entry with key (and hash) 6 would go into index 6 in table2
+- table1 is being rehash to table2 but table1 reference have not being changed to table2
 - table1 `HashEntry[]` contains dummy
 - size will count entries in table1 that are all dummy object.
 - ????
