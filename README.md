@@ -13,7 +13,7 @@ to generate healthy discussion / thoughts regarding this subject area. I am a po
 student based in [University of Sydney](http://sydney.edu.au). Feel free to drop a line, swing around if you
 are nearby. Any other fellow research mates across the globe are more than welcome to participate in any sort of ways.
 
-I could be reachable at
+I could be reach at
 - tmjee1 at gmail dot com
 - tjee6174 at uni dot sydney dot edu dot au
 
@@ -29,3 +29,8 @@ Following are the contents of this piece of work.
 - [Definitions](docs/definitions.md)
 
 
+## Notes on "The Art of Multiprocessor Programming"
+- [Peterson Lock](taomp/ch2/peterson_lock.md)
+
+## Notes on Data Structures ran
+- [NonBlockingFriendlyHashMap](linearisation-datastructures/nonblockingfriendlyhashmap.md)

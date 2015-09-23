@@ -62,7 +62,9 @@ public class Scheduler {
     }
 
 
-
+    /**
+     * @author tmjee
+     */
     public static abstract class Task implements Runnable {
         abstract int permits();
     }

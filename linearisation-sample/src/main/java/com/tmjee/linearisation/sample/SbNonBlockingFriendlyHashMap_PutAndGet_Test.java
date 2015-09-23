@@ -13,17 +13,39 @@ import java.util.Map;
  */
 @Linearisable
 @Meta(Meta_Map_PutAndGet_Test.class)
-public class SbNonBlockingFriendlyHashMap_PutAndGet_Test extends Abstract_Map_PutAndGet_Test {
+public class SbNonBlockingFriendlyHashMap_PutAndGet_Test {
 
     @Invariant
-    public static class State extends Abstract_Map_PutAndGet_Test.AbstractState {
-        final Map<Integer,Integer> m = new NonBlockingFriendlyHashMap<>();
-        @Override protected Map<Integer, Integer> get() { return m; }
+    public static class State {
+        final NonBlockingFriendlyHashMap<Integer,Integer> m = new NonBlockingFriendlyHashMap<>();
     }
 
     @TestUnit(name="SbNonBlockingFriendlyHashMap_PutAndGet_Test")
-    public static class TestUnit1 extends Abstract_Map_PutAndGet_Test.AbstractTestUnit {
-        @Player public void player1(State s, IntResult2 r) { _player1(s,r);}
-        @Player public void player2(State s, IntResult2 r) { _player2(s,r);}
+    public static class TestUnit1 {
+        @Player
+        public void player1(State state, IntResult2 r) {
+            try {
+                final NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
+                m.putIfAbsent(1, 1);
+                Integer i = m.get(1);
+                r.value1 = (i == null ? -1 : (i != 1 ? -1 : 1));
+            } catch (Throwable t) {
+                Logger.log("Player 1 experienced exception", t);
+                r.value1 = -2;
+            }
+        }
+
+        @Player
+        public void player2(State state, IntResult2 r) {
+            try {
+                final NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
+                m.putIfAbsent(2, 1);
+                Integer i = m.get(2);
+                r.value2 = (i == null ? -1 : (i != 1 ? -1 : 1));
+            } catch (Throwable t) {
+                Logger.log("Player 2 experienced exception", t);
+                r.value2 = -2;
+            }
+        }
     }
 }

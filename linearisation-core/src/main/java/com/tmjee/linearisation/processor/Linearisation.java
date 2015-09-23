@@ -16,37 +16,14 @@ import static java.lang.String.format;
 public class Linearisation {
 
 
-    private static final String PREFIX = "Pool_Thread_";
-
-
     public void run(Arguments args) throws InterruptedException {
         QueuedLogger ql = new QueuedLogger();
         ql.start();
 
         Logger.setLogger(ql);
 
-        AtomicInteger id = new AtomicInteger();
-        ThreadFactory threadFactory = (r)->{
-            Thread t = new Thread(r);
-            t.setDaemon(true);
-            t.setName(PREFIX+id.incrementAndGet());
-            return t;
-        };
 
-        ExecutorService pool = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
-                60L, TimeUnit.SECONDS,
-                new SynchronousQueue<>(),
-                threadFactory){
-            @Override
-            protected void afterExecute(Runnable r, Throwable t) {
-                super.afterExecute(r, t);
-                if (t != null) {
-                    t.printStackTrace();
-                }
-            }
-        };
-
-
+        ThreadPool pool = new ThreadPool();
         Scheduler scheduler = new Scheduler(args.userCpu());
 
         Map<String, Test> allTests = args.isRunAllTests() ?
@@ -81,8 +58,7 @@ public class Linearisation {
         Logger.log("Scheduler end.");
 
         Logger.log("Shutdown pool ...");
-        pool.shutdown();
-        pool.awaitTermination(5, TimeUnit.SECONDS);
+        pool.shutdown(5, TimeUnit.SECONDS);
         Logger.log("Pool end.");
 
         ql.stop();

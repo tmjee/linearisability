@@ -13,9 +13,23 @@
 
 ## Blogs
 - [HdrHistorgram: A better latency capture mehtod](https://www.google.com.au/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCkQFjABahUKEwiwo6zRoazHAhVl6KYKHbpEArc&url=http%3A%2F%2Fpsy-lob-saw.blogspot.com%2F2015%2F02%2Fhdrhistogram-better-latency-capture.html&ei=Es7PVbDSI-XQmwW6iYm4Cw&usg=AFQjCNGzOgiqARLq1dmMNT66EOV32Biyuw&sig2=3bXi59LzHulwlyZZG1gc0Q&bvm=bv.99804247,d.dGY)
+- [Consistencies](http://coldattic.info/shvedsky/pro/blogs/a-foo-walks-into-a-bar/posts/88)
 
 
 ## Tools
 - [JCStress](https://www.google.com.au/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CB0QFjAAahUKEwjt0dCynqzHAhUin6YKHeJ0C4c&url=http%3A%2F%2Fopenjdk.java.net%2Fprojects%2Fcode-tools%2Fjcstress%2F&ei=rMrPVe3LNKK-mgXi6a24CA&usg=AFQjCNEV5BowlwTdpIh8tIU3CeG4z9S0eQ&sig2=gpqNxmLivLyy6VI4VAkMDA&bvm=bv.99804247,d.dGY)
 - [HdrHistogram](https://github.com/HdrHistogram/HdrHistogram)
+ 
+
+## Books
+- [The art of multi-processor programming slides](http://booksite.elsevier.com/9780123705914/?ISBN=9780123705914)
+
+## Definitions
+- [Definitions](definitions.md)
+
+## Others
+- [Trevor Brown Phd Page](http://www.cs.utoronto.ca/~tabrown/)
+
+
+
 

@@ -36,8 +36,6 @@ public class NonBlockingFriendlyHashMap<K, V> implements
 
         MaintenanceThread(NonBlockingFriendlyHashMap<K, V> map) {
             this.map = map;
-            setDaemon(true);
-            setPriority(Thread.MIN_PRIORITY);
         }
 
         public void run() {
@@ -57,7 +55,6 @@ public class NonBlockingFriendlyHashMap<K, V> implements
             if (size > threshold) {
                 rehash();
             }
-            Thread.currentThread().yield();
         }
     }
 
@@ -88,8 +85,8 @@ public class NonBlockingFriendlyHashMap<K, V> implements
     private static final boolean CAS_val(Object[] kvs, int idx, Object old,
                                          Object val) {
         // Do I need to shift the index bit, like done in the lock free table???
-            return _unsafe
-                    .compareAndSwapObject(kvs, rawIndex(kvs, (idx)), old, val);
+        return _unsafe
+                .compareAndSwapObject(kvs, rawIndex(kvs, (idx)), old, val);
     }
 
     int threshold;
@@ -279,8 +276,6 @@ public class NonBlockingFriendlyHashMap<K, V> implements
                         if (k != lastIdx) {
                             lastIdx = k;
                             lastRun = last;
-                        } else {
-                            break;
                         }
                     }
                     newTable[lastIdx] = lastRun;
@@ -418,46 +413,8 @@ public class NonBlockingFriendlyHashMap<K, V> implements
 
     @Override
     public V put(K key, V value) {
-        //throw new UnsupportedOperationException("unsupported");
-
-        HashEntry<K, V>[] tab;
-        // int hash = hash(key.hashCode());
-        int hash = key.hashCode();
-        Table table;
-        V oldValue;
-        int index;
-        HashEntry<K, V> first, e;
-
-        while (true) {
-            table = table1;
-            tab = table.table;
-            index = hash & (tab.length - 1);
-            first = tab[index];
-            while (first == table.dummy) {
-                table = getTable(table);
-                tab = table.table;
-                index = hash & (tab.length - 1);
-                first = tab[index];
-            }
-
-            e = first;
-            while (e != null && (e.hash != hash || !key.equals(e.key)))
-                e = e.next;
-
-            if (e != null) {
-                oldValue = e.value;
-                e.value = value;
-                break;
-            } else {
-                oldValue = null;
-                HashEntry<K, V> newEntry = new HashEntry<K, V>(key, hash,
-                        first, value);
-                if (CAS_val(tab, index, first, newEntry)) {
-                    break;
-                }
-            }
-        }
-        return oldValue;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("unsupported");
     }
 
     @Override
@@ -484,4 +441,3 @@ public class NonBlockingFriendlyHashMap<K, V> implements
     }
 
 }
-
