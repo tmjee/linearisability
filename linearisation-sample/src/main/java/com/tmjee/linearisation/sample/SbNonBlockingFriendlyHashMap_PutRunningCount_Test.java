@@ -26,7 +26,7 @@ public class SbNonBlockingFriendlyHashMap_PutRunningCount_Test extends Abstract_
             try {
                 NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
                 for (int a = 0; a < 100; a++) {
-                    m.put(a, a);
+                    m.putIfAbsent(a, a);
                 }
             }catch(Exception e) {
                 Logger.log("Player 1 experience exception", e);
@@ -38,7 +38,7 @@ public class SbNonBlockingFriendlyHashMap_PutRunningCount_Test extends Abstract_
             try {
                 NonBlockingFriendlyHashMap<Integer, Integer> m = state.m;
                 for (int b = 100; b < 300; b++) {
-                    m.put(b, b);
+                    m.putIfAbsent(b, b);
                 }
             } catch(Exception e) {
                 Logger.log("Player 2 experience exception", e);
@@ -53,3 +53,5 @@ public class SbNonBlockingFriendlyHashMap_PutRunningCount_Test extends Abstract_
         }
     }
 }
+
+
