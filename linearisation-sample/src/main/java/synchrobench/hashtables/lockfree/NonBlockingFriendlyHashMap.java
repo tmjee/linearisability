@@ -59,7 +59,6 @@ public class NonBlockingFriendlyHashMap<K, V> implements
     }
 
     public boolean startMaintenance() {
-
         this.stop = false;
         mainThd = new MaintenanceThread<K, V>(this);
         mainThd.start();

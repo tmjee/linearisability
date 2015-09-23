@@ -32,7 +32,7 @@ public class Linearisation {
         for (final Test test : allTests.values()) {
             try {
                 Class<?> runnerClass =  Class.forName(test.runner().packageName+"."+test.runner().className);
-                Constructor<?> c = runnerClass.getConstructor(Test.class, Arguments.class, ExecutorService.class);
+                Constructor<?> c = runnerClass.getConstructor(Test.class, Arguments.class, ThreadPool.class);
                 Runner runner = (Runner) c.newInstance(test, args, pool);
 
                 scheduler.schedule(new Scheduler.Task(){
@@ -63,6 +63,6 @@ public class Linearisation {
 
         ql.stop();
 
-        System.out.println(format("[linearisability] $s Bye", Thread.currentThread()));
+        System.out.println(format("[linearisability] %s Bye", Thread.currentThread()));
     }
 }

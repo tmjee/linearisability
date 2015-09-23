@@ -53,6 +53,7 @@ public class QueuedLogger {
             Q.put(new Tuple(msg, t));
         } catch (InterruptedException e) {
             System.out.println(format("[linearisability] %s logger submitter interrupted", Thread.currentThread()));
+            e.printStackTrace();
         }
     }
 
