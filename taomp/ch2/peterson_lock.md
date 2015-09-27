@@ -27,14 +27,14 @@ Chapter 2, page 27
 
 
 ## Piggybacking 
+Following is a two cone diagram from jeremy manson's blog[1]
 ```
-two cone diagram from jeremy manson's blog[1]
  \                           /
   \                         /
    \  other writes / reads /
     \ volatile write      /
       -------------------
-    
+                          happens-before
                                        ------------------
                                      /   volatile read    \
                                    /  other writes /reads  \
