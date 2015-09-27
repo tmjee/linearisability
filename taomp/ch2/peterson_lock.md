@@ -19,3 +19,32 @@ Chapter 2, page 27
 15.     }
 16. }
 ```
+
+## Issues
+- line 3. flag is volatile, but this is only for the reference of boolean[] array, not each entry in it
+- line 10. piggybacking is not right
+- line 14, piggybacking is not right
+
+
+## Piggybacking 
+```
+two cone diagram from jeremy manson's blog[1]
+ \                           /
+  \                         /
+   \  other writes / reads /
+    \ volatile write      /
+      -------------------
+    
+                                       ------------------
+                                     /   volatile read    \
+                                   /  other writes /reads  \
+                                 /                          \
+```
+
+Some of my understandings
+- volatile write in java issues a full memory barrier 
+- volatile write (write release) happens before volatile read (read acquire)
+
+
+
+[1] - http://jeremymanson.blogspot.com.au/2008/11/what-volatile-means-in-java.html
