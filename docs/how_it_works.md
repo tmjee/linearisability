@@ -54,3 +54,187 @@ run of test methods in this particular stride.
 Before they ends, they also print out the result
 
 
+## E.g.
+
+Typical example of testing the count of two concurrent 'put' into a Map would be as follows:
+
+```java
+@Consequence(
+  id = "[1]", 
+  expectation = Expectation.ACCEPTABLE, 
+  description = "Running count for player 1 and 2 match expected result")
+@Consequence(
+  id = "[-1]", 
+  expectation = Expectation.FORBIDDEN, 
+  description = "Running count for player 1 and 2 do not match expected result")
+@Reference(
+  "https://github.com/tmjee/linearisability/blob/master/docs/results/map/PutRunningCount_Test.md")
+public class TestMetaInfo {
+}
+
+Figure 12: Code sample for a typical linearisation test meta data.
+```
+
+```java
+@Linearisable
+@Meta(TestMetaInfo.class)
+public class LinearisationTestForTotalCount {
+
+    @Invariant
+    public static class State {
+        final Map<Integer,Integer> m = new LockBasedFriendlyTreeMap<>();
+    }
+
+    @TestUnit(name="LinearisationTestForTotalCount")
+    public static class TestUnit1 {
+        @Player public void player1(State s, IntResult1 r) {
+            try {
+                Map<Integer, Integer> m = state.get();
+                for (int a = 0; a < 100; a++) {
+                    m.put(a, a);
+                }
+            }catch(Exception e) {
+                System.out.println("Player 1 experience exception");
+                e.printStackTrace();
+            }
+        }
+        @Player public void player2(State s, IntResult1 r) {
+            try {
+                Map<Integer, Integer> m = state.get();
+                for (int b = 100; b < 300; b++) {
+                    m.put(b, b);
+                }
+            } catch(Exception e) {
+                System.out.println("Player 2 experience exception", e);
+                e.printStackTrace();
+            }
+        }
+        @Arbiter public void arbiter(State s, IntResult1 r) { 
+            Map<Integer, Integer> m = state.get();
+            int size = m.size();
+            r.value1 = ((size == 300)?1:-1);
+        }
+    }
+}
+
+Figure 13: Code sample of a linearisation test.
+```
+
+This would trigger the following scheduler execution pattern (refer to runner execution pattern) :-
+```
+                                    Start
+                                      |
+                                      | Scheduler (Z)
+                                      v
+                                      |
+             +---------------+--------+---------+---------------+
+             |               |                  |               |
+ Runner1 (Y) |   Runner2 (X) |   Runner N-1 (W) |  Runner N (V) |
+             V               V                  V               V
+             |               |                  |               |
+             +---------------+--------+---------+---------------+
+                                      |
+                                      |
+                                      V  Wait for all Runners to end (U)
+                                      |
+                                      |
+                                  Terminate
+                                  
+ Figure 14: Flow chart of tests execution, excluding details of runner.
+```
+
+| Symbol    | Description  |
+| --------- | ------------ |
+|  Z        |  - Scheduler creates a thread for each test. Each test is run by a runner.  
+|           |  - Number of runner at a time depends on configuration option (-userCpu)
+|           |  - Probably want -userCpu to equals to number of cores (as tests we are running
+|           |  cpu intensive
+|  Y,Z,W,V  |  - Individual tests ran by a runner thread (concurrently)
+|  U        |  Scheduler wait for all runner to end before terminating
+
+Table 9: Description of symbols used in Figure 14.
+
+
+
+
+``` 
+                        |
+                        +--------------------------------<-------------+
+                        |                                              |
+                        | runner (A)                                   |
+                        +                                              |  
+                        |                                              |
+                        V                                              |
+                  +-----+------+                                       |
+                  |            |                                       |
+     player1 (B)  |            | player2 (C)                           |
+                  +------------+                                       |
+                        |                                              |
+                        |                                              |
+                        +------------------<----------+                |
+                        |                             |                |
+                        | barrier (D)                 |                |
+                        |                             |                |
+                        V                             |                |
+                  +-----+-------+                     |                |
+     player1 (E)  |             | player2 (F)         | Stride (K)     | Iteration (L)
+                  V             V                     |                |
+                  +-------------+                     |                |
+                        |                             ^                ^
+                        | barrier (G)                 |                |
+                        V                             |                |
+                  +-----+-------+                     |                |
+    player1 (H)   |             | player2 (I)         |                |
+                  V             V                     |                |
+                  +-------------+                     |                |
+                        |                             |                |
+                        | barrier (J)                 |                |
+                        V                             |                |
+                        |                             |                |
+                   timeout yet?                       |                |
+                        |                             |                |
+                        ^                             |                |
+                       / \  (M)                       |                |
+                      <   >------>---- NO-------------+                |
+                       \ /                                             |
+                        v                                              |
+                        |                                              |
+                       YES                                             |
+                        |                                              |
+                        |                                              |
+                Done all iteration?                                    |
+                        |                                              |
+                        ^                                              |
+                       / \  (N)                                        |
+                      <   >------>---- NO------------------------------+
+                       \ /
+                        v
+                        |
+                       YES
+                        |
+                      
+Figure 15: Flow chart of tests execution, expanding details of runner only. 
+```
+
+
+| Symbol  | Description  |
+| ------- | ------------ |
+|  A      | Runner runs a test, getting a thread from pool to act as each @Player
+|  B      | @Player 1 thread spawned by Runner
+|  C      | @Player 2 thread spawned by Runner
+|  D      | Barrier that wait for all @Player(s) to be ready
+|  E      | @Player 1 runs his test method
+|  F      | @Player 2 runs his test  
+|  G      | Barrier that wait for all @Player(s) to finish their respective test
+|  H,I    | Either @Player 1 or @Player 2 but not both (depends on who gets the epoch atomically) will :-
+|         |   - run the @Aribiter
+|         |   - accumulate result from each stride
+|         |   - prepare for next stride (eg. reset the @Record)
+|         |   - reset control (immutable) so no control interference with other stides
+|  J      | Barrier that waits for both @Player(s) to be ready 
+|  K      | Strides loop
+|  L      | Iteration loop
+|  M      | If timeout (specified by -time) end the stride
+|  N      | If done with iteration (specified by -iteration) end the test
+
+Table 10: Descriptions of symbols used in Figure 15.
