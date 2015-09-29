@@ -71,9 +71,10 @@ because volatile write is translated to a full memory barrier.
 ```
 
 | Line | Description |
-| 9.  | Write release, to make sure that `flag[i]= true1` is available in main memory|
-| 10. | Read acquire first by doing `victim == i`, so when we do `flag[j]`, we get the latest from main memory|
-| 15. | Write release, so that `flat[i] = false` is written to main memory|
+|-----|------------------|
+| 9.  | Write release, to make sure that `flag[i]= true1` is available in main memory |
+| 10. | Read acquire first by doing `victim == i`, so when we do `flag[j]`, we get the latest from main memory |
+| 15. | Write release, so that `flat[i] = false` is written to main memory |
 
 
 ## References
