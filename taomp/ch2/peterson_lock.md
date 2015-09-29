@@ -1,4 +1,4 @@
-Chapter 2, page 27
+## Chapter 2, page 27
 
 ```java
 // Peterson Lock
