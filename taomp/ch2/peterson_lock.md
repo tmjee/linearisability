@@ -21,9 +21,11 @@ Chapter 2, page 27
 ```
 
 ## Issues
-- line 3. flag is volatile, but this is only for the reference of boolean[] array, not each entry in it
-- line 10. piggybacking is not right
-- line 14, piggybacking is not right
+| Line | Description |
+| -------- | ------------------ |
+| line 3.  | flag is volatile, but this is only for the reference of boolean[] array, not each entry in it |
+| line 10. | piggybacking is not right |
+| line 14. | piggybacking is not right |
 
 
 ## Piggybacking 
