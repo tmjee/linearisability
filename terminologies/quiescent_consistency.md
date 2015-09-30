@@ -1,12 +1,13 @@
 # Quiescent Consistency
 
-## Criteria / Definition 
+## Criterias / Definition 
 
-Criteria 
+### Definition (informal)
 - Operations to appear in a one-at-a-time sequential order
 - Operations separated by a period of quiesence (a period in which no operation is executing, 
 eg. no open call) to appear to take effect in their real-time order.
 
+### Reordering is acceptable
 Section 6 of [1] 
 " We have choosen to formalise quiescent consistency in a way that matches the informal
 description as closely as possible, however, since we are formalising an informal description
