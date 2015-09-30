@@ -39,16 +39,16 @@ view this as a consequence of the definition."
 
 Say we have the following executions 
 ```
- T1  |---e(1)---|        |---e(3)---|            | Quiescent | |--d():1--|         |--d():3--|
- T2            |---e(2)---|        |---e(4)---|  | Period    |           |--d():2--|         |--d():4--|
+T1  |--e(1)--|        |--e(3)--|            | Quiescent | |--d():1--|         |--d():3--|
+T2            |--e(2)--|        |--e(4)--|  | Period    |           |--d():2--|         |--d():4--|
 ```
 
 Queue acts like a queue. 
 
 The above can be reordered to as the followings 
 ```
- T1  |---e(3)---|        |---e(1)---|            | Quiescent | |--d():3--|         |--d():1--|
- T2            |---e(4)---|        |---e(2)---|  | Period    |           |--d():4--|         |--d():2--|
+T1  |--e(3)--|        |--e(1)--|            | Quiescent | |--d():3--|         |--d():1--|
+T2            |--e(4)--|        |--e(2)--|  | Period    |           |--d():4--|         |--d():2--|
 ```
 and by definition of quiescent consistency, this is entirely valid, allowing a Queue (FIFO) to act 
 like a Stack (FILO)
