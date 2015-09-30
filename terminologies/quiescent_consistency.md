@@ -9,6 +9,7 @@ eg. no open call) to appear to take effect in their real-time order.
 
 ### Reordering is acceptable
 Section 6 of [1] 
+
 " We have choosen to formalise quiescent consistency in a way that matches the informal
 description as closely as possible, however, since we are formalising an informal description
 there might be valid alternatives to our definition above. In particular, our formalisation 
