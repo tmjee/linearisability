@@ -40,21 +40,16 @@ view this as a consequence of the definition."
 
 Say we have a Queue subjected to the following sequence of queuing and unqueing  
 ```
-T1  |--e(1)--|    |--e(3)--|         | Quiescent | |--d():1--|         |--d():3--|
-T2         |--e(2)--|    |--e(4)--|  | Period    |           |--d():2--|         |--d():4--|
+T1  |--e(1)--|    |--e(3)--|         | Quiescent |           |--d():3--|         |--d():1--|
+T2         |--e(2)--|    |--e(4)--|  | Period    | |--d():4--|         |--d():2--|
 ```
 
-Based on [1], one possible reordering would be
-```
-T1  |--e(1)--|        |--e(3)--|          | Quiescent | |--d():1--|         |--d():3--|
-T2           |--e(2)--|        |--e(4)--| | Period    |           |--d():2--|         |--d():4--|
-```
-The outcome from T1 and T2's point of view seems consistent with a queue's function, FIFO.
+Based on [1], the above outcome is possible. This is due to the fact that quiescent consistency 
+allows the following reordering
 
-Another possible reordering based on [1], would be 
 ```
-T1          |--e(3)--|        |--e(1)--| | Quiescent| |--d():3--|         |--d():1--|
-T2 |--e(4)--|        |--e(2)--|          | Period   |           |--d():4--|         |--d():2--|
+T1          |--e(3)--|        |--e(1)--| 
+T2 |--e(4)--|        |--e(2)--|          
 ```
 The outcome from T1 and T2's point of view seems counter intuitive of a queue's function, FIFO, 
 but resembles more of a stack, FILO.
