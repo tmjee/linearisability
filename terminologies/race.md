@@ -10,6 +10,7 @@ there is no synchronisation involves.
 
 # Race Conditions
 - Threads accessing common resource, but that doesn't necessarily means there is a data race.
+- Two or more threads trying to change a common resource at the same time is a race condition.
 
 | Thread x | Thread y |
 |----------|----------|
