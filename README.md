@@ -37,6 +37,6 @@ Following are the contents of this piece of work.
 
 ## Terminologies
 - [Quiescent Consistency](terminologies/quiescent_consistency.md)
-- [Race Condition & Data Race](terminologies/races.md)
+- [Race Condition & Data Race](terminologies/race.md)
 
 
