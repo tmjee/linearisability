@@ -22,3 +22,7 @@ Thread x and thread y either can obtain lock first, so there is a race condition
 the mutual lock that need to be acquired before writing to x, there is no data race.
 
 
+# Java & JMM Terms
+- In Java and JMM terms, data race are memory actions not ordered by happens-before relationship. 
+
+
