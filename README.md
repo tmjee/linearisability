@@ -40,3 +40,6 @@ Following are the contents of this piece of work.
 - [Race Condition & Data Race](terminologies/race.md)
 
 
+## Links
+- [paulmck blog](http://paulmck.livejournal.com/)
+
