@@ -8,14 +8,6 @@ as well as something that I could learn / discuss / collaborate / share / spikes
 with my supervisor and fellow university mates. It is also an initial attempt with my supervisor to find a
 suitable problem area that could potentially be used in my research projects.
 
-This is a team and community effort where every one is encouraged to criticised / participates / collaborate
-to generate healthy discussion / thoughts regarding this subject area. I am a potential computer science research
-student based in [University of Sydney](http://sydney.edu.au). Feel free to drop a line, swing around if you
-are nearby. Any other fellow research mates across the globe are more than welcome to participate in any sort of ways.
-
-I could be reach at
-- tmjee1 at gmail dot com
-- tjee6174 at uni dot sydney dot edu dot au
 
 ## Contents
 Following are the contents of this piece of work.
