@@ -43,3 +43,15 @@ Following are the contents of this piece of work.
 ## Links
 - [paulmck blog](http://paulmck.livejournal.com/)
 
+
+## Papers reading & Notes
+- [Brief Announcement:MultiLane - A Concurrent Blocking MultiSet](papers/p1.md)
+- [Quiescent Consistency: Defining and Verifying Relaxed Linearizability](papers/p2.md)
+- [The SparyList: A Scalable Relaxed Priority Queue](papers/p3.md)
+- [Data Structures In MultiCore Age](papers/p4.md)
+- [Reusable Concurrent Data Types](papers/p5.md)
+- [The Java Memory Model](papers/p6.md)
+- [Semantics of Multithreaded Java](papers/p7.md)
+- [Why Non-Blocking Operations Should Be Selfish](papers/p8.md)
+
+
