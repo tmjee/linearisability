@@ -23,6 +23,8 @@ Following are the contents of this piece of work.
 
 ## Notes on "The Art of Multiprocessor Programming"
 - [Peterson Lock](taomp/ch2/peterson_lock.md)
+- [Counting Networks](taomp/ch12/counting_networks.md)
+- [Diffracting Trees](taomp/ch12/diffracting_trees.md)
 
 ## Notes on Data Structures ran
 - [NonBlockingFriendlyHashMap](linearisation-datastructures/nonblockingfriendlyhashmap.md)
