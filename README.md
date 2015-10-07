@@ -23,6 +23,7 @@ Following are the contents of this piece of work.
 
 ## Notes on "The Art of Multiprocessor Programming"
 - [Peterson Lock](taomp/ch2/peterson_lock.md)
+- [Combining Tree](taomp/ch12/combining_tree.md)
 - [Counting Networks](taomp/ch12/counting_networks.md)
 - [Diffracting Trees](taomp/ch12/diffracting_trees.md)
 
