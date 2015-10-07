@@ -37,6 +37,8 @@ Following are the contents of this piece of work.
 
 ## Links
 - [paulmck blog](http://paulmck.livejournal.com/)
+- [Concurrent & Distributed Programming Course Notes](http://fmt.cs.utwente.nl/courses/cdp/)
+- [Byte Codes #1](https://today.java.net/article/2008/07/29/return-type-based-method-overloading-java)
 
 
 ## Papers reading & Notes
