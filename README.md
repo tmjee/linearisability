@@ -48,5 +48,6 @@ Following are the contents of this piece of work.
 - [The Java Memory Model](papers/p6.md)
 - [Semantics of Multithreaded Java](papers/p7.md)
 - [Why Non-Blocking Operations Should Be Selfish](papers/p8.md)
+- [Counting Networks](papers/p9.md)
 
 
