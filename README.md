@@ -30,10 +30,10 @@ Following are the contents of this piece of work.
 ## Notes on Data Structures ran
 - [NonBlockingFriendlyHashMap](linearisation-datastructures/nonblockingfriendlyhashmap.md)
 
-## Terminologies
+## Notes
 - [Quiescent Consistency](terminologies/quiescent_consistency.md)
 - [Race Condition & Data Race](terminologies/race.md)
-
+- [JMM and Various Consistencies](terminologies/jmm_and_various_consistencies.md)
 
 ## Links
 - [paulmck blog](http://paulmck.livejournal.com/)
