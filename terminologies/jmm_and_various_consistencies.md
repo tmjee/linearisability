@@ -30,7 +30,7 @@ call.
 
 I'm not sure how this gets translated to java code.
 
-```
+```java
 Phaser phaser = new Phaser();
 
 public void doAndAwaitQuiescentPeriod(Runnable r) {
@@ -41,7 +41,7 @@ public void doAndAwaitQuiescentPeriod(Runnable r) {
 ```
 
 To run a series of executions and then trigger a Quiescent Period we do 
-```
+```java
 
 new Thread(()->{
   doAndAwaitQuiescentPeriod(()->{
