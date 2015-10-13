@@ -23,9 +23,13 @@ a particular thread.
 
 
 # Quiescent Consistency
+Informally, every executions could be order in anyway as long as those executions that 
+happens before the quiescent period happens before it and those that happens after the 
+quiescent period happens after it. Quiescent period is a period where there is no open 
+call.
 
-```
-public void perform
-```
+I'm not sure how this gets translated to java code.
+
+
 
 
