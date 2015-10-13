@@ -30,6 +30,37 @@ call.
 
 I'm not sure how this gets translated to java code.
 
+```
+Phaser phaser = new Phaser();
+
+public void doAndAwaitQuiescentPeriod(Runnable r) {
+    phaser.register();
+    r.run();
+    phaser.arriveAndAwaitAdvance();
+}
+```
+
+To run a series of executions and then trigger a Quiescent Period we do 
+```
+
+new Thread(()->{
+  doAndAwaitQuiescentPeriod(()->{
+     execution1();
+     execution2();
+     execution3();
+  });
+}).start();
+
+new Thread(()->{
+  doAndAwaitQuiescentPeriod(()->{
+    execution4();
+    execution5();
+    execution6();
+  });
+}).start();
+ 
+```
+
 
 
 
