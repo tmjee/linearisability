@@ -34,6 +34,7 @@ Following are the contents of this piece of work.
 - [Quiescent Consistency](terminologies/quiescent_consistency.md)
 - [Race Condition & Data Race](terminologies/race.md)
 - [JMM and Various Consistencies](terminologies/jmm_and_various_consistencies.md)
+- [Java Collections](terminologies/java_collections.md)
 
 ## Links
 - [paulmck blog](http://paulmck.livejournal.com/)
