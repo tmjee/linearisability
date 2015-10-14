@@ -13,6 +13,10 @@
     + j.u.Deque
       + j.u.c.BlockingDeque
 + j.u.Map
+  + j.u.SortedMap
+    + j.u.NavigableMap
+      + j.u.c.ConcurrentNavigableMap
+  + j.u.c.ConcurrentMap
 ```
 
 
@@ -65,8 +69,16 @@
 
 ### `j.u.Map` implementations
 ```
++ j.u.Dictionary 
+  + j.u.Hashtable                     implements j.u.Map
 + j.u.AbstractMap                     implements j.u.Map
-
+  + j.u.HashMap
+    + j.u.LinkedHashMap
+  + j.u.WeakHashMap
+  + j.u.IdentityHashMap
+  + j.u.EnumMap
+  + j.u.TreeMap                       implements j.u.NavigableMap
+  + j.u.c.ConcurrentSkipListMap       implements j.u.ConcurrentNavigableMap
 ```
 
 
